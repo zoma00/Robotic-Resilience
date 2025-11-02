@@ -35,60 +35,6 @@
       opacity: 0.6;
     }
     
-    /* Mobile responsive background adjustments - AGGRESSIVE FIXES */
-    @media screen and (max-width: 768px) {
-      .bg-slideshow {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        overflow: hidden !important;
-      }
-      
-      .bg-slideshow img {
-        /* FORCE proper mobile sizing */
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        min-width: 100vw !important;
-        min-height: 100vh !important;
-        max-width: none !important;
-        max-height: none !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        transform: none !important;
-      }
-    }
-    
-    @media screen and (max-width: 768px) and (orientation: portrait) {
-      .bg-slideshow img {
-        /* Portrait: make sure width fills, height scales */
-        width: 100vw !important;
-        height: auto !important;
-        min-height: 100vh !important;
-      }
-    }
-    
-    @media screen and (max-width: 768px) and (orientation: landscape) {
-      .bg-slideshow img {
-        /* Landscape: make sure height fills, width scales */
-        width: auto !important;
-        height: 100vh !important;
-        min-width: 100vw !important;
-      }
-    }
-    
-    /* Tablet adjustments */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .bg-slideshow img {
-        object-position: center center;
-        object-fit: cover;
-      }
-    }
-    
     body {
       background-color: #0a0e17;
     }
@@ -102,19 +48,9 @@
       padding: 20px;
       border: 1px solid rgba(154, 230, 180, 0.1);
     }
-    
-    /* Mobile content adjustments */
-    @media (max-width: 768px) {
-      main {
-        margin: 10px;
-        padding: 15px;
-        background: rgba(11, 18, 32, 0.8);
-        backdrop-filter: blur(8px);
-      }
-    }
   </style>
 </head>
-<body>
+<body data-page="index">
   <div class="bg-slideshow">
     <img src="assets/kit-photos/map/world-map-dotted.jpg" alt="World Map" class="active" loading="eager" decoding="sync">
       <img src="assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg" alt="Post-apocalyptic robot scene" loading="lazy" decoding="async">
@@ -355,29 +291,6 @@
         current = (current + 1) % images.length;
         images[current].classList.add('active');
       }
-      
-      // Mobile background fix - force recalculation
-      function forceMobileResize() {
-        if (window.innerWidth <= 768) {
-          const bgImages = document.querySelectorAll('.bg-slideshow img');
-          bgImages.forEach(img => {
-            img.style.width = '100vw';
-            img.style.height = '100vh';
-            img.style.objectFit = 'cover';
-            img.style.position = 'absolute';
-            img.style.top = '0';
-            img.style.left = '0';
-            img.style.transform = 'none';
-          });
-        }
-      }
-      
-      // Apply mobile fixes immediately and on resize
-      forceMobileResize();
-      window.addEventListener('resize', forceMobileResize);
-      window.addEventListener('orientationchange', () => {
-        setTimeout(forceMobileResize, 100);
-      });
       
       // Change image every 8 seconds
       setInterval(nextImage, 8000);

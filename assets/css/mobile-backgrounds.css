@@ -31,6 +31,22 @@
     opacity: 0.4 !important; /* Lighter opacity for mobile readability */
   }
   
+  /* Page-specific mobile adjustments */
+  
+  /* Index page - lighter backgrounds for better text readability */
+  body:has(.home-page) .bg-slideshow img.active,
+  body[data-page="index"] .bg-slideshow img.active {
+    opacity: 0.35 !important;
+  }
+  
+  /* Survival kit page - slightly more visible backgrounds */
+  body:has(.survival-kit-page) .bg-slideshow img.active,
+  body[data-page="survival-kit"] .bg-slideshow img.active {
+    opacity: 0.45 !important;
+  }
+  
+  /* Navigation page keeps default 0.4 opacity */
+  
   /* Portrait orientation specific fixes */
   @media (orientation: portrait) {
     .bg-slideshow img {
@@ -41,6 +57,18 @@
     body {
       overflow-x: hidden !important;
       max-width: 100vw !important;
+    }
+    
+    /* Index page portrait - focus on center for better composition */
+    body:has(.home-page) .bg-slideshow img,
+    body[data-page="index"] .bg-slideshow img {
+      object-position: center center !important;
+    }
+    
+    /* Survival kit portrait - show upper portion for action scenes */
+    body:has(.survival-kit-page) .bg-slideshow img,
+    body[data-page="survival-kit"] .bg-slideshow img {
+      object-position: center 30% !important;
     }
   }
   
