@@ -30,6 +30,9 @@
     }
     .bg-slideshow img {
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -37,8 +40,6 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
       pointer-events: none;
-      top: 0;
-      bottom: 0;
     }
     .bg-slideshow img.active {
       opacity: 1;
@@ -47,6 +48,31 @@
     .bg-slideshow img.active {
       opacity: 0.6; /* Increased opacity for better visibility */
     }
+    
+    /* Mobile responsive background adjustments */
+    @media (max-width: 768px) {
+      .bg-slideshow img {
+        /* On mobile portrait, prioritize proper coverage */
+        min-width: 100vw;
+        min-height: 100vh;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+    
+    @media (max-width: 768px) and (orientation: landscape) {
+      .bg-slideshow img {
+        /* On mobile landscape, adjust for wider aspect ratio */
+        width: auto;
+        height: 100vh;
+        min-width: 100vw;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+    
     body {
       background-color: #0a0e17;
     }

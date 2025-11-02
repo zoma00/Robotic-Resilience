@@ -568,3 +568,82 @@ body.pdf-export #all-export { margin-top: 0 !important; padding-top: 0 !importan
     padding: 0 20px;
   }
 }
+
+/* Mobile Background Image Improvements */
+@media (max-width: 768px) {
+  /* Better background handling for mobile devices */
+  .bg-slideshow {
+    /* Ensure background covers full viewport on mobile */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+  
+  .bg-slideshow img {
+    /* Optimized mobile background positioning */
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+  
+  /* Portrait orientation adjustments */
+  @media (orientation: portrait) {
+    .bg-slideshow img {
+      width: 100vw !important;
+      height: auto !important;
+      min-height: 100vh !important;
+    }
+  }
+  
+  /* Landscape orientation adjustments */
+  @media (orientation: landscape) {
+    .bg-slideshow img {
+      width: auto !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+    }
+  }
+  
+  /* Mobile content adjustments */
+  body {
+    overflow-x: hidden;
+  }
+  
+  .wrap {
+    padding: 15px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+  
+  .site-header .wrap {
+    padding: 20px 15px !important;
+  }
+  
+  .header-nav-links {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  
+  .header-nav-links a {
+    margin: 0 2px !important;
+    padding: 4px 6px !important;
+    display: inline-block !important;
+  }
+}
+
+/* High DPI mobile displays */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .bg-slideshow img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
