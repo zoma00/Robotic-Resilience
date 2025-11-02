@@ -16,19 +16,20 @@
   
   .bg-slideshow img {
     position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
+    /* Position in top-right corner for mobile */
+    top: 20px !important;
+    right: 20px !important;
     /* Much smaller dimensions for mobile */
-    width: 60vw !important;
-    height: 60vh !important;
+    width: 25vw !important;
+    height: 25vh !important;
     object-fit: cover !important;
     object-position: center center !important;
-    transform: translate(-50%, -50%) !important;
+    transform: none !important;
     transition: opacity 1s ease-in-out !important;
     opacity: 0;
-    border-radius: 15px !important;
+    border-radius: 12px !important;
     /* Add subtle shadow for depth */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
   }
   
   .bg-slideshow img.active {
@@ -40,17 +41,17 @@
   /* Index page - lighter backgrounds for better text readability */
   body:has(.home-page) .bg-slideshow img.active,
   body[data-page="index"] .bg-slideshow img.active {
-    opacity: 0.25 !important;
-    width: 50vw !important;
-    height: 50vh !important;
+    opacity: 0.15 !important;
+    width: 22vw !important;
+    height: 22vh !important;
   }
   
   /* Survival kit page - slightly more visible backgrounds */
   body:has(.survival-kit-page) .bg-slideshow img.active,
   body[data-page="survival-kit"] .bg-slideshow img.active {
-    opacity: 0.35 !important;
-    width: 55vw !important;
-    height: 55vh !important;
+    opacity: 0.2 !important;
+    width: 25vw !important;
+    height: 25vh !important;
   }
   
   /* Navigation page keeps default 0.4 opacity */
@@ -58,9 +59,10 @@
   /* Portrait orientation specific fixes */
   @media (orientation: portrait) {
     .bg-slideshow img {
-      width: 50vw !important;
-      height: 45vh !important;
-      object-position: center center !important;
+      width: 20vw !important;
+      height: 20vh !important;
+      top: 15px !important;
+      right: 15px !important;
     }
     
     body {
@@ -71,24 +73,25 @@
     /* Index page portrait - smaller for better text readability */
     body:has(.home-page) .bg-slideshow img,
     body[data-page="index"] .bg-slideshow img {
-      width: 45vw !important;
-      height: 40vh !important;
+      width: 18vw !important;
+      height: 18vh !important;
     }
     
     /* Survival kit portrait - slightly larger for visual impact */
     body:has(.survival-kit-page) .bg-slideshow img,
     body[data-page="survival-kit"] .bg-slideshow img {
-      width: 52vw !important;
-      height: 47vh !important;
+      width: 20vw !important;
+      height: 20vh !important;
     }
   }
   
   /* Landscape orientation specific fixes */
   @media (orientation: landscape) {
     .bg-slideshow img {
-      width: 65vw !important;
-      height: 55vh !important;
-      object-position: center center !important;
+      width: 25vw !important;
+      height: 25vh !important;
+      top: 15px !important;
+      right: 15px !important;
     }
   }
   
@@ -130,13 +133,15 @@
 /* Extra small mobile devices */
 @media screen and (max-width: 480px) {
   .bg-slideshow img.active {
-    opacity: 0.2 !important; /* Very light for small screens */
+    opacity: 0.12 !important; /* Very light for small screens */
   }
   
   .bg-slideshow img {
-    width: 40vw !important;
-    height: 35vh !important;
-    border-radius: 12px !important;
+    width: 15vw !important;
+    height: 15vh !important;
+    top: 10px !important;
+    right: 10px !important;
+    border-radius: 8px !important;
   }
   
   main {
