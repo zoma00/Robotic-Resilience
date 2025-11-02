@@ -1,0 +1,51 @@
+📱 MOBILE TESTING GUIDE - BACKGROUND FIXES
+
+🕐 DEPLOYMENT STATUS:
+✅ Changes pushed to GitHub: fe178e6
+🔄 GitHub Pages updating... (5-10 minutes)
+⏰ Deployed at: $(date)
+
+🎯 WHAT TO TEST WHEN LIVE:
+
+1. **Portrait Mode (Vertical Phone):**
+   ✅ Background images should fit screen properly
+   ✅ No oversized/cropped backgrounds
+   ✅ Content should be readable with good contrast
+
+2. **Landscape Mode (Horizontal Phone):**
+   ✅ Rotate phone → backgrounds adjust smoothly
+   ✅ Images scale properly for wide screen
+   ✅ No weird stretching or distortion
+
+3. **Both Pages:**
+   ✅ Main page: https://zoma00.github.io/Robotic-Resilience/
+   ✅ Survival kit: https://zoma00.github.io/Robotic-Resilience/survival-kit.html
+
+🚀 FORCE UPDATE METHODS:
+
+**Method 1 - Cache Bypass URL:**
+https://zoma00.github.io/Robotic-Resilience/?v=1762109276
+
+**Method 2 - Clear Mobile Browser Cache:**
+- Android Chrome: Settings → Privacy → Clear browsing data
+- iPhone Safari: Settings → Safari → Clear History and Website Data
+
+**Method 3 - Incognito/Private Mode:**
+- Open site in private browsing mode
+
+🔍 SIGNS THE UPDATE IS LIVE:
+1. Background images center properly in portrait mode
+2. No more "very big" backgrounds when vertical
+3. Smooth rotation between portrait/landscape
+4. Improved readability with better background opacity
+
+⚠️ IF STILL NOT WORKING:
+- Wait 15-20 minutes for full CDN propagation
+- Try different mobile browser
+- Check GitHub repo → Actions for deployment status
+
+📧 FEEDBACK:
+Once you test, let me know:
+- Does portrait mode look better? ✅/❌
+- Does landscape rotation work smoothly? ✅/❌
+- Are both pages (main + survival kit) fixed? ✅/❌
