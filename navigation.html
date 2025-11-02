@@ -226,44 +226,112 @@
     (function() {
       function generatePDF(targetSelector, filename) {
         const el = document.querySelector(targetSelector);
-        if (!el) return;
+        if (!el) {
+          console.error('PDF target element not found:', targetSelector);
+          return;
+        }
+        
         const opt = {
-          margin:       0.5,
-          filename:     filename || 'download.pdf',
-          image:        { type: 'jpeg', quality: 0.95 },
-          html2canvas:  { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
-          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+          margin: 0.5,
+          filename: filename || 'download.pdf',
+          image: { type: 'jpeg', quality: 0.95 },
+          html2canvas: { 
+            scale: 2, 
+            useCORS: true, 
+            logging: true, 
+            backgroundColor: '#ffffff',
+            allowTaint: true,
+            letterRendering: true,
+            width: 800,
+            height: null
+          },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
+        
         function buildPdfLinksBlock(items){
           const wrap = document.createElement('section');
           wrap.className = 'kit-section';
-          const h = document.createElement('h2'); h.textContent = 'Links'; wrap.appendChild(h);
-          const ul = document.createElement('ul'); ul.className = 'kit-list';
-          items.forEach(({text, href}) => { const li = document.createElement('li'); const a = document.createElement('a'); a.href = href; a.textContent = text; li.appendChild(a); ul.appendChild(li); });
+          wrap.style.cssText = 'background: #ffffff; padding: 20px; margin: 20px 0; border: 1px solid #ddd;';
+          const h = document.createElement('h2'); 
+          h.textContent = 'Useful Links'; 
+          h.style.cssText = 'color: #333; margin-bottom: 15px; font-size: 18px;';
+          wrap.appendChild(h);
+          const ul = document.createElement('ul'); 
+          ul.className = 'kit-list';
+          ul.style.cssText = 'list-style-type: disc; padding-left: 20px;';
+          items.forEach(({text, href}) => { 
+            const li = document.createElement('li'); 
+            li.style.cssText = 'margin-bottom: 8px;';
+            const a = document.createElement('a'); 
+            a.href = href; 
+            a.textContent = text;
+            a.style.cssText = 'color: #0645ad; text-decoration: underline;';
+            li.appendChild(a); 
+            ul.appendChild(li); 
+          });
           wrap.appendChild(ul);
           return wrap;
         }
+        
         function run(){
+          console.log('Starting PDF generation for:', targetSelector);
           document.body.classList.add('pdf-export');
-          const temp = document.createElement('div'); temp.style.position = 'absolute'; temp.style.left = '-10000px'; temp.style.top = '0'; temp.style.width = '900px';
+          
+          // Create container with proper styling
+          const temp = document.createElement('div'); 
+          temp.style.cssText = 'position: absolute; left: -10000px; top: 0; width: 800px; background: #ffffff; padding: 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333;';
+          
+          // Clone the target element
           const clone = el.cloneNode(true);
+          
+          // Ensure all content is visible and styled for PDF
+          const allElements = clone.querySelectorAll('*');
+          allElements.forEach(element => {
+            const computed = window.getComputedStyle(element);
+            if (computed.display === 'none' || computed.visibility === 'hidden') {
+              element.style.display = 'block';
+              element.style.visibility = 'visible';
+            }
+            element.style.color = element.style.color || '#333';
+            element.style.backgroundColor = element.style.backgroundColor || 'transparent';
+          });
+          
+          // Style the cloned content
+          clone.style.cssText = 'width: 100%; background: #ffffff; padding: 0; margin: 0;';
+          
+          // Add links section
           const links = [
-            { text: 'Home', href: 'index.html' },
-            { text: 'War Survival Kit', href: 'war-survival-kit.pdf' },
+            { text: 'Home Page', href: 'index.html' },
+            { text: 'War Survival Kit', href: 'survival-kit.html' },
             { text: 'Egypt Map Page', href: 'egypt.html' }
           ];
           clone.appendChild(buildPdfLinksBlock(links));
+          
           temp.appendChild(clone);
           document.body.appendChild(temp);
+          
+          console.log('Element content for PDF:', temp.innerHTML.length, 'characters');
+          
           const worker = window.html2pdf().set(opt).from(temp).save();
-          const cleanup = () => { document.body.classList.remove('pdf-export'); temp.remove(); };
+          
+          const cleanup = () => { 
+            document.body.classList.remove('pdf-export'); 
+            if (temp.parentNode) temp.remove(); 
+            console.log('PDF generation completed and cleaned up');
+          };
+          
           if (worker && typeof worker.then === 'function') {
-            worker.then(cleanup).catch(cleanup);
+            worker.then(cleanup).catch((error) => {
+              console.error('PDF generation error:', error);
+              cleanup();
+            });
           } else {
-            setTimeout(cleanup, 1500);
+            setTimeout(cleanup, 2000);
           }
         }
+        
         if (!window.html2pdf && window.__ensureHtml2Pdf) {
+          console.log('Loading html2pdf library...');
           window.__ensureHtml2Pdf(run);
         } else {
           run();
