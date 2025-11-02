@@ -12,19 +12,22 @@
     overflow: hidden !important;
     z-index: -1 !important;
     background-color: #0a0e17 !important;
+    transform: scale(1) !important; /* Ensure container is not scaled */
   }
   
   .bg-slideshow img {
     position: absolute !important;
-    top: -15% !important;
-    left: -15% !important;
-    width: 130vw !important;
-    height: 130vh !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 140vw !important;
+    height: 140vh !important;
     object-fit: cover !important;
     object-position: center center !important;
-    transform: scale(0.5) !important;
+    transform: translate(-50%, -50%) scale(0.25) !important;
     transition: opacity 1s ease-in-out, transform 0.3s ease !important;
     opacity: 0;
+    max-width: none !important;
+    max-height: none !important;
   }
   
   .bg-slideshow img.active {
@@ -51,7 +54,7 @@
   @media (orientation: portrait) {
     .bg-slideshow img {
       object-position: center top !important;
-      transform: scale(0.4) !important;
+      transform: translate(-50%, -50%) scale(0.2) !important;
       /* Crop from top on portrait to show important parts */
     }
     
@@ -64,14 +67,14 @@
     body:has(.home-page) .bg-slideshow img,
     body[data-page="index"] .bg-slideshow img {
       object-position: center center !important;
-      transform: scale(0.45) !important;
+      transform: translate(-50%, -50%) scale(0.22) !important;
     }
     
     /* Survival kit portrait - show upper portion for action scenes */
     body:has(.survival-kit-page) .bg-slideshow img,
     body[data-page="survival-kit"] .bg-slideshow img {
       object-position: center 30% !important;
-      transform: scale(0.35) !important;
+      transform: translate(-50%, -50%) scale(0.18) !important;
     }
   }
   
@@ -79,7 +82,7 @@
   @media (orientation: landscape) {
     .bg-slideshow img {
       object-position: center center !important;
-      transform: scale(0.55) !important;
+      transform: translate(-50%, -50%) scale(0.3) !important;
     }
   }
   
@@ -121,11 +124,11 @@
 /* Extra small mobile devices */
 @media screen and (max-width: 480px) {
   .bg-slideshow img.active {
-    opacity: 0.3 !important; /* Even lighter for small screens */
+    opacity: 0.25 !important; /* Even lighter for small screens */
   }
   
   .bg-slideshow img {
-    transform: scale(0.3) !important; /* Much smaller for tiny screens */
+    transform: translate(-50%, -50%) scale(0.15) !important; /* Much smaller for tiny screens */
   }
   
   main {
