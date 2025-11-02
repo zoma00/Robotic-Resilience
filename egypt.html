@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Egypt Map — Human Continuity Blueprint</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="A simple Egypt map page for planning enclave placement, supply lines, and critical zones within Egypt.">
+  <meta name="author" content="Hazem ElBatawy">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links" style="display:block; text-align:center; margin-bottom:12px;">
+        <a href="index.html" data-i18n="nav.home">Home</a> |
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a> |
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a> |
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a> |
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+      </nav>
+      <h1 data-i18n="egypt.title">Egypt — Survival Map</h1>
+      <p class="subtitle" data-i18n="egypt.subtitle">Schematic map for planning a human enclave in Egypt (illustrative)</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div class="sub-gallery" style="gap: 12px; margin-top: 8px;">
+        <a href="assets/Egypt_2022_EN.pdf" download class="button" data-i18n="egypt.download">Download Egypt Map (PDF)</a>
+      </div>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article>
+  <p class="lede" data-i18n="egypt.lede">This page contains a simplified schematic map of Egypt highlighting major features useful for planning: the Nile corridor, major cities, the Sinai region, and potential rural zones. It's illustrative — use local maps and terrain analysis for real planning.</p>
+
+      <section>
+        <h2 data-i18n="egypt.mapTitle">Map</h2>
+        <div class="map-wrap">
+          <object data="assets/Egypt_2022_EN.pdf" type="application/pdf" width="100%" height="600px">
+            <p>Your browser doesn't support embedded PDFs. 
+              <a href="assets/Egypt_2022_EN.pdf">Click here to view the PDF directly</a>
+            </p>
+          </object>
+        </div>
+      </section>
+
+      <section>
+        <h2 data-i18n="egypt.howToTitle">How to use this map</h2>
+        <ul>
+          <li>Focus on rural Nile banks and the Western Desert edges for water and crops.</li>
+          <li>Avoid dense urban centers like Cairo and Alexandria; they are sensor-dense and high-risk.</li>
+          <li>Sinai offers remote terrain but has strategic challenges — patrol routes and access control matter.</li>
+        </ul>
+      </section>
+
+      <footer class="article-footer">
+        <p><a href="index.html" data-i18n="egypt.back">← Back to the Human Continuity Blueprint</a></p>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" data-i18n="footer.egypt">Egypt Map — Illustrative only. • Developed by Hazem ElBatawy</div>
+  </footer>
+  <div class="accessibility-widget" role="region" aria-label="Accessibility controls">
+    <div class="row">
+      <button id="tts-play" title="Read aloud">▶ Read</button>
+      <button id="tts-pause" title="Pause/Resume">⏸ Pause</button>
+      <button id="tts-stop" title="Stop reading">⏹ Stop</button>
+    </div>
+    <div class="row">
+      <label for="tts-rate">Speed</label>
+      <input id="tts-rate" type="range" min="0.8" max="1.4" step="0.1" value="1.0" aria-label="Reading speed">
+    </div>
+    <div class="row">
+      <label for="tts-voice">Voice</label>
+      <select id="tts-voice" aria-label="Voice"></select>
+      <button id="tts-selection" title="Read selected text">Read selection</button>
+    </div>
+    <div class="row">
+      <button id="reader-mode" title="Toggle reader mode">🅡 Reader</button>
+      <button id="font-plus" title="Increase font size">A+</button>
+      <button id="font-minus" title="Decrease font size">A-</button>
+    </div>
+    <div class="row tts-status" aria-live="polite"></div>
+  </div>
+  <script src="assets/js/lang-switcher.js" defer></script>
+  <script src="assets/js/accessibility.js" defer></script>
+  <script>
+    // Register service worker for offline caching (requires serving over http/https)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

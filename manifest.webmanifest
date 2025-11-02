@@ -1,0 +1,18 @@
+{
+  "name": "Human Continuity Blueprint",
+  "short_name": "Blueprint",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#0a0e17",
+  "description": "Practical, psychological, and strategic survival guide with offline reading and PDFs.",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

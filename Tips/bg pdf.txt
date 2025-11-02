@@ -1,0 +1,7 @@
+** Background images not downloaded in pdf !
+
+
+
+
+
+if it is not possible we can just put one pic for each page?

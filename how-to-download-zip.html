@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Download All PDFs (ZIP)</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    main { max-width: 700px; margin: 40px auto; background: #fff; color: #222; border-radius: 8px; box-shadow: 0 2px 12px #0002; padding: 32px; }
+    h1, h2 { color: #0a0e17; }
+    code, pre { background: #f4f4f4; color: #222; border-radius: 4px; padding: 2px 6px; }
+    pre { padding: 12px; }
+    .tip { background: #e6eef6; border-left: 4px solid #9ae6b4; padding: 12px; margin: 18px 0; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 data-i18n="zipHelp.title">How to Download All PDFs (ZIP)</h1>
+    <p data-i18n="zipHelp.intro">
+      To use the <strong>"Download All PDFs (ZIP)"</strong> button and get all guides at once, you must run a local web server. This is required because browsers block JavaScript from accessing local files directly for security reasons.
+    </p>
+    <h2 data-i18n="zipHelp.stepsTitle">Step-by-Step Instructions</h2>
+    <ol>
+      <li data-i18n="zipHelp.step1">Open a terminal in your project directory.</li>
+      <li data-i18n="zipHelp.step2">Run this command:
+        <pre><code>python3 -m http.server 8080</code></pre>
+      </li>
+      <li data-i18n="zipHelp.step3">Open your browser and go to:
+        <pre><code>http://localhost:8080/index.html</code></pre>
+      </li>
+      <li data-i18n="zipHelp.step4">Click the <strong>"Download All PDFs (ZIP)"</strong> button. All PDFs will be downloaded as a single ZIP file.</li>
+    </ol>
+    <div class="tip">
+      <strong data-i18n="zipHelp.tipTitle">Tip:</strong> <span data-i18n="zipHelp.tip">You can still download individual PDFs using the other buttons, even without a server. The ZIP download only requires a server because of browser security rules.</span>
+    </div>
+    <h2 data-i18n="zipHelp.troubleshootingTitle">Troubleshooting</h2>
+    <ul>
+      <li data-i18n="zipHelp.trouble1">If you see errors about CORS or files not found, make sure you are using <code>http://localhost:8080</code> and not opening the file directly from your computer.</li>
+      <li data-i18n="zipHelp.trouble2">Make sure all PDF files are present in the project folder.</li>
+      <li data-i18n="zipHelp.trouble3">If you use a different port, update the URL accordingly (e.g., <code>http://localhost:8000</code>).</li>
+    </ul>
+    <p style="margin-top:32px; color:#888; font-size:0.95em;" data-i18n="zipHelp.footer">This guide is for offline use of the Human Continuity Blueprint. For questions, see the README or contact the project maintainer.</p>
+    <div id="lang-switcher"></div>
+  </main>
+  <script src="assets/js/lang-switcher.js" defer></script>
+</body>
+</html>

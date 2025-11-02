@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Field Navigation Guide — Compass, Map, and Natural North</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Survival navigation without GPS: compass basics, map reading, triangulation, and finding north from nature (sun, stars, shadow-stick).">
+  <meta name="author" content="Hazem ElBatawy">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links" style="display:block; text-align:center; margin-bottom:12px;">
+        <a href="index.html" data-i18n="nav.home">Home</a> |
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a> |
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a> |
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a> |
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+      </nav>
+      <h1 data-i18n="navGuide.title">Field Navigation Guide</h1>
+      <p class="subtitle" data-i18n="navGuide.subtitle">Navigate without GPS — compass, map reading, and natural navigation</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article id="nav-guide">
+  <p class="lede" data-i18n="navGuide.lede">This tutorial teaches reliable, low-tech navigation. You'll learn how to use a compass and paper map, correct for magnetic declination, triangulate your position, and find north from the sun and stars. These skills work anywhere — no batteries required.</p>
+
+      <section class="kit-section" id="compass-basics">
+        <div class="kit-header">
+          <img src="assets/kit-images/navigation.svg" alt="Navigation Icon" class="kit-image" loading="lazy" decoding="async">
+          <h2 data-i18n="navGuide.compassTitle">1) Compass Basics</h2>
+        </div>
+        <ul class="kit-list">
+          <li><strong>Parts</strong>: Baseplate, direction-of-travel arrow, rotating bezel, index line, magnetic needle (red points to magnetic north).</li>
+          <li><strong>To take a bearing</strong>:
+            <ol>
+              <li>Point the direction-of-travel arrow at your target.</li>
+              <li>Rotate the bezel until the orienting lines align with the needle ("red in the shed").</li>
+              <li>Read the number at the index line — that’s your bearing (°).</li>
+            </ol>
+          </li>
+          <li><strong>Follow a bearing</strong>: Turn until the needle aligns with the orienting arrow again, then walk along the direction-of-travel arrow. Pick distant features to reduce drift.</li>
+          <li><strong>Magnetic declination</strong>: The angle between magnetic north and true north. Adjust your bearing by local declination.
+            <ul>
+              <li>Egypt (Cairo, 2025): approx +3°E (check current value).</li>
+              <li>Rule of thumb: <em>True = Magnetic + Easterly declination</em>; <em>True = Magnetic − Westerly declination</em>.</li>
+              <li>Use NOAA’s calculator to confirm: https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="map-reading">
+        <h2 data-i18n="navGuide.mapTitle">2) Map Reading & Triangulation</h2>
+        <div class="sub-gallery">
+          <div class="sub-gallery-item">
+            <img src="assets/kit-photos/maps_compass.jpg" alt="Topographic map with compass" class="kit-photo" loading="lazy" decoding="async">
+            <p>Orient the map with the compass, then align features.</p>
+          </div>
+        </div>
+        <ul class="kit-list">
+          <li><strong>Orient the map</strong>: Place the compass on the map edge; rotate map and compass together until the needle points to the map’s north (correct for declination).</li>
+          <li><strong>Triangulate your position (resection)</strong>:
+            <ol>
+              <li>Identify two (ideally three) distant, known landmarks on the map.</li>
+              <li>Take a field bearing to each landmark, convert to <em>map back-bearings</em> (±180°), correct for declination.</li>
+              <li>Draw the back-bearings on the map. Their intersection is your location.</li>
+            </ol>
+          </li>
+          <li><strong>Pacing</strong>: Measure your steps per 100 m on flat terrain; use it to track distance in the field.</li>
+          <li><strong>Handrails & Catch Features</strong>: Follow linear features (streams, ridgelines) and use obvious boundaries to prevent overshooting.</li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="map-wheel">
+        <h2>2B) Measuring Distance on a Map (Curvimeter / Map Wheel)</h2>
+        <p class="kit-photo-caption">Also called an <em>opisometer</em>, a map wheel lets you trace roads/trails and read their length, then convert using the map scale.</p>
+        <div class="sub-gallery">
+          <div class="sub-gallery-item">
+            <img src="assets/kit-images/map-wheel.svg" alt="Map measuring wheel (opisometer) diagram" class="kit-photo" loading="lazy" decoding="async">
+            <p>Map wheel: roll along the route to measure distance.</p>
+          </div>
+        </div>
+        <ul class="kit-list">
+          <li><strong>Prepare</strong>: Note the map scale (e.g., 1:50,000 → 1 cm = 500 m). If your wheel has adjustable scales, set it to match.</li>
+          <li><strong>Zero the wheel</strong>: Set the counter to 0 (or mark the starting reading).</li>
+          <li><strong>Trace the route</strong>: Roll the wheel carefully along the road/river/trail. Keep steady pressure and stay on the line.</li>
+          <li><strong>Read & convert</strong>:
+            <ul>
+              <li>If the wheel shows <em>map units</em> (e.g., centimeters), convert with the scale. Example: 12.6 cm at 1:50,000 → 12.6 × 500 m = 6.3 km.</li>
+              <li>If the wheel shows <em>direct distance</em> (scale dial), read kilometers/miles directly.</li>
+            </ul>
+          </li>
+          <li><strong>Accuracy tips</strong>: Break long routes into segments; average two passes; avoid pressing too hard; recheck tight corners.</li>
+          <li><strong>Alternatives</strong> (no wheel):
+            <ul>
+              <li><em>String method</em>: Lay thread along the route, straighten, then measure against the scale bar.</li>
+              <li><em>Dividers/compass step-off</em>: Set to a known map distance (e.g., 1 km), walk it along the route counting steps.</li>
+            </ul>
+          </li>
+          <li><strong>Formula</strong>: Real distance = Map distance × scale factor. At 1:25,000 → 1 cm = 250 m; at 1:100,000 → 1 cm = 1 km.</li>
+          <li><strong>Note on projection</strong>: Over small areas most maps are fine; on very large distances, projections can distort measurements.</li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="natural-nav">
+        <h2>3) Finding North from Nature</h2>
+        <ul class="kit-list">
+          <li><strong>Shadow-stick (daytime)</strong>:
+            <ol>
+              <li>Stick in ground; mark the tip of the shadow (point A). Wait 10–15 minutes; mark the new tip (point B).</li>
+              <li>Line A→B runs roughly <em>West → East</em>. Stand with A on your left, B on your right: you now face <em>North</em>.</li>
+            </ol>
+          </li>
+          <li><strong>Sun method</strong>: In the Northern Hemisphere, the sun is due south at local solar noon; shadows point north.
+            <ul>
+              <li>Use timeanddate.com to estimate solar noon for your location.</li>
+            </ul>
+          </li>
+          <li><strong>Night (Polaris)</strong>: Find the Big Dipper; trace a line from the two bowl edge stars ~5× that distance to Polaris — that’s near true north.</li>
+          <li><strong>Improvised compass</strong>: Magnetize a needle (rub on silk/hair 50–100×), place on a leaf over still water — it will align roughly N–S; red-mark one end beforehand.</li>
+          <li><strong>Reality check</strong>: Moss growth, tree branches, and ant hills are unreliable on their own — use multiple indicators.</li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="errors-safety">
+        <h2>4) Common Errors & Safety</h2>
+        <ul class="kit-list">
+          <li>Keep the compass level; avoid metal objects, phones, and knives near the needle.</li>
+          <li>Account for <strong>declination</strong> every time you convert between field and map bearings.</li>
+          <li>Use distant aiming points and frequent checks to avoid drift in low visibility.</li>
+          <li>Always carry a backup: spare compass, whistle, headlamp, paper maps in a dry bag.</li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="quick-ref">
+        <h2>5) Quick Reference (Printable)</h2>
+        <ul class="kit-list">
+          <li>True = Magnetic + E (or − W). Cairo ~ +3°E (verify current data).</li>
+          <li>Triangulation: two back-bearings (±180°) → intersection = your position.</li>
+          <li>Shadow-stick: first mark (W), second mark (E) → face north with W left, E right.</li>
+          <li>Night: Big Dipper bowl edge → 5× to Polaris (north).</li>
+        </ul>
+      </section>
+
+      <section class="kit-section" id="downloads">
+        <h2>Downloads (PDF)</h2>
+        <p class="kit-photo-caption">Generate offline-friendly PDFs of this guide. External links cannot be auto-converted due to browser security, but are cited inside the PDFs.</p>
+        <div class="sub-gallery" style="gap: 12px; overflow-x: auto;">
+          <button type="button" data-pdf-target="#nav-guide" data-filename="navigation-full.pdf">Download Full Guide (PDF)</button>
+          <button type="button" data-pdf-target="#compass-basics" data-filename="navigation-compass-basics.pdf">Compass Basics (PDF)</button>
+          <button type="button" data-pdf-target="#map-reading" data-filename="navigation-map-reading.pdf">Map Reading & Triangulation (PDF)</button>
+          <button type="button" data-pdf-target="#map-wheel" data-filename="navigation-map-wheel.pdf">Map Measuring Wheel (PDF)</button>
+          <button type="button" data-pdf-target="#natural-nav" data-filename="navigation-natural-navigation.pdf">Natural Navigation (PDF)</button>
+          <button type="button" data-pdf-target="#quick-ref" data-filename="navigation-quick-reference.pdf">Quick Reference (PDF)</button>
+        </div>
+      </section>
+
+      <section class="kit-section" id="resources">
+        <h2>Authoritative Resources</h2>
+        <ul>
+          <li><a href="https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml" target="_blank" rel="noopener">NOAA Magnetic Declination Calculator</a></li>
+ 
+        </ul>
+        <p><a href="index.html">← Back to the Human Continuity Blueprint</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" data-i18n="footer.navigation">Field Navigation Guide — Part of the Human Continuity Blueprint • Developed by Hazem ElBatawy</div>
+  </footer>
+  <div class="accessibility-widget" role="region" aria-label="Accessibility controls">
+    <div class="row">
+      <button id="tts-play" title="Read aloud">▶ Read</button>
+      <button id="tts-pause" title="Pause/Resume">⏸ Pause</button>
+      <button id="tts-stop" title="Stop reading">⏹ Stop</button>
+    </div>
+    <div class="row">
+      <label for="tts-rate">Speed</label>
+      <input id="tts-rate" type="range" min="0.8" max="1.4" step="0.1" value="1.0" aria-label="Reading speed">
+    </div>
+    <div class="row">
+      <label for="tts-voice">Voice</label>
+      <select id="tts-voice" aria-label="Voice"></select>
+      <button id="tts-selection" title="Read selected text">Read selection</button>
+    </div>
+    <div class="row">
+      <button id="reader-mode" title="Toggle reader mode">🅡 Reader</button>
+      <button id="font-plus" title="Increase font size">A+</button>
+      <button id="font-minus" title="Decrease font size">A-</button>
+    </div>
+    <div class="row tts-status" aria-live="polite"></div>
+  </div>
+  <script src="assets/js/lang-switcher.js" defer></script>
+  <script src="assets/js/accessibility.js" defer></script>
+  <!-- Prefer local bundle for offline-first; fallback to CDN if unavailable -->
+  <script src="assets/js/vendor/html2pdf.bundle.min.js" defer></script>
+  <script>
+    // Fallback: if local html2pdf isn't present (first-run), load from CDN
+    (function(){
+      function ensureHtml2Pdf(cb){
+        if (window.html2pdf) { cb && cb(); return; }
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        s.crossOrigin = 'anonymous';
+        s.referrerPolicy = 'no-referrer';
+        s.onload = function(){ cb && cb(); };
+        document.head.appendChild(s);
+      }
+      // Expose for the PDF buttons script below
+      window.__ensureHtml2Pdf = ensureHtml2Pdf;
+    })();
+  </script>
+  <script>
+    // Register service worker for offline caching (requires serving over http/https)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    (function() {
+      function generatePDF(targetSelector, filename) {
+        const el = document.querySelector(targetSelector);
+        if (!el) return;
+        const opt = {
+          margin:       0.5,
+          filename:     filename || 'download.pdf',
+          image:        { type: 'jpeg', quality: 0.95 },
+          html2canvas:  { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        function buildPdfLinksBlock(items){
+          const wrap = document.createElement('section');
+          wrap.className = 'kit-section';
+          const h = document.createElement('h2'); h.textContent = 'Links'; wrap.appendChild(h);
+          const ul = document.createElement('ul'); ul.className = 'kit-list';
+          items.forEach(({text, href}) => { const li = document.createElement('li'); const a = document.createElement('a'); a.href = href; a.textContent = text; li.appendChild(a); ul.appendChild(li); });
+          wrap.appendChild(ul);
+          return wrap;
+        }
+        function run(){
+          document.body.classList.add('pdf-export');
+          const temp = document.createElement('div'); temp.style.position = 'absolute'; temp.style.left = '-10000px'; temp.style.top = '0'; temp.style.width = '900px';
+          const clone = el.cloneNode(true);
+          const links = [
+            { text: 'Home', href: 'index.html' },
+            { text: 'War Survival Kit', href: 'war-survival-kit.pdf' },
+            { text: 'Egypt Map Page', href: 'egypt.html' }
+          ];
+          clone.appendChild(buildPdfLinksBlock(links));
+          temp.appendChild(clone);
+          document.body.appendChild(temp);
+          const worker = window.html2pdf().set(opt).from(temp).save();
+          const cleanup = () => { document.body.classList.remove('pdf-export'); temp.remove(); };
+          if (worker && typeof worker.then === 'function') {
+            worker.then(cleanup).catch(cleanup);
+          } else {
+            setTimeout(cleanup, 1500);
+          }
+        }
+        if (!window.html2pdf && window.__ensureHtml2Pdf) {
+          window.__ensureHtml2Pdf(run);
+        } else {
+          run();
+        }
+      }
+      document.addEventListener('click', function(e) {
+        const btn = e.target.closest('button[data-pdf-target]');
+        if (!btn) return;
+        const sel = btn.getAttribute('data-pdf-target');
+        const name = btn.getAttribute('data-filename');
+        generatePDF(sel, name);
+      });
+    })();
+  </script>
+</body>
+</html>

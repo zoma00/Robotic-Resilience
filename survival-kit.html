@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>War Survival Kit — Human Continuity Blueprint</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Essential war survival kit checklist and guidance for emergency preparedness during conflict scenarios.">
+  <meta name="author" content="Hazem ElBatawy">
+  <style>
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background-color: #0a0e17;
+    }
+    .force-ltr {
+      direction: ltr;
+      text-align: left;
+      display: block;
+      list-style: disc inside;
+    }
+    .bg-slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      pointer-events: none;
+      top: 0;
+      bottom: 0;
+    }
+    .bg-slideshow img.active {
+      opacity: 1;
+    }
+    /* Specific adjustment for Robo-four.jpg - no longer needed as we're using cover */
+    .bg-slideshow img.active {
+      opacity: 0.6; /* Increased opacity for better visibility */
+    }
+    body {
+      background-color: #0a0e17;
+    }
+    /* Main content styling */
+    main {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Header styling */
+    .site-header {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      padding: 20px 0;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(154, 230, 180, 0.2);
+    }
+    
+    /* Section styling */
+    .kit-section, section {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-left: 3px solid var(--accent);
+      backdrop-filter: blur(3px);
+    }
+    
+    /* Gallery items */
+    .gallery-item {
+      background: rgba(0, 0, 0, 0.3) !important;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Text styling */
+    h1, h2, h3, h4 {
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Links */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-slideshow">
+  <img src="assets/kit-photos/survival three.jpg" alt="Human survival  scene" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/survival two.jpg" alt="Human survival  scene" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/Robo/Robo seven.jpg" alt="Robo war scene" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/Robo/Robo three.jpg" alt="Robotic wasteland scene" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/Robo/Robo four.jpg" alt="Dystopian robot landscape" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/Robo/Robo five.jpg" alt="Dystopian robot landscape" loading="lazy" decoding="async">
+  <img src="assets/kit-photos/Robo/Robo six.jpg" alt="Dystopian robot landscape" loading="lazy" decoding="async">
+    <!---------------------------------------------
+    
+    
+    -->
+
+
+    <img src="assets/kit-photos/Robo/Robo six.jpg" alt="Dystopian robot landscape">
+    <img src="assets/kit-photos/Robo/Robo six.jpg" alt="Dystopian robot landscape">
+
+
+
+
+  </div>
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links" style="display:block; text-align:center; margin-bottom:12px;">
+        <a href="index.html" data-i18n="nav.home">Home</a> |
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a> |
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a> |
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a> |
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+      </nav>
+  <h1 data-i18n="kit.title">War Survival Kit</h1>
+  <p class="subtitle" data-i18n="kit.subtitle">Essential gear and supplies for emergency preparedness</p>
+  <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div class="language-selector" id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article id="kit-article">
+      <p class="lede" data-i18n="kit.lede">A comprehensive survival kit is crucial during conflict scenarios. This guide covers essential gear, supplies, and tools organized by priority and function.</p>
+
+      <!-- Essentials Section -->
+      <section class="kit-section">
+        <div class="kit-header">
+          <img src="assets/kit-images/first-aid.svg" alt="Emergency Kit Icon" class="kit-image">
+          <h2 data-i18n="kit.essentialsTitle">Emergency Essentials (First 72 Hours)</h2>
+        </div>
+        <p class="kit-photo-caption" data-i18n="kit.essentialsCaption">Essential medical supplies and emergency gear for the first 72 hours</p>
+        <ul class="kit-list priority-1">
+          <li data-i18n="kit.waterHydration"><strong>Water & Hydration</strong>
+            <ul>
+              <li data-i18n="kit.waterAmount">3L water per person/day (minimum)</li>
+              <li data-i18n="kit.waterFilters">Water filters or purification tablets</li>
+              <li data-i18n="kit.waterContainers">Collapsible water containers</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.foodNutrition"><strong>Food & Nutrition</strong>
+            <ul>
+              <li data-i18n="kit.foodRations">High-calorie emergency rations</li>
+              <li data-i18n="kit.foodBars">Dried foods and protein bars</li>
+              <li data-i18n="kit.canOpener">Manual can opener</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.firstAidMedical"><strong>First Aid & Medical</strong>
+            <ul>
+              <li data-i18n="kit.firstAidKit">Comprehensive first aid kit</li>
+              <li data-i18n="kit.prescriptionMeds">Prescription medications</li>
+              <li data-i18n="kit.woundCare">Wound care supplies</li>
+              <li data-i18n="kit.emergencyBlankets">Emergency blankets</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Navigation & Communication Section -->
+      <section class="kit-section">
+        <div class="kit-header">
+          <img src="assets/kit-images/navigation.svg" alt="Navigation Icon" class="kit-image">
+          <h2 data-i18n="kit.navCommTitle">Navigation & Communication</h2>
+        </div>
+        <ul class="kit-list priority-2">
+          <li data-i18n="kit.navigationTools"><strong>Navigation Tools</strong>
+            <ul>
+              <li data-i18n="kit.paperMaps">Paper maps (local area)</li>
+              <li data-i18n="kit.compass">Compass (non-electronic)</li>
+              <li data-i18n="kit.signalMirror">Signal mirror</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.communication"><strong>Communication</strong>
+            <ul>
+              <li data-i18n="kit.handCrankRadio">Hand-crank radio</li>
+              <li data-i18n="kit.whistle">Whistle or sound signals</li>
+              <li data-i18n="kit.emergencyContacts">Emergency contact information</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+        
+
+      <section class="kit-section">
+        <div class="kit-header">
+          <img src="assets/kit-images/shelter.svg" alt="Shelter Icon" class="kit-image">
+          <h2 data-i18n="kit.shelterTitle">Protection & Shelter</h2>
+        </div>
+        <p class="kit-photo-caption" data-i18n="kit.shelterCaption">Essential weatherproofing and shelter equipment for protection against the elements</p>
+          <ul class="kit-list priority-2">
+                      <li data-i18n="kit.proactiveGear"><strong>Protective Gear</strong>
+                          <li data-i18n="kit.n95">N95 masks or respirators</li>
+                          <li data-i18n="kit.workGloves">Work gloves</li>
+                          <li data-i18n="kit.eyeProtection">Eye protection</li>
+                        </ul>
+                      </li>
+          <li><strong data-i18n="kit.shelterItems">Shelter Items</strong>
+            <ul>
+              <li data-i18n="kit.emergencyShelter">Emergency shelter or tarp</li>
+              <li data-i18n="kit.ropeParacord">Rope or paracord</li>
+              <li data-i18n="kit.emergencyBlankets">Emergency blankets</li>
+              <li data-i18n="kit.basicTools">Basic tools (multi-tool)</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+
+      
+      <section class="kit-section">
+        <img src="assets/kit-images/documents.svg" alt="Documents Icon" class="kit-image">
+        <h2 data-i18n="kit.documentsTitle">Documents & Resources</h2>
+        <ul class="kit-list priority-1">
+          <li data-i18n="kit.criticalDocuments"><strong>Critical Documents</strong>
+            <ul>
+              <li data-i18n="kit.idPapers">ID and important papers (waterproof)</li>
+              <li data-i18n="kit.emergencyContactsList">Emergency contacts list</li>
+              <li data-i18n="kit.areaMaps">Area maps and safe routes</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.financial"><strong>Financial</strong>
+            <ul>
+              <li data-i18n="kit.emergencyCash">Emergency cash (small bills)</li>
+              <li data-i18n="kit.copiesDocuments">Copies of important documents</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 data-i18n="kit.additionalTitle">Additional Considerations</h2>
+        <ul class="kit-list">
+          <li data-i18n="kit.powerLight"><strong>Power & Light</strong>
+            <ul>
+              <li data-i18n="kit.handCrankFlashlight">Hand-crank flashlight</li>
+              <li data-i18n="kit.extraBatteries">Extra batteries</li>
+              <li data-i18n="kit.solarCharger">Solar charger (if essential)</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.hygieneSanitation"><strong>Hygiene & Sanitation</strong>
+            <ul>
+              <li data-i18n="kit.hygieneItems">Personal hygiene items</li>
+              <li data-i18n="kit.sanitationSupplies">Sanitation supplies</li>
+              <li data-i18n="kit.portableToilet">Portable toilet supplies</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="kit-section">
+        <h2 data-i18n="kit.quickNavTitle">Field Navigation Quick Guide</h2>
+        <p class="kit-photo-caption" data-i18n="kit.quickNavCaption">Essentials for navigating without GPS: compass + paper map + natural north.</p>
+        <ul class="kit-list priority-2">
+          <li><strong data-i18n="kit.quickNavCompassLabel">Compass</strong>: <span data-i18n="kit.quickNavCompassDesc">Take a bearing, correct for magnetic declination (e.g., Cairo ~ +3°E in 2025), and follow distant aiming points.</span></li>
+          <li><strong data-i18n="kit.quickNavMapLabel">Map</strong>: <span data-i18n="kit.quickNavMapDesc">Orient the map to north; triangulate with two back-bearings from visible landmarks.</span></li>
+          <li>
+            <strong data-i18n="kit.quickNavNaturalLabel">Natural North</strong>:
+            <span data-i18n="kit.quickNavNaturalDesc">Shadow-stick (day), Polaris (night). Sun is due south at local solar noon in the Northern Hemisphere.</span>
+          </li>
+          <li><a href="navigation.html" data-i18n="kit.fullNavTutorial">Full Navigation Tutorial →</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 data-i18n="kit.maintenanceTitle">Kit Maintenance</h2>
+        <ul>
+          <li data-i18n="kit.checkExpiration">Check expiration dates monthly</li>
+          <li data-i18n="kit.rotateSupplies">Rotate food and water supplies</li>
+          <li data-i18n="kit.testEquipment">Test all equipment quarterly</li>
+          <li data-i18n="kit.updateDocuments">Update documents as needed</li>
+          <li data-i18n="kit.adjustSeasonal">Adjust kit based on seasonal needs</li>
+        </ul>
+      </section>
+
+      <section class="kit-section">
+        <div class="kit-header">
+          <img src="assets/kit-images/first-aid.svg" alt="Insects and Snakes Icon" class="kit-image">
+          <h2 data-i18n="kit.insectsSnakesTitle">Insects & Snakes Protection</h2>
+        </div>
+        <ul class="kit-list priority-3">
+          <li data-i18n="kit.insectProtection"><strong>Insect Protection</strong>
+            <ul>
+              <li data-i18n="kit.insectRepellent">Insect repellent (DEET or picaridin-based)</li>
+              <li data-i18n="kit.mosquitoNetting">Mosquito netting</li>
+              <li data-i18n="kit.permethrinClothing">Permethrin-treated clothing</li>
+              <li data-i18n="kit.stingRelief">Sting relief pads or cream</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.snakeSafety"><strong>Snake Safety</strong>
+            <ul>
+              <li data-i18n="kit.snakeBiteKit">Snake bite kit (suction device, bandages)</li>
+              <li data-i18n="kit.heavyGloves">Heavy-duty gloves for handling debris</li>
+              <li data-i18n="kit.sturdyBoots">Sturdy boots (for protection when moving through brush)</li>
+              <li data-i18n="kit.nightFlashlight">Flashlight (for night movement)</li>
+            </ul>
+          </li>
+          <li data-i18n="kit.firstAidBites"><strong>First Aid for Bites/Stings</strong>
+            <ul>
+              <li data-i18n="kit.antihistamines">Antihistamines for allergic reactions</li>
+              <li data-i18n="kit.hydrocortisone">Hydrocortisone cream</li>
+              <li data-i18n="kit.compressionBandages">Compression bandages (for snake bites)</li>
+              <li data-i18n="kit.poisonControl">Emergency contact numbers for poison control</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="kit-section">
+        <h2 data-i18n="kit.galleryTitle">Photo Gallery - Survival Kit Components</h2>
+        <div class="gallery-grid">
+          <!-- Medical Kit placeholder removed (images moved to First Aid gallery item) -->
+          <div class="gallery-item gallery-item-large">
+            <h3 data-i18n="kit.galleryFirstAid">First Aid & Medical</h3>
+            <div class="sub-gallery">
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Medical_first_aid_kit.jpg" alt="Medical first aid kit containing essential supplies" class="kit-photo" loading="lazy" decoding="async">
+                <p class="sub-gallery-caption" data-i18n="kit.galleryFirstAidKit1">Comprehensive medical first aid kit</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/First_Aid_kit.jpg" alt="Basic first aid kit for emergency situations" class="kit-photo" loading="lazy" decoding="async">
+                <p class="sub-gallery-caption" data-i18n="kit.galleryFirstAidKit2">Compact emergency first aid kit</p>
+              </div>
+            </div>
+            <p data-i18n="kit.galleryFirstAidDesc">Essential first aid supplies and kits for wound care and basic medical response.</p>
+          </div>
+
+          <div class="gallery-item gallery-item-large">
+            <h3 data-i18n="kit.galleryWater">Water & Hydration</h3>
+            <div class="sub-gallery">
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Life_straw.jpg" alt="Life Straw Water Filter" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryLifeStraw1">Life Straw personal drink directly from streams & Lakes</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Life_straws.jpg" alt="Collection of Life Straws" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryLifeStraw2">Multiple Life Straws for group survival scenarios</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/get-water-5.png" alt="Water collection and storage kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryWaterKit">Water collection &amp; storage kit — pumps, collapsible containers, and filters</p>
+              </div>
+            </div>
+            <p class="gallery-note" data-i18n="kit.galleryWaterNote">Essential water filtration tools that remove 99.999999% of waterborne bacteria and 99.999% of waterborne parasites</p>
+          </div>
+          
+          <div class="gallery-item gallery-item-large">
+            <h3 data-i18n="kit.galleryShelter">Shelter & Protection</h3>
+            <div class="sub-gallery">
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/dfid-shelter-kit-1.jpg" alt="DFID Emergency Shelter Kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryDFID">DFID emergency shelter kit</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/build-emergency-shelter-kit.jpg" alt="Build emergency shelter kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryBuildShelter">Build emergency shelter kit — tarps, poles, repair tools</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/weatherproofing-shelter-kit.jpg" alt="Weatherproofing shelter kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryWeatherproof">Comprehensive weatherproofing kit for all-weather protection</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/weatherproofing-shelter-kit.jpg" alt="Weatherproofing shelter kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryWeatherproof">Comprehensive weatherproofing kit for all-weather protection</p>
+              </div>
+            </div>
+            <p data-i18n="kit.galleryShelterDesc">Emergency shelter kit including tarps, ropes, and essential tools for temporary shelter construction.</p>
+          </div>
+          
+          <div class="gallery-item gallery-item-large">
+            <h3 data-i18n="kit.galleryNavComm">Navigation & Communication Equipment</h3>
+            <div class="sub-gallery">
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Dylight_mirror_kit.jpg" alt="Daylight Signal Mirror Kit" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.gallerySignalMirror">Signal mirror kit for emergency communications</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Go_bag.jpeg" alt="Go Bag with Navigation Tools" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryGoBag">Ready-to-go bag with essential navigation tools</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/maps_compass.jpg" alt="Maps and Compass" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryMapsCompass">Traditional navigation tools: maps and compass</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Servival_breclet.jpg" alt="Survival Bracelet" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryBracelet">Multi-tool survival bracelet</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/swizz knife.jpg" alt="Swiss Army Knife" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.gallerySwissKnife">Versatile Swiss Army Knife for multiple survival tasks</p>
+              </div>
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/Emergency brecelet.jpg" alt="Emergency Bracelet" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryEmergencyBracelet">Emergency Watch and bracelet</p>
+              </div>
+            </div>
+            <p class="gallery-note" data-i18n="kit.galleryNavCommNote">Essential navigation and communication tools for survival scenarios</p>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="sub-gallery">
+              <div class="sub-gallery-item">
+                <img src="assets/kit-photos/waterproof docs.jpg" alt="Waterproof document storage with essential papers" class="kit-photo" loading="lazy" decoding="async">
+                <p data-i18n="kit.galleryWaterproofDocs">Waterproof document storage for essential papers and identification</p>
+              </div>
+            </div>
+            <h3 data-i18n="kit.galleryDocs">Documents & Resources</h3>
+            <p data-i18n="kit.galleryDocsDesc">Secure storage for critical documents, identification, and emergency information.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="article-footer">
+        <p><a href="index.html" data-i18n="kit.back">← Back to the Human Continuity Blueprint</a></p>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" data-i18n="footer.kit">War Survival Kit — Part of the Human Continuity Blueprint • Developed by Hazem ElBatawy</div>
+  </footer>
+  <div class="accessibility-widget" role="region" aria-label="Accessibility controls">
+    <div class="row">
+      <button id="tts-play" title="Read aloud">▶ Read</button>
+      <button id="tts-pause" title="Pause/Resume">⏸ Pause</button>
+      <button id="tts-stop" title="Stop reading">⏹ Stop</button>
+    </div>
+    <div class="row">
+      <label for="tts-rate">Speed</label>
+      <input id="tts-rate" type="range" min="0.8" max="1.4" step="0.1" value="1.0" aria-label="Reading speed">
+    </div>
+    <div class="row">
+      <label for="tts-voice">Voice</label>
+      <select id="tts-voice" aria-label="Voice"></select>
+      <button id="tts-selection" title="Read selected text">Read selection</button>
+    </div>
+    <div class="row">
+      <button id="reader-mode" title="Toggle reader mode">🅡 Reader</button>
+      <button id="font-plus" title="Increase font size">A+</button>
+      <button id="font-minus" title="Decrease font size">A-</button>
+    </div>
+    <div class="row tts-status" aria-live="polite"></div>
+  </div>
+  <script src="assets/js/lang-switcher.js" defer></script>
+  <script src="assets/js/lang-switcher.js" defer></script>
+  <script src="assets/js/accessibility.js" defer></script>
+  <script>
+    // Register service worker for offline caching (requires serving over http/https)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.bg-slideshow img');
+      let current = 0;
+      
+      function nextImage() {
+        images[current].classList.remove('active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('active');
+      }
+      
+      // Change image every 7 seconds
+      setInterval(nextImage, 7000);
+    });
+  </script>
+</body>
+</html>

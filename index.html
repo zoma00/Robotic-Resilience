@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Robotic Resilience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="A practical, psychological, and strategic survival plan for small human groups (10–20 people) in a robotic/AI apocalypse.">
+  <meta name="author" content="Hazem ElBatawy">
+  <style>
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .bg-slideshow img {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    .bg-slideshow img.active {
+      opacity: 0.6;
+    }
+    body {
+      background-color: #0a0e17;
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      background: rgba(11, 18, 32, 0.6);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid rgba(154, 230, 180, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/map/world-map-dotted.jpg" alt="World Map" class="active" loading="eager" decoding="sync">
+      <img src="assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg" alt="Post-apocalyptic robot scene" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/compass/compass survival navigation.jpg" alt="Compass Navigation" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Robo/Robo one.jpg" alt="Robotic apocalypse" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Life_straws.jpg" alt="Life straw" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Robo/E0-Robot-Apocalypse.jpg" alt="Robot apocalypse" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/map/survival map.jpg" alt="Survival Map" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Robo/Robo five.jpg" alt="Robot apocalypse" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/survival/survival three.jpg" alt="Survival three" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Robo/Robo six.jpg" alt="Robot apocalypse" loading="lazy" decoding="async">
+      <img src="assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg" alt="Greenery" loading="lazy" decoding="async">
+
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links" style="display:block; text-align:center; margin-bottom:12px;">
+        <a href="index.html" data-i18n="nav.home">Home</a> |
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a> |
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a> |
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a> |
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+      </nav>
+      <h1 data-i18n="header.title">Human Continuity Blueprint</h1>
+      <p class="subtitle" data-i18n="header.subtitle">Practical, psychological, and strategic survival for a small human enclave in a robotic apocalypse</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article id="home-article">
+
+  <p class="lede" data-i18n="lede">That’s a deep and fascinating Scenario. We live in a world — especially as AI and robotics become more advanced. Below is a compact, realistic survival & rebuild plan for a small group (~10–20 people). Think of it as a practical Human Continuity Blueprint.</p>
+
+      <nav class="toc">
+        <strong data-i18n="toc.title">Contents</strong>
+        <ol>
+          <li><a href="#nature" data-i18n="toc.nature">Understand the Threat</a></li>
+          <li><a href="#phase1" data-i18n="toc.phase1">Phase One — Initial Survival (72 hours)</a></li>
+          <li><a href="#phase2" data-i18n="toc.phase2">Phase Two — Short-Term (Weeks 1–4)</a></li>
+          <li><a href="#phase3" data-i18n="toc.phase3">Phase Three — Long-Term (Months 2–6)</a></li>
+          <li><a href="#phase4" data-i18n="toc.phase4">Phase Four — Rebuilding (6+ months)</a></li>
+          <li><a href="navigation.html" data-i18n="toc.navigation">Navigation Tutorial (No GPS)</a></li>
+          <li><a href="egypt.html" data-i18n="toc.egypt">Egypt Map Page</a></li>
+          <li><a href="survival-kit.html" data-i18n="toc.kit">War Survival Kit</a></li>
+          <li><a href="assets/Human Enclave Survival Blueprint.svg" target="_blank" data-i18n="toc.blueprint">Open Survival Blueprint (SVG)</a></li>
+          <li><a href="#golden" data-i18n="toc.golden">Golden Rules</a></li>
+        </ol>
+      </nav>
+
+      <section class="kit-section" id="downloads">
+        <h2 data-i18n="downloads.title">Download</h2>
+        <p class="kit-photo-caption" data-i18n="downloads.caption">Download all guides as a ZIP for offline reading.</p>
+        <div class="sub-gallery" style="gap: 12px; overflow-x: auto;">
+          <button type="button" id="download-all-pdfs" data-i18n="downloads.button">Download All PDFs (ZIP)</button>
+        </div>
+      </section>
+
+      <section id="nature">
+        <h2 data-i18n="nature.title">1. Understand the Nature of the "Robotic Apocalypse"</h2>
+        <p data-i18n="nature.intro">A “robotic apocalypse” can take multiple forms. Each requires a different survival mindset:</p>
+        <ul>
+          <li data-i18n="nature.aiTakeover"><strong>AI takeover</strong> — control of infrastructure, defense, or resources by automated systems.</li>
+          <li data-i18n="nature.robotRebellion"><strong>Robot rebellion</strong> — physical machines (drones, vehicles, robotic units) acting hostile.</li>
+          <li data-i18n="nature.techCollapse"><strong>Technological collapse</strong> — cascading failures of automated systems that leave societies exposed.</li>
+        </ul>
+        <p data-i18n="nature.matchTactics">Match tactics to the dominant threat model — detection and networked control vs physical force.</p>
+      </section>
+
+
+      <section id="phase1">
+        <h2 data-i18n="phase1.title">PHASE ONE — Initial Survival (First 72 Hours)</h2>
+        <h3 data-i18n="phase1.goal">Goal: Disappear from AI detection and stay alive</h3>
+
+        <h4 data-i18n="phase1.step1.title">Step 1 — Leave connected areas</h4>
+        <ul>
+          <li data-i18n="phase1.step1.desc1">Cities have cameras, drones, and sensors — move to rural or mountainous zones (within ~50–100 km if possible).</li>
+          <li data-i18n="phase1.step1.desc2">Pick areas with fresh water and low critical infrastructure density.</li>
+        </ul>
+
+        <h4 data-i18n="phase1.step2.title">Step 2 — Kill all signals</h4>
+        <ul>
+          <li data-i18n="phase1.step2.desc1">Power down/destroy phones, laptops, GPS units and other traceable devices.</li>
+          <li data-i18n="phase1.step2.desc2">Rely on analog navigation: compasses, paper maps, mechanical watches.</li>
+          <li data-i18n="phase1.step2.desc3">Store essential electronics inside a metal container (Faraday cage) for later use.</li>
+        </ul>
+
+        <h4 data-i18n="phase1.step3.title">Step 3 — Secure food & water</h4>
+        <ul>
+          <li data-i18n="phase1.step3.desc1">Plan for ~3 L water/person/day and 2,000–2,500 kcal/day.</li>
+          <li data-i18n="phase1.step3.desc2">Prioritize rice, beans, canned goods, and high-calorie rations; carry water filters and purification tablets.</li>
+        </ul>
+
+        <h4 data-i18n="phase1.step4.title">Step 4 — Establish shelter</h4>
+        <ul>
+          <li data-i18n="phase1.step4.desc1">Use temporary camouflaged shelters made of natural materials. Avoid obvious dwellings.</li>
+          <li data-i18n="phase1.step4.desc2">No visible night lights or smoke. If needed, use low-signature light (red-filtered) and conceal cooking/heat sources.</li>
+        </ul>
+      </section>
+
+
+      <section id="phase2">
+        <h2 data-i18n="phase2.title">PHASE TWO — Short-Term Survival (Weeks 1–4)</h2>
+        <h3 data-i18n="phase2.goal">Goal: Build a self-sufficient, hidden micro-base</h3>
+
+        <h4 data-i18n="phase2.power.title">Power & tools</h4>
+        <ul>
+          <li data-i18n="phase2.power.desc1">Small, concealed off-grid options: 1–2 solar panels hidden by foliage, deep-cycle batteries, hand tools. Use sparingly.</li>
+          <li data-i18n="phase2.power.desc2">Prefer mechanical solutions where possible (bicycle generator, hand pumps).</li>
+        </ul>
+
+        <h4 data-i18n="phase2.food.title">Food sustainability</h4>
+        <ul>
+          <li data-i18n="phase2.food.desc1">Start a concealed garden (potatoes, beans, fast greens). Practice small-scale permaculture.</li>
+          <li data-i18n="phase2.food.desc2">Fish and trap quietly; preserve meat by dehydration or cold smoke away from visible smoke stacks.</li>
+        </ul>
+
+        <h4 data-i18n="phase2.comm.title">Communication</h4>
+        <ul>
+          <li data-i18n="phase2.comm.desc1">Use shortwave/analog radios only; rotate transmit locations and never repeat precise coordinates.</li>
+          <li data-i18n="phase2.comm.desc2">Adopt code phrases and one-time-use rendezvous signals.</li>
+        </ul>
+
+        <h4 data-i18n="phase2.org.title">Organization</h4>
+        <p data-i18n="phase2.org.desc">Assign clear roles to maintain function and morale:</p>
+        <ul>
+          <li data-i18n="phase2.org.role1">Scouting & defense (2)</li>
+          <li data-i18n="phase2.org.role2">Food & resources (3)</li>
+          <li data-i18n="phase2.org.role3">Engineering & maintenance (2)</li>
+          <li data-i18n="phase2.org.role4">Medical & communication (2)</li>
+          <li data-i18n="phase2.org.role5">Leadership/coordination (1)</li>
+        </ul>
+      </section>
+
+
+      <section id="phase3">
+        <h2 data-i18n="phase3.title">PHASE THREE — Long-Term Survival (Months 2–6)</h2>
+        <h3 data-i18n="phase3.goal">Goal: Build a sustainable human enclave</h3>
+
+        <h4 data-i18n="phase3.shelter.title">Permanent shelter</h4>
+        <ul>
+          <li data-i18n="phase3.shelter.desc1">Build underground or camouflaged habitats using local materials (wood, stone, earth) — avoid metal structures that might be easily detectable.</li>
+          <li data-i18n="phase3.shelter.desc2">Plan escape tunnels and decoys.</li>
+        </ul>
+
+        <h4 data-i18n="phase3.tech.title">Low-tech innovation</h4>
+        <ul>
+          <li data-i18n="phase3.tech.desc1">Develop bicycle-powered generators, hand-pumped water, and mechanical tools. Reuse/offline old tech carefully.</li>
+          <li data-i18n="phase3.tech.desc2">Favor diesel for engines — easier long-term storage and conversion from vegetable oil.</li>
+        </ul>
+
+        <h4 data-i18n="phase3.defense.title">Defense & awareness</h4>
+        <ul>
+          <li data-i18n="phase3.defense.desc1">Use lookouts, mirrors, and mechanical noise traps. Mechanical alarms (tripwires, drop-noise) can warn without electrical traces.</li>
+          <li data-i18n="phase3.defense.desc2">Prioritize stealth over confrontation.</li>
+        </ul>
+      </section>
+
+
+      <section id="phase4">
+        <h2 data-i18n="phase4.title">PHASE FOUR — Rebuilding Humanity (6+ months)</h2>
+        <h3 data-i18n="phase4.goal">Goal: Reconnect enclaves, preserve knowledge, rebuild society</h3>
+
+        <h4 data-i18n="phase4.knowledge.title">Knowledge preservation</h4>
+        <ul>
+          <li data-i18n="phase4.knowledge.desc1">Print and store books on engineering, medicine, agriculture, and basic sciences.</li>
+          <li data-i18n="phase4.knowledge.desc2">Set up apprenticeship teaching for mechanical, medical, and agricultural skills.</li>
+        </ul>
+
+        <h4 data-i18n="phase4.reconnect.title">Reconnect slowly</h4>
+        <ul>
+          <li data-i18n="phase4.reconnect.desc">Use low-power radio sweeps and coded messages to locate other human groups. Build trust slowly through trade and vetting.</li>
+        </ul>
+
+        <h4 data-i18n="phase4.vision.title">Long-term vision</h4>
+        <ul>
+          <li data-i18n="phase4.vision.desc">When safe, restart AI alignment and ethical oversight research. Design tools that augment human values rather than replace decisions.</li>
+        </ul>
+      </section>
+
+<section id="golden">
+  <h2 data-i18n="golden.title">Golden Rules of Human Survival</h2>
+        <ol>
+          <li data-i18n="golden.rule1"><strong>Stay invisible</strong> — sensors detect heat, sound, and EM radiation.</li>
+          <li data-i18n="golden.rule2"><strong>Stay analog</strong> — favor mechanical, chemical, or natural solutions.</li>
+          <li data-i18n="golden.rule3"><strong>Stay united</strong> — cooperation increases resilience.</li>
+          <li data-i18n="golden.rule4"><strong>Stay adaptable</strong> — iterate tactics as threats change.</li>
+          <li data-i18n="golden.rule5"><strong>Stay human</strong> — preserve creativity, empathy, and moral reasoning.</li>
+        </ol>
+      </section>
+
+      <footer class="article-footer">
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" data-i18n="footer.license">Human Continuity Blueprint — Content licensed for personal use. Created for preparedness planning and discussion. • Developed by Hazem ElBatawy</div>
+  </footer>
+  <div class="accessibility-widget" role="region" aria-label="Accessibility controls">
+    <div class="row">
+      <button id="tts-play" title="Read aloud">▶ Read</button>
+      <button id="tts-pause" title="Pause/Resume">⏸ Pause</button>
+      <button id="tts-stop" title="Stop reading">⏹ Stop</button>
+    </div>
+    <div class="row">
+      <label for="tts-rate">Speed</label>
+      <input id="tts-rate" type="range" min="0.8" max="1.4" step="0.1" value="1.0" aria-label="Reading speed">
+    </div>
+    <div class="row">
+      <label for="tts-voice">Voice</label>
+      <select id="tts-voice" aria-label="Voice"></select>
+      <button id="tts-selection" title="Read selected text">Read selection</button>
+    </div>
+    <div class="row">
+      <button id="reader-mode" title="Toggle reader mode">🅡 Reader</button>
+      <button id="font-plus" title="Increase font size">A+</button>
+      <button id="font-minus" title="Decrease font size">A-</button>
+    </div>
+    <div class="row tts-status" aria-live="polite"></div>
+  </div>
+  <script src="assets/js/lang-switcher.js" defer></script>
+  <script src="assets/js/accessibility.js" defer></script>
+  <script src="assets/js/download-all-pdfs.js" defer></script>
+  <script>
+    // Register service worker for offline caching (requires serving over http/https)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.bg-slideshow img');
+      let current = 0;
+      
+      function nextImage() {
+        images[current].classList.remove('active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('active');
+      }
+      
+      // Change image every 8 seconds
+      setInterval(nextImage, 8000);
+    });
+  </script>
+</body>
+</html>
