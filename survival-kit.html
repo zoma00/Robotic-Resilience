@@ -49,27 +49,49 @@
       opacity: 0.6; /* Increased opacity for better visibility */
     }
     
-    /* Mobile responsive background adjustments */
-    @media (max-width: 768px) {
+    /* Mobile responsive background adjustments - AGGRESSIVE FIXES */
+    @media screen and (max-width: 768px) {
+      .bg-slideshow {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+      }
+      
       .bg-slideshow img {
-        /* On mobile portrait, prioritize proper coverage */
-        min-width: 100vw;
-        min-height: 100vh;
-        width: auto;
-        height: auto;
-        object-fit: cover;
-        object-position: center center;
+        /* FORCE proper mobile sizing */
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        min-width: 100vw !important;
+        min-height: 100vh !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        transform: none !important;
       }
     }
     
-    @media (max-width: 768px) and (orientation: landscape) {
+    @media screen and (max-width: 768px) and (orientation: portrait) {
       .bg-slideshow img {
-        /* On mobile landscape, adjust for wider aspect ratio */
-        width: auto;
-        height: 100vh;
-        min-width: 100vw;
-        object-fit: cover;
-        object-position: center center;
+        /* Portrait: make sure width fills, height scales */
+        width: 100vw !important;
+        height: auto !important;
+        min-height: 100vh !important;
+      }
+    }
+    
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      .bg-slideshow img {
+        /* Landscape: make sure height fills, width scales */
+        width: auto !important;
+        height: 100vh !important;
+        min-width: 100vw !important;
       }
     }
     
@@ -509,6 +531,29 @@
         current = (current + 1) % images.length;
         images[current].classList.add('active');
       }
+      
+      // Mobile background fix - force recalculation
+      function forceMobileResize() {
+        if (window.innerWidth <= 768) {
+          const bgImages = document.querySelectorAll('.bg-slideshow img');
+          bgImages.forEach(img => {
+            img.style.width = '100vw';
+            img.style.height = '100vh';
+            img.style.objectFit = 'cover';
+            img.style.position = 'absolute';
+            img.style.top = '0';
+            img.style.left = '0';
+            img.style.transform = 'none';
+          });
+        }
+      }
+      
+      // Apply mobile fixes immediately and on resize
+      forceMobileResize();
+      window.addEventListener('resize', forceMobileResize);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(forceMobileResize, 100);
+      });
       
       // Change image every 7 seconds
       setInterval(nextImage, 7000);
