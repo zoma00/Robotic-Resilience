@@ -191,15 +191,17 @@ body.reader-mode main { background: rgba(11, 18, 32, 0.9) !important; }
 /* Override reader mode on mobile for proper background sizing */
 @media screen and (max-width: 768px) {
   body.reader-mode .bg-slideshow img { 
-    opacity: 0.15 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: none !important;
-    object-fit: cover !important;
+    opacity: 0.05 !important; 
+    filter: blur(2px);
   }
+}
+
+/* Force LTR for certain elements */
+.force-ltr {
+  direction: ltr;
+  text-align: left;
+  display: block;
+  list-style: disc inside;
 }
 
 /* Mobile tap target sizing */
