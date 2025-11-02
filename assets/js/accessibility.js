@@ -22,54 +22,150 @@
   }
   function loadVoices(onReady) {
     if (!('speechSynthesis' in window)) { setStatus('Read Aloud not supported on this browser.'); return; }
+    
     voices = synth.getVoices();
-    if (voices && voices.length) { populateVoicesSelect(); onReady && onReady(); return; }
+    if (voices && voices.length) { 
+      populateVoicesSelect(); 
+      onReady && onReady(); 
+      return; 
+    }
+    
     const onVoices = () => {
       voices = synth.getVoices();
       synth.removeEventListener('voiceschanged', onVoices);
       populateVoicesSelect();
       onReady && onReady();
     };
+    
     synth.addEventListener('voiceschanged', onVoices);
-    // Fallback timeout in case event never fires
-    setTimeout(() => {
-      voices = synth.getVoices();
-      populateVoicesSelect();
-      onReady && onReady();
-    }, 1200);
+    
+    // Enhanced mobile support - try multiple approaches
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Mobile devices need extra time and different approaches
+      setTimeout(() => {
+        voices = synth.getVoices();
+        if (voices.length === 0) {
+          // Try triggering speech synthesis to wake up voices
+          const testUtterance = new SpeechSynthesisUtterance('');
+          testUtterance.volume = 0;
+          synth.speak(testUtterance);
+          
+          setTimeout(() => {
+            voices = synth.getVoices();
+            populateVoicesSelect();
+            onReady && onReady();
+          }, 500);
+        } else {
+          populateVoicesSelect();
+          onReady && onReady();
+        }
+      }, 2000); // Longer timeout for mobile
+    } else {
+      // Desktop fallback
+      setTimeout(() => {
+        voices = synth.getVoices();
+        populateVoicesSelect();
+        onReady && onReady();
+      }, 1200);
+    }
   }
   function pickVoice() {
     if (!voices || !voices.length) return null;
+    
+    // Get current page language from our language switcher
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    
+    // Check if user manually selected a voice
     const sel = document.getElementById('tts-voice');
     if (sel && sel.value) {
       const [name, lang] = sel.value.split('|');
       const chosen = voices.find(v => v.name === name && v.lang === lang) || voices.find(v => v.name === name) || null;
       if (chosen) return chosen;
     }
-    const docLang = (document.documentElement.lang || navigator.language || 'en').toLowerCase();
-    const prefs = [];
-    // Prefer exact doc language, then its base, then English
-    prefs.push(v => v.lang && v.lang.toLowerCase() === docLang);
-    const base = docLang.split('-')[0];
-    prefs.push(v => v.lang && v.lang.toLowerCase().startsWith(base));
-    prefs.push(v => v.lang && v.lang.toLowerCase().startsWith('en'));
-    for (const pref of prefs) {
-      const m = voices.find(pref);
-      if (m) return m;
+    
+    // Map our language codes to preferred voice languages
+    const langMap = {
+      'en': ['en-US', 'en-GB', 'en-AU', 'en-CA', 'en'],
+      'ar': ['ar-SA', 'ar-EG', 'ar-AE', 'ar'],
+      'de': ['de-DE', 'de-AT', 'de-CH', 'de'],
+      'zh': ['zh-CN', 'zh-TW', 'zh-HK', 'zh']
+    };
+    
+    const preferredLangs = langMap[currentLang] || ['en-US', 'en'];
+    
+    // Try to find a voice matching our preferred languages in order
+    for (const prefLang of preferredLangs) {
+      const voice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(prefLang.toLowerCase()));
+      if (voice) {
+        console.log('Selected voice:', voice.name, voice.lang, 'for language:', currentLang);
+        return voice;
+      }
     }
-    return voices[0];
+    
+    // Fallback: avoid problematic voices like Assamese
+    const problematicLangs = ['as_IN', 'as-IN', 'hi-IN', 'bn-IN'];
+    const safeVoices = voices.filter(v => 
+      !problematicLangs.some(prob => v.lang && v.lang.toLowerCase().includes(prob.toLowerCase()))
+    );
+    
+    // Prefer English voices as final fallback
+    const englishVoice = safeVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+    if (englishVoice) {
+      console.log('Fallback to English voice:', englishVoice.name, englishVoice.lang);
+      return englishVoice;
+    }
+    
+    // Last resort: first safe voice or just first voice
+    const finalChoice = safeVoices[0] || voices[0];
+    console.log('Final fallback voice:', finalChoice?.name, finalChoice?.lang);
+    return finalChoice;
   }
   function populateVoicesSelect() {
     const sel = document.getElementById('tts-voice');
     if (!sel) return;
+    
     const prev = sel.value;
-    sel.innerHTML = '';
-    voices.forEach(v => {
-      const opt = document.createElement('option');
-      opt.value = `${v.name}|${v.lang}`;
-      opt.textContent = `${v.name} (${v.lang})${v.default ? ' — default' : ''}`;
-      sel.appendChild(opt);
+    sel.innerHTML = '<option value="">Auto-select best voice</option>';
+    
+    // Filter out problematic voices
+    const problematicLangs = ['as_IN', 'as-IN', 'hi-IN', 'bn-IN'];
+    const goodVoices = voices.filter(v => 
+      !problematicLangs.some(prob => v.lang && v.lang.toLowerCase().includes(prob.toLowerCase()))
+    );
+    
+    // Group voices by language family
+    const groups = {
+      'English': goodVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en')),
+      'Arabic': goodVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ar')),
+      'German': goodVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('de')),
+      'Chinese': goodVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('zh')),
+      'Other': goodVoices.filter(v => {
+        const lang = v.lang ? v.lang.toLowerCase() : '';
+        return !lang.startsWith('en') && !lang.startsWith('ar') && 
+               !lang.startsWith('de') && !lang.startsWith('zh');
+      })
+    };
+    
+    // Add voices grouped by language
+    Object.entries(groups).forEach(([groupName, groupVoices]) => {
+      if (groupVoices.length === 0) return;
+      
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = groupName;
+      
+      groupVoices.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = `${v.name}|${v.lang}`;
+        opt.textContent = `${v.name} (${v.lang})${v.default ? ' — default' : ''}`;
+        optgroup.appendChild(opt);
+      });
+      
+      sel.appendChild(optgroup);
     });
+    
+    // Restore previous selection if it still exists
     if (prev) {
       const found = Array.from(sel.options).find(o => o.value === prev);
       if (found) sel.value = prev;
@@ -194,6 +290,28 @@
     const next = Math.max(14, Math.min(24, current + delta));
     document.body.style.fontSize = next + 'px';
   }
+
+  // Function to refresh TTS when language changes
+  function refreshTTSForLanguage() {
+    if ('speechSynthesis' in window) {
+      loadVoices(() => {
+        // Reset voice selection to auto-select for new language
+        const voiceSel = document.getElementById('tts-voice');
+        if (voiceSel) {
+          voiceSel.value = ''; // Reset to auto-select
+        }
+        
+        // Stop any current reading
+        try { synth.cancel(); } catch(_) {}
+        queue = [];
+        qIndex = 0;
+        setStatus('Ready for new language');
+      });
+    }
+  }
+
+  // Expose this function globally so lang-switcher.js can call it
+  window.refreshTTSForLanguage = refreshTTSForLanguage;
 
   function init() {
     const root = document.querySelector('.accessibility-widget');

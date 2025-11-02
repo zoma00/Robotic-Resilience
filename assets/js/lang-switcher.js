@@ -841,6 +841,9 @@
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     
+    // Store the current language for TTS system
+    localStorage.setItem('selectedLanguage', lang);
+    
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) {
@@ -851,6 +854,13 @@
         }
       }
     });
+    
+    // Refresh TTS system for new language (if available)
+    if (typeof window.refreshTTSForLanguage === 'function') {
+      setTimeout(() => {
+        window.refreshTTSForLanguage();
+      }, 100); // Small delay to ensure DOM updates are complete
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
