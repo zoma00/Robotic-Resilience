@@ -16,13 +16,13 @@
   
   .bg-slideshow img {
     position: absolute !important;
-    top: -5% !important;
-    left: -5% !important;
-    width: 110vw !important;
-    height: 110vh !important;
+    top: -10% !important;
+    left: -10% !important;
+    width: 120vw !important;
+    height: 120vh !important;
     object-fit: cover !important;
     object-position: center center !important;
-    transform: scale(0.9) !important;
+    transform: scale(0.75) !important;
     transition: opacity 1s ease-in-out, transform 0.3s ease !important;
     opacity: 0;
   }
@@ -51,7 +51,7 @@
   @media (orientation: portrait) {
     .bg-slideshow img {
       object-position: center top !important;
-      transform: scale(0.85) !important;
+      transform: scale(0.65) !important;
       /* Crop from top on portrait to show important parts */
     }
     
@@ -64,14 +64,14 @@
     body:has(.home-page) .bg-slideshow img,
     body[data-page="index"] .bg-slideshow img {
       object-position: center center !important;
-      transform: scale(0.88) !important;
+      transform: scale(0.7) !important;
     }
     
     /* Survival kit portrait - show upper portion for action scenes */
     body:has(.survival-kit-page) .bg-slideshow img,
     body[data-page="survival-kit"] .bg-slideshow img {
       object-position: center 30% !important;
-      transform: scale(0.82) !important;
+      transform: scale(0.6) !important;
     }
   }
   
@@ -79,7 +79,7 @@
   @media (orientation: landscape) {
     .bg-slideshow img {
       object-position: center center !important;
-      transform: scale(0.92) !important;
+      transform: scale(0.8) !important;
     }
   }
   
@@ -125,7 +125,7 @@
   }
   
   .bg-slideshow img {
-    transform: scale(0.8) !important; /* Even smaller for tiny screens */
+    transform: scale(0.5) !important; /* Much smaller for tiny screens */
   }
   
   main {
