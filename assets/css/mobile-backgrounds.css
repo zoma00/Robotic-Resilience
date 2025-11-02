@@ -12,26 +12,27 @@
     overflow: hidden !important;
     z-index: -1 !important;
     background-color: #0a0e17 !important;
-    transform: scale(1) !important; /* Ensure container is not scaled */
   }
   
   .bg-slideshow img {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    width: 140vw !important;
-    height: 140vh !important;
+    /* Much smaller dimensions for mobile */
+    width: 60vw !important;
+    height: 60vh !important;
     object-fit: cover !important;
     object-position: center center !important;
-    transform: translate(-50%, -50%) scale(0.25) !important;
-    transition: opacity 1s ease-in-out, transform 0.3s ease !important;
+    transform: translate(-50%, -50%) !important;
+    transition: opacity 1s ease-in-out !important;
     opacity: 0;
-    max-width: none !important;
-    max-height: none !important;
+    border-radius: 15px !important;
+    /* Add subtle shadow for depth */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
   }
   
   .bg-slideshow img.active {
-    opacity: 0.4 !important; /* Lighter opacity for mobile readability */
+    opacity: 0.3 !important; /* Light opacity for mobile readability */
   }
   
   /* Page-specific mobile adjustments */
@@ -39,13 +40,17 @@
   /* Index page - lighter backgrounds for better text readability */
   body:has(.home-page) .bg-slideshow img.active,
   body[data-page="index"] .bg-slideshow img.active {
-    opacity: 0.35 !important;
+    opacity: 0.25 !important;
+    width: 50vw !important;
+    height: 50vh !important;
   }
   
   /* Survival kit page - slightly more visible backgrounds */
   body:has(.survival-kit-page) .bg-slideshow img.active,
   body[data-page="survival-kit"] .bg-slideshow img.active {
-    opacity: 0.45 !important;
+    opacity: 0.35 !important;
+    width: 55vw !important;
+    height: 55vh !important;
   }
   
   /* Navigation page keeps default 0.4 opacity */
@@ -53,9 +58,9 @@
   /* Portrait orientation specific fixes */
   @media (orientation: portrait) {
     .bg-slideshow img {
-      object-position: center top !important;
-      transform: translate(-50%, -50%) scale(0.2) !important;
-      /* Crop from top on portrait to show important parts */
+      width: 50vw !important;
+      height: 45vh !important;
+      object-position: center center !important;
     }
     
     body {
@@ -63,26 +68,27 @@
       max-width: 100vw !important;
     }
     
-    /* Index page portrait - focus on center for better composition */
+    /* Index page portrait - smaller for better text readability */
     body:has(.home-page) .bg-slideshow img,
     body[data-page="index"] .bg-slideshow img {
-      object-position: center center !important;
-      transform: translate(-50%, -50%) scale(0.22) !important;
+      width: 45vw !important;
+      height: 40vh !important;
     }
     
-    /* Survival kit portrait - show upper portion for action scenes */
+    /* Survival kit portrait - slightly larger for visual impact */
     body:has(.survival-kit-page) .bg-slideshow img,
     body[data-page="survival-kit"] .bg-slideshow img {
-      object-position: center 30% !important;
-      transform: translate(-50%, -50%) scale(0.18) !important;
+      width: 52vw !important;
+      height: 47vh !important;
     }
   }
   
   /* Landscape orientation specific fixes */
   @media (orientation: landscape) {
     .bg-slideshow img {
+      width: 65vw !important;
+      height: 55vh !important;
       object-position: center center !important;
-      transform: translate(-50%, -50%) scale(0.3) !important;
     }
   }
   
@@ -124,11 +130,13 @@
 /* Extra small mobile devices */
 @media screen and (max-width: 480px) {
   .bg-slideshow img.active {
-    opacity: 0.25 !important; /* Even lighter for small screens */
+    opacity: 0.2 !important; /* Very light for small screens */
   }
   
   .bg-slideshow img {
-    transform: translate(-50%, -50%) scale(0.15) !important; /* Much smaller for tiny screens */
+    width: 40vw !important;
+    height: 35vh !important;
+    border-radius: 12px !important;
   }
   
   main {
