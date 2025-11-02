@@ -3,10 +3,11 @@
     const sel = document.createElement('select');
     sel.innerHTML = '<option value="en">English</option><option value="ar">العربية</option><option value="de">Deutsch</option><option value="zh">中文</option>';
     sel.className = 'lang-select';
-    sel.value = localStorage.getItem('lang') || 'en';
+    sel.value = localStorage.getItem('selectedLanguage') || 'en';
     
     sel.addEventListener('change', function() {
-      localStorage.setItem('lang', sel.value);
+      console.log('Language changed to:', sel.value);
+      localStorage.setItem('selectedLanguage', sel.value);
       loadLang(sel.value);
     });
     return sel;
@@ -838,12 +839,14 @@
   }
 
   function applyLang(dict, lang) {
+    console.log('Applying language:', lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     
     // Store the current language for TTS system
     localStorage.setItem('selectedLanguage', lang);
     
+    let translatedCount = 0;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) {
@@ -852,8 +855,11 @@
         } else {
           el.textContent = dict[key];
         }
+        translatedCount++;
       }
     });
+    
+    console.log('Translated', translatedCount, 'elements to language:', lang);
     
     // Refresh TTS system for new language (if available)
     if (typeof window.refreshTTSForLanguage === 'function') {
@@ -864,13 +870,31 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('Language switcher initializing...');
+    
     const langSelect = createLanguageSelector();
-    const targetEl = document.querySelector('.language-selector') || document.querySelector('nav');
+    
+    // Try multiple selectors to find the target element
+    const targetEl = document.querySelector('#lang-switcher') || 
+                     document.querySelector('.language-selector') || 
+                     document.querySelector('nav') ||
+                     document.querySelector('header .wrap');
+    
     if (targetEl) {
+      console.log('Found target element:', targetEl.className || targetEl.id || targetEl.tagName);
       targetEl.appendChild(langSelect);
+    } else {
+      console.error('Could not find target element for language selector');
+      // Fallback: add to header
+      const header = document.querySelector('header');
+      if (header) {
+        header.appendChild(langSelect);
+      }
     }
     
-    const currentLang = localStorage.getItem('lang') || 'en';
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    console.log('Loading initial language:', currentLang);
+    langSelect.value = currentLang; // Ensure dropdown shows correct value
     loadLang(currentLang);
   });
 })();
