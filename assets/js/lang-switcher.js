@@ -217,7 +217,16 @@
       "kit.galleryDocsDesc": "Secure storage for critical documents, identification, and emergency information.",
       "kit.back": "← Back to the Human Continuity Blueprint",
       "footer.kit": "War Survival Kit — Part of the Human Continuity Blueprint • Developed by Hazem ElBatawy",
-      "footer.license": "Human Continuity Blueprint — Content licensed for personal use. Created for preparedness planning and discussion. • Developed by Hazem ElBatawy"
+      "footer.license": "Human Continuity Blueprint — Content licensed for personal use. Created for preparedness planning and discussion. • Developed by Hazem ElBatawy",
+      "accessibility.read": "▶ Read",
+      "accessibility.pause": "⏸ Pause",
+      "accessibility.stop": "⏹ Stop",
+      "accessibility.speed": "Speed",
+      "accessibility.voice": "Voice",
+      "accessibility.readSelection": "Read selection",
+      "accessibility.reader": "🅡 Reader",
+      "accessibility.fontPlus": "A+",
+      "accessibility.fontMinus": "A-"
     },
     ar: {
       "nav.home": "الرئيسية",
@@ -421,7 +430,16 @@
       "kit.galleryDocsDesc": "تخزين آمن للوثائق الهامة، التعريف، ومعلومات الطوارئ.",
       "kit.back": "← العودة إلى مخطط استمرارية البشرية",
       "footer.kit": "عدة البقاء في الحرب — جزء من مخطط استمرارية البشرية • تطوير حازم البطاوي",
-      "footer.license": "مخطط استمرارية البشرية — المحتوى مرخص للاستخدام الشخصي فقط. تم الإنشاء لأغراض التخطيط والاستعداد. • تطوير حازم البطاوي"
+      "footer.license": "مخطط استمرارية البشرية — المحتوى مرخص للاستخدام الشخصي فقط. تم الإنشاء لأغراض التخطيط والاستعداد. • تطوير حازم البطاوي",
+      "accessibility.read": "▶ قراءة",
+      "accessibility.pause": "⏸ إيقاف مؤقت",
+      "accessibility.stop": "⏹ توقف",
+      "accessibility.speed": "السرعة",
+      "accessibility.voice": "الصوت",
+      "accessibility.readSelection": "قراءة المحدد",
+      "accessibility.reader": "🅡 قارئ",
+      "accessibility.fontPlus": "أ+",
+      "accessibility.fontMinus": "أ-"
     },
     de: {
       "nav.home": "Startseite",
@@ -625,7 +643,16 @@
       "kit.galleryDocsDesc": "Sichere Lagerung für kritische Dokumente, Identifikation und Notfallinformationen.",
       "kit.back": "← Zurück zum Menschlichen Kontinuitäts-Konzept",
       "footer.kit": "Kriegs-Überlebensausrüstung — Teil des Menschlichen Kontinuitäts-Konzepts • Entwickelt von Hazem ElBatawy",
-      "footer.license": "Menschliches Kontinuitäts-Konzept — Inhalt lizenziert für persönlichen Gebrauch. Erstellt für Vorsorgeplanung und Diskussion. • Entwickelt von Hazem ElBatawy"
+      "footer.license": "Menschliches Kontinuitäts-Konzept — Inhalt lizenziert für persönlichen Gebrauch. Erstellt für Vorsorgeplanung und Diskussion. • Entwickelt von Hazem ElBatawy",
+      "accessibility.read": "▶ Lesen",
+      "accessibility.pause": "⏸ Pause",
+      "accessibility.stop": "⏹ Stop",
+      "accessibility.speed": "Geschwindigkeit",
+      "accessibility.voice": "Stimme",
+      "accessibility.readSelection": "Auswahl lesen",
+      "accessibility.reader": "🅡 Leser",
+      "accessibility.fontPlus": "A+",
+      "accessibility.fontMinus": "A-"
     },
     zh: {
       "nav.home": "首页",
@@ -829,17 +856,34 @@
       "kit.galleryDocsDesc": "关键文件、身份证明和应急信息的安全存储。",
       "kit.back": "← 返回人类延续蓝图",
       "footer.kit": "战争生存装备——人类延续蓝图的一部分 • 哈泽姆·埃尔巴塔维开发",
-      "footer.license": "人类延续蓝图——内容仅供个人使用。为准备规划和讨论而创建。• 哈泽姆·埃尔巴塔维开发"
+      "footer.license": "人类延续蓝图——内容仅供个人使用。为准备规划和讨论而创建。• 哈泽姆·埃尔巴塔维开发",
+      "accessibility.read": "▶ 阅读",
+      "accessibility.pause": "⏸ 暂停",
+      "accessibility.stop": "⏹ 停止",
+      "accessibility.speed": "速度",
+      "accessibility.voice": "声音",
+      "accessibility.readSelection": "朗读选中",
+      "accessibility.reader": "🅡 阅读器",
+      "accessibility.fontPlus": "字+",
+      "accessibility.fontMinus": "字-"
     }
   };
 
   function loadLang(lang) {
+    console.log('🌐 Loading language:', lang);
     const dict = TRANSLATIONS[lang] || TRANSLATIONS['en'];
+    console.log('📚 Dictionary loaded with', Object.keys(dict).length, 'keys');
     applyLang(dict, lang);
+    
+    // Force a second translation pass after a delay to catch any dynamically loaded content
+    setTimeout(() => {
+      console.log('🔄 Second translation pass...');
+      applyLang(dict, lang);
+    }, 500);
   }
 
   function applyLang(dict, lang) {
-    console.log('Applying language:', lang);
+    console.log('🔄 Applying language:', lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     
@@ -847,6 +891,9 @@
     localStorage.setItem('selectedLanguage', lang);
     
     let translatedCount = 0;
+    let skippedCount = 0;
+    const skippedKeys = [];
+    
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) {
@@ -856,10 +903,18 @@
           el.textContent = dict[key];
         }
         translatedCount++;
+      } else {
+        skippedCount++;
+        skippedKeys.push(key);
+        console.warn('❌ Missing translation for key:', key);
       }
     });
     
-    console.log('Translated', translatedCount, 'elements to language:', lang);
+    console.log(`✅ Translated ${translatedCount} elements to language: ${lang}`);
+    if (skippedCount > 0) {
+      console.warn(`⚠️ Skipped ${skippedCount} elements with missing translations`);
+      console.log('Missing keys:', skippedKeys.slice(0, 10)); // Show first 10
+    }
     
     // Refresh TTS system for new language (if available)
     if (typeof window.refreshTTSForLanguage === 'function') {

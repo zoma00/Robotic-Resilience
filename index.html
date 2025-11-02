@@ -249,23 +249,23 @@
   </footer>
   <div class="accessibility-widget" role="region" aria-label="Accessibility controls">
     <div class="row">
-      <button id="tts-play" title="Read aloud">▶ Read</button>
-      <button id="tts-pause" title="Pause/Resume">⏸ Pause</button>
-      <button id="tts-stop" title="Stop reading">⏹ Stop</button>
+      <button id="tts-play" title="Read aloud" data-i18n="accessibility.read">▶ Read</button>
+      <button id="tts-pause" title="Pause/Resume" data-i18n="accessibility.pause">⏸ Pause</button>
+      <button id="tts-stop" title="Stop reading" data-i18n="accessibility.stop">⏹ Stop</button>
     </div>
     <div class="row">
-      <label for="tts-rate">Speed</label>
+      <label for="tts-rate" data-i18n="accessibility.speed">Speed</label>
       <input id="tts-rate" type="range" min="0.8" max="1.4" step="0.1" value="1.0" aria-label="Reading speed">
     </div>
     <div class="row">
-      <label for="tts-voice">Voice</label>
+      <label for="tts-voice" data-i18n="accessibility.voice">Voice</label>
       <select id="tts-voice" aria-label="Voice"></select>
-      <button id="tts-selection" title="Read selected text">Read selection</button>
+      <button id="tts-selection" title="Read selected text" data-i18n="accessibility.readSelection">Read selection</button>
     </div>
     <div class="row">
-      <button id="reader-mode" title="Toggle reader mode">🅡 Reader</button>
-      <button id="font-plus" title="Increase font size">A+</button>
-      <button id="font-minus" title="Decrease font size">A-</button>
+      <button id="reader-mode" title="Toggle reader mode" data-i18n="accessibility.reader">🅡 Reader</button>
+      <button id="font-plus" title="Increase font size" data-i18n="accessibility.fontPlus">A+</button>
+      <button id="font-minus" title="Decrease font size" data-i18n="accessibility.fontMinus">A-</button>
     </div>
     <div class="row tts-status" aria-live="polite"></div>
   </div>
