@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lensatic Compass Handbook - PDF Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    
+    .pdf-viewer-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pdf-header {
+      background: rgba(0,0,0,0.8);
+      padding: 15px 20px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .pdf-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .pdf-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .pdf-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .pdf-btn.download { background: #2196F3; }
+    .pdf-btn.back { background: #FF9800; }
+    
+    .pdf-content {
+      flex: 1;
+      position: relative;
+      background: #fff;
+    }
+    
+    .pdf-embed {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .pdf-fallback {
+      padding: 40px;
+      text-align: center;
+      background: #f5f5f5;
+      color: #333;
+      height: calc(100% - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .pdf-fallback h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .pdf-fallback p {
+      margin-bottom: 30px;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    
+    .fallback-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    @media (max-width: 768px) {
+      .pdf-header {
+        padding: 10px 15px;
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .pdf-title {
+        font-size: 1em;
+      }
+      
+      .pdf-controls {
+        justify-content: center;
+      }
+      
+      .pdf-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="pdf-viewer-container">
+    <header class="pdf-header">
+      <h1 class="pdf-title">📖 B170249XQ Lensatic Compass Handbook</h1>
+      <div class="pdf-controls">
+        <a href="navigation.html" class="pdf-btn back">
+          ← Back to Navigation Tutorial
+        </a>
+        <a href="B170249XQ_Lensatic_Compass.pdf" download="Lensatic_Compass_Handbook.pdf" class="pdf-btn download">
+          📥 Download PDF
+        </a>
+        <a href="B170249XQ_Lensatic_Compass.pdf" target="_blank" class="pdf-btn">
+          🔗 Open in New Tab
+        </a>
+      </div>
+    </header>
+    
+    <div class="pdf-content">
+      <iframe id="pdf-frame" 
+              class="pdf-embed" 
+              src="B170249XQ_Lensatic_Compass.pdf"
+              title="Lensatic Compass Handbook">
+      </iframe>
+      
+      <div id="pdf-fallback" class="pdf-fallback" style="display: none;">
+        <h2>📄 PDF Viewer</h2>
+        <p>
+          The embedded PDF viewer is not available in this browser. This is common with GitHub Pages due to security restrictions. 
+          Please use one of the options below to access the complete Lensatic Compass Handbook.
+        </p>
+        <div class="fallback-actions">
+          <a href="B170249XQ_Lensatic_Compass.pdf" download="Lensatic_Compass_Handbook.pdf" class="pdf-btn download">
+            📥 Download PDF (Recommended)
+          </a>
+          <a href="B170249XQ_Lensatic_Compass.pdf" target="_blank" class="pdf-btn">
+            🔗 Open in New Tab
+          </a>
+          <a href="navigation.html" class="pdf-btn back">
+            ← Back to Tutorial
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const iframe = document.getElementById('pdf-frame');
+      const fallback = document.getElementById('pdf-fallback');
+      let hasLoaded = false;
+      
+      function showFallback() {
+        if (!hasLoaded) {
+          iframe.style.display = 'none';
+          fallback.style.display = 'flex';
+          console.log('PDF iframe failed to load, showing fallback');
+        }
+      }
+      
+      // Set timeout to show fallback if PDF doesn't load
+      const loadTimeout = setTimeout(showFallback, 4000);
+      
+      iframe.addEventListener('load', function() {
+        hasLoaded = true;
+        clearTimeout(loadTimeout);
+        console.log('PDF loaded successfully');
+      });
+      
+      iframe.addEventListener('error', function() {
+        clearTimeout(loadTimeout);
+        showFallback();
+      });
+      
+      // Test if PDF is accessible
+      fetch('B170249XQ_Lensatic_Compass.pdf', { method: 'HEAD' })
+        .then(response => {
+          if (!response.ok) {
+            clearTimeout(loadTimeout);
+            showFallback();
+          }
+        })
+        .catch(() => {
+          clearTimeout(loadTimeout);
+          showFallback();
+        });
+    })();
+  </script>
+</body>
+</html>
