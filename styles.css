@@ -13,39 +13,89 @@ body{
   background-image: 
     radial-gradient(circle at 25% 25%, rgba(25, 100, 126, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, rgba(154, 230, 180, 0.1) 0%, transparent 45%),
-    linear-gradient(135deg, rgba(10, 14, 23, 0.98) 0%, rgba(11, 22, 38, 0.98) 100%),
-    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' fill='%239ae6b4' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    linear-gradient(135deg, rgba(10, 14, 23, 0.98) 0%, rgba(11, 22, 38, 0.98) 100%);
   color: var(--text);
   line-height: 1.5;
   margin: 0;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
 html { font-size: 16px; }
 
-body::before {
-  content: '';
+/* Background Slideshow */
+.bg-slideshow {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(90deg, #0a0e17 0px, rgba(10, 14, 23, 0.9) 1px, transparent 1px, transparent 2px, transparent 100%),
-    linear-gradient(0deg, #0a0e17 0px, rgba(10, 14, 23, 0.9) 1px, transparent 1px, transparent 2px, transparent 100%);
-  background-size: 20px 20px;
-  opacity: 0.9;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.bg-slideshow img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.bg-slideshow img.active {
+  opacity: 0.4;
+}
+
+.bg-slideshow img:first-child {
+  opacity: 0.4;
+}
+
+/* Content Flex Boxes */
+.flex-box {
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 14, 23, 0.7);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(154, 230, 180, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+  position: relative;
+  z-index: 10;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.flex-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(154, 230, 180, 0.05) 0%, 
+    rgba(10, 14, 23, 0.05) 100%);
+  border-radius: 12px;
   pointer-events: none;
   z-index: -1;
 }
 
-.flex-box {
-  opacity: 0.5; /* Change the opacity value as needed */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:28px;position:relative;z-index:5}
+.site-header{
+  background:linear-gradient(90deg,rgba(8,18,33,0.8), rgba(11,23,38,0.8));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(154,230,180,0.2);
+  position: relative;
+  z-index: 100;
 }
-
-.wrap{max-width:var(--wrap);margin:0 auto;padding:28px}
-.site-header{background:linear-gradient(90deg,#081221, #0b1726);border-bottom:1px solid rgba(255,255,255,0.03)}
 .site-header .wrap{display:block;padding:32px 28px}
 .site-header h1, .site-header .subtitle, .site-header .byline { color: #e6eef6 !important; }
 .site-header a { color: #9ae6b4 !important; }
@@ -69,13 +119,12 @@ body.pdf-export .site-header a {
 h1{margin:0;font-size:28px}
 .subtitle{margin:6px 0 0;color:var(--muted)}
 .byline{margin:8px 0 0;color:var(--accent);font-style:italic;font-size:14px}
-.lede{background:linear-gradient(90deg,rgba(154,230,180,0.06),transparent);padding:12px;border-left:4px solid var(--accent);}
+.lede{background:none;padding:0;border:none;margin-bottom:16px;}
 .toc {
-  margin: 24px 0;
-  padding: 20px;
-  background: linear-gradient(90deg, rgba(154, 230, 180, 0.06), transparent);
-  border-left: 4px solid var(--accent);
-  border: 1px solid rgba(154,230,180,0.1);
+  margin: 16px 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
   opacity: 0.8; /* Change the opacity value as needed */
 
 }
@@ -138,7 +187,7 @@ a:hover {
   opacity: 0.9; /* Change the opacity value as needed */
 } 
 
-section{margin-top:22px;padding:18px;background:rgba(255,255,255,0.01);border-radius:8px}
+section{margin:0;padding:0;background:none;border-radius:0}
 h2{margin:0 0 8px}
 h3{margin:8px 0}
 .map-wrap{display:flex;justify-content:center;padding:12px}
@@ -425,11 +474,11 @@ body.reader-mode main { background: rgba(11, 18, 32, 0.9) !important; }
 }
 
 .kit-section {
-  background: rgba(255,255,255,0.02);
-  border-radius: 12px;
-  padding: 24px;
-  margin: 24px 0;
-  border: 1px solid rgba(154,230,180,0.05);
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .kit-list strong {

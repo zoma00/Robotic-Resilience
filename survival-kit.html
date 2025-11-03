@@ -51,33 +51,36 @@
 
   <main class="wrap">
     <article id="kit-article">
-      <p class="lede" data-i18n="kit.lede">A comprehensive survival kit is crucial during conflict scenarios. This guide covers essential gear, supplies, and tools organized by priority and function.</p>
+      <div class="flex-box">
+        <p class="lede" data-i18n="kit.lede">A comprehensive survival kit is crucial during conflict scenarios. This guide covers essential gear, supplies, and tools organized by priority and function.</p>
+      </div>
 
       <!-- Essentials Section -->
-      <section class="kit-section">
-        <div class="kit-header">
-          <img src="assets/kit-images/first-aid.svg" alt="Emergency Kit Icon" class="kit-image">
-          <h2 data-i18n="kit.essentialsTitle">Emergency Essentials (First 72 Hours)</h2>
-        </div>
-        <p class="kit-photo-caption" data-i18n="kit.essentialsCaption">Essential medical supplies and emergency gear for the first 72 hours</p>
-        <ul class="kit-list priority-1">
-          <li data-i18n="kit.waterHydration"><strong>Water & Hydration</strong>
-            <ul>
-              <li data-i18n="kit.waterAmount">3L water per person/day (minimum)</li>
-              <li data-i18n="kit.waterFilters">Water filters or purification tablets</li>
-              <li data-i18n="kit.waterContainers">Collapsible water containers</li>
-            </ul>
-          </li>
-          <li data-i18n="kit.foodNutrition"><strong>Food & Nutrition</strong>
-            <ul>
-              <li data-i18n="kit.foodRations">High-calorie emergency rations</li>
-              <li data-i18n="kit.foodBars">Dried foods and protein bars</li>
-              <li data-i18n="kit.canOpener">Manual can opener</li>
-            </ul>
-          </li>
-          <li data-i18n="kit.firstAidMedical"><strong>First Aid & Medical</strong>
-            <ul>
-              <li data-i18n="kit.firstAidKit">Comprehensive first aid kit</li>
+      <div class="flex-box">
+        <section class="kit-section">
+          <div class="kit-header">
+            <img src="assets/kit-images/first-aid.svg" alt="Emergency Kit Icon" class="kit-image">
+            <h2 data-i18n="kit.essentialsTitle">Emergency Essentials (First 72 Hours)</h2>
+          </div>
+          <p class="kit-photo-caption" data-i18n="kit.essentialsCaption">Essential medical supplies and emergency gear for the first 72 hours</p>
+          <ul class="kit-list priority-1">
+            <li data-i18n="kit.waterHydration"><strong>Water & Hydration</strong>
+              <ul>
+                <li data-i18n="kit.waterAmount">3L water per person/day (minimum)</li>
+                <li data-i18n="kit.waterFilters">Water filters or purification tablets</li>
+                <li data-i18n="kit.waterContainers">Collapsible water containers</li>
+              </ul>
+            </li>
+            <li data-i18n="kit.foodNutrition"><strong>Food & Nutrition</strong>
+              <ul>
+                <li data-i18n="kit.foodRations">High-calorie emergency rations</li>
+                <li data-i18n="kit.foodBars">Dried foods and protein bars</li>
+                <li data-i18n="kit.canOpener">Manual can opener</li>
+              </ul>
+            </li>
+            <li data-i18n="kit.firstAidMedical"><strong>First Aid & Medical</strong>
+              <ul>
+                <li data-i18n="kit.firstAidKit">Comprehensive first aid kit</li>
               <li data-i18n="kit.prescriptionMeds">Prescription medications</li>
               <li data-i18n="kit.woundCare">Wound care supplies</li>
               <li data-i18n="kit.emergencyBlankets">Emergency blankets</li>
@@ -379,19 +382,7 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(() => {});
     }
-    document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('.bg-slideshow img');
-      let current = 0;
-      
-      function nextImage() {
-        images[current].classList.remove('active');
-        current = (current + 1) % images.length;
-        images[current].classList.add('active');
-      }
-      
-      // Change image every 7 seconds
-      setInterval(nextImage, 7000);
-    });
   </script>
+  <script src="assets/js/slideshow.js"></script>
 </body>
 </html>

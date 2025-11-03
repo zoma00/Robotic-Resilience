@@ -1,0 +1,32 @@
+hazem-elbatawy@hazem-elbatawy-Vostro-15-3510:~/Downloads/Robotic_Apocalypse/Robotic-resilience-web$ git clone git@github.com:zoma00/Robotic-Resilience.git .
+Cloning into '.'...
+remote: Enumerating objects: 227, done.
+remote: Counting objects: 100% (227/227), done.
+remote: Compressing objects: 100% (184/184), done.
+remote: Total 227 (delta 85), reused 182 (delta 40), pack-reused 0 (from 0)
+Receiving objects: 100% (227/227), 9.19 MiB | 531.00 KiB/s, done.
+Resolving deltas: 100% (85/85), done.
+hazem-elbatawy@hazem-elbatawy-Vostro-15-3510:~/Downloads/Robotic_Apocalypse/Robotic-resilience-web$ ls -la
+total 1784
+drwxrwxr-x 5 hazem-elbatawy hazem-elbatawy   4096 Nov  3 13:34  .
+drwxrwxr-x 8 hazem-elbatawy hazem-elbatawy   4096 Nov  3 13:32  ..
+drwxrwxr-x 7 hazem-elbatawy hazem-elbatawy   4096 Nov  3 13:34  assets
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy 371365 Nov  3 13:34  B170249XQ_Lensatic_Compass.pdf
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   4599 Nov  3 13:34  egypt.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy 264316 Nov  3 13:34 'Field Navigation Guide — Compass, Map, and Natural North.pdf'
+drwxrwxr-x 8 hazem-elbatawy hazem-elbatawy   4096 Nov  3 13:34  .git
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy    367 Nov  3 13:34  .gitignore
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   2803 Nov  3 13:34  how-to-download-zip.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy 232263 Nov  3 13:34  human-continuity-blueprint-full.pdf
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy  15349 Nov  3 13:34  index.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy    462 Nov  3 13:34  manifest.webmanifest
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy  30097 Nov  3 13:34  navigation.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   5465 Nov  3 13:34  pdf-viewer.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   6111 Nov  3 13:34  README-i18n.md
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   4425 Nov  3 13:34  README.md
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy  15805 Nov  3 13:34  styles.css
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy  21856 Nov  3 13:34  survival-kit.html
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy   1835 Nov  3 13:34  sw.js
+drwxrwxr-x 2 hazem-elbatawy hazem-elbatawy   4096 Nov  3 13:34  Tips
+-rw-rw-r-- 1 hazem-elbatawy hazem-elbatawy 791647 Nov  3 13:34 'War Survival Kit — Human Continuity Blueprint.pdf'
+hazem-elbatawy@hazem-elbatawy-Vostro-15-3510:~/Downloads/Robotic_Apocalypse/Robotic-resilience-web$ 
