@@ -1,15 +1,22 @@
-const CACHE_NAME = 'rob-resilience-v27';
+const CACHE_NAME = 'rob-resilience-v28';
 const CORE_ASSETS = [
   './',
   './index.html',
   './survival-kit.html',
   './navigation.html',
   './egypt.html',
+  './pdf-viewer.html',
+  './how-to-download-zip.html',
   './styles.css',
+  './assets/css/mobile-backgrounds.css',
   './assets/js/accessibility.js',
+  './assets/js/lang-switcher.js',
+  './assets/js/download-all-pdfs.js',
+  './assets/js/slideshow.js',
   './assets/js/vendor/html2pdf.bundle.min.js',
   './assets/favicon.svg',
   './manifest.webmanifest',
+  './B170249XQ_Lensatic_Compass.pdf',
   './assets/kit-images/navigation.svg',
   './assets/kit-images/water.svg',
   './assets/kit-images/shelter.svg',
