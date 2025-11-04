@@ -35,3 +35,50 @@ build/
 .env.test.local
 .env.production.local
 
+# Sensitive Information and Setup Files
+*.env
+config.json
+secrets.json
+credentials.json
+api-keys.txt
+email-addresses.txt
+contact-info.txt
+private-notes.txt
+setup-notes.txt
+personal-todo.txt
+
+# Tips Directory (contains sensitive setup information)
+Tips/
+DISCUSSION_SETUP.md
+
+# Formspree and Analytics Configuration
+formspree-config.json
+analytics-config.json
+
+# Any files with sensitive keywords
+*private*
+*secret*
+*confidential*
+
+# Backup Files
+*.bak
+*.backup
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Archive Files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Local Development Configuration
+localhost-config.json
+local-settings.json
+
+# Ignore any .txt files in root that might contain sensitive info
+/*.txt
+

@@ -1,1 +1,0 @@
-The background photos are not responsive for mobile too. it is verybig on vertically i can see if i rotate the mobile horizontally

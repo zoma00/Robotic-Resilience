@@ -5,37 +5,1352 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Egypt Map — Human Continuity Blueprint</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/mobile-backgrounds.css">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Enhanced Egypt Page Styling -->
+  <style>
+    /* Background Slideshow Integration */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    
+    .bg-slideshow img.active {
+      opacity: 0.4;
+    }
+    
+    /* Content overlay styling - More transparent for better background visibility */
+    .flex-box {
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .flex-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, 
+        rgba(8, 18, 33, 0.85) 0%, 
+        rgba(11, 23, 38, 0.9) 50%, 
+        rgba(15, 27, 42, 0.85) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 2px solid rgba(154, 230, 180, 0.4);
+      border-top: 1px solid rgba(154, 230, 180, 0.2);
+      position: relative;
+      z-index: 100;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(154, 230, 180, 0.3);
+    }
+    
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        transparent 50%, 
+        rgba(154, 230, 180, 0.04) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Enhanced Navigation Links */
+    .header-nav-links {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      background: rgba(10, 14, 23, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 50px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      max-width: 1000px;
+      margin: 0 auto 20px auto;
+      flex-wrap: wrap;
+    }
+    
+    .header-nav-links a {
+      color: #E2E8F0 !important;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.9em;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+    
+    .header-nav-links a:hover {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.15);
+      border-color: rgba(154, 230, 180, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 25px rgba(154, 230, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .header-nav-links a:active,
+    .header-nav-links a[href*="egypt.html"] {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.2);
+      border-color: rgba(154, 230, 180, 0.4);
+      box-shadow: 
+        0 4px 15px rgba(154, 230, 180, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Remove pipe separators */
+    .header-nav-links a + a::before {
+      display: none;
+    }
+    
+    /* Enhanced Header Typography */
+    .site-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #9AE6B4 0%, #E2E8F0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      margin: 20px 0 10px 0;
+      letter-spacing: -0.5px;
+    }
+    
+    .site-header .subtitle {
+      color: #CBD5E0;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 8px 0 15px 0;
+      opacity: 0.9;
+    }
+    
+    .site-header .byline {
+      color: #9AE6B4;
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 10px 0 15px 0;
+      opacity: 0.8;
+    }
+    
+    /* Enhanced Download Button */
+    .sub-gallery .button {
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.2) 0%, 
+        rgba(154, 230, 180, 0.1) 100%);
+      border: 2px solid rgba(154, 230, 180, 0.4);
+      color: #9AE6B4 !important;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      box-shadow: 
+        0 4px 15px rgba(154, 230, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .sub-gallery .button:hover {
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.3) 0%, 
+        rgba(154, 230, 180, 0.2) 100%);
+      border-color: rgba(154, 230, 180, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 25px rgba(154, 230, 180, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Language Switcher Enhancement */
+    #lang-switcher {
+      margin-top: 20px;
+    }
+    
+    /* Mobile Responsive Navigation */
+    @media (max-width: 768px) {
+      .header-nav-links {
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      
+      .header-nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+      
+      .site-header h1 {
+        font-size: 2rem;
+      }
+      
+      .site-header .subtitle {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-nav-links {
+        margin: 0 -10px 20px -10px;
+      }
+      
+      .site-header h1 {
+        font-size: 1.75rem;
+      }
+    }
+    
+    /* Enhanced content readability */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1, h2, h3, h4 {
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Regional Analysis Styling - More transparent glassmorphism */
+    .regional-analysis {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(10, 14, 23, 0.45);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .regional-analysis::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .survival-zone {
+      background: rgba(10, 14, 23, 0.35);
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border-radius: 10px;
+      padding: 25px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .survival-zone::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.05) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .survival-zone:hover {
+      transform: translateY(-2px);
+      background: rgba(10, 14, 23, 0.5);
+      border-color: rgba(154, 230, 180, 0.4);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    
+    /* Enhanced Zone Color Accents - Matching index page style */
+    .nile-delta { 
+      border-left: 4px solid #4299E1;
+      background: linear-gradient(135deg, 
+        rgba(66, 153, 225, 0.1) 0%, 
+        rgba(10, 14, 23, 0.6) 100%);
+    }
+    .western-desert { 
+      border-left: 4px solid #F6AD55;
+      background: linear-gradient(135deg, 
+        rgba(246, 173, 85, 0.1) 0%, 
+        rgba(10, 14, 23, 0.6) 100%);
+    }
+    .red-sea { 
+      border-left: 4px solid #F56565;
+      background: linear-gradient(135deg, 
+        rgba(245, 101, 101, 0.1) 0%, 
+        rgba(10, 14, 23, 0.6) 100%);
+    }
+    
+    .zone-details h4 {
+      color: #9AE6B4;
+      font-size: 1.1em;
+      margin: 15px 0 10px 0;
+    }
+    
+    .zone-details ul {
+      margin: 0 0 15px 0;
+      padding-left: 20px;
+    }
+    
+    .zone-details li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    
+    /* Seasonal Guide - More transparent glassmorphism */
+    .seasonal-guide {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(10, 14, 23, 0.45);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .seasonal-guide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .season {
+      background: rgba(10, 14, 23, 0.35);
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .season::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.05) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .season:hover {
+      transform: translateY(-2px);
+      background: rgba(10, 14, 23, 0.5);
+      border-color: rgba(154, 230, 180, 0.35);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    
+    .season-status {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    
+    .season-status.optimal {
+      background: #48BB78;
+      color: white;
+    }
+    
+    .season-status.good {
+      background: #4299E1;
+      color: white;
+    }
+    
+    .season-status.extreme {
+      background: #F56565;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    
+    .season h4 {
+      color: #9AE6B4;
+      font-size: 1.1em;
+      margin: 15px 0 10px 0;
+    }
+    
+    /* Urban Survival Styling - More transparent glassmorphism */
+    .urban-survival {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(10, 14, 23, 0.45);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .urban-survival::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .urban-sections {
+      display: grid;
+      gap: 25px;
+      margin-top: 25px;
+    }
+    
+    .navigation-section,
+    .resources-section,
+    .risks-section {
+      background: rgba(10, 14, 23, 0.35);
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    .navigation-section::before,
+    .resources-section::before,
+    .risks-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.05) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .navigation-section {
+      border-left: 4px solid #4299E1;
+    }
+    
+    .resources-section {
+      border-left: 4px solid #48BB78;
+    }
+    
+    .risks-section {
+      border-left: 4px solid #F56565;
+    }
+    
+    /* Cultural Survival Styling - More transparent glassmorphism */
+    .cultural-survival {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(10, 14, 23, 0.45);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .cultural-survival::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .cultural-sections {
+      display: grid;
+      gap: 25px;
+      margin-top: 25px;
+    }
+    
+    .language-essentials,
+    .cultural-protocols,
+    .clothing-behavior,
+    .local-resources {
+      background: rgba(10, 14, 23, 0.35);
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid #9F7AEA;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    .language-essentials::before,
+    .cultural-protocols::before,
+    .clothing-behavior::before,
+    .local-resources::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.05) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .phrase-item {
+      background: rgba(10, 14, 23, 0.5);
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(154, 230, 180, 0.2);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      text-align: center;
+    }
+    
+    .phrase-item .arabic {
+      display: block;
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #9AE6B4;
+      margin-bottom: 5px;
+      direction: rtl;
+    }
+    
+    .phrase-item .transliteration {
+      display: block;
+      font-style: italic;
+      color: #CBD5E0;
+      margin-bottom: 3px;
+    }
+    
+    .phrase-item .english {
+      display: block;
+      font-size: 0.9em;
+      color: #E2E8F0;
+    }
+    
+    /* Map Enhancement Styling */
+    .map-legend {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(11, 18, 32, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+    }
+    
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Planning Guidelines Styling */
+    .planning-guidelines {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    .guideline-category {
+      background: rgba(11, 18, 32, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid #9AE6B4;
+      border: 1px solid rgba(154, 230, 180, 0.2);
+    }
+    
+    .guideline-category h3 {
+      color: #9AE6B4;
+      margin-bottom: 15px;
+    }
+    
+    .guideline-category ol,
+    .guideline-category ul {
+      padding-left: 20px;
+    }
+    
+    .guideline-category li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .zone-grid,
+      .season-grid,
+      .phrase-grid,
+      .legend-grid,
+      .planning-guidelines {
+        grid-template-columns: 1fr;
+      }
+      
+      .regional-analysis,
+      .seasonal-guide,
+      .urban-survival,
+      .cultural-survival {
+        padding: 20px;
+        margin: 20px 0;
+      }
+      
+      .phrase-item .arabic {
+        font-size: 1.2em;
+      }
+    }
+    
+    /* Enhanced Typography */
+    .regional-analysis h2,
+    .seasonal-guide h2,
+    .urban-survival h2,
+    .cultural-survival h2 {
+      color: #9AE6B4;
+      border-bottom: 2px solid rgba(154, 230, 180, 0.3);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .regional-analysis p em,
+    .seasonal-guide p em,
+    .urban-survival p em,
+    .cultural-survival p em {
+      color: #CBD5E0;
+      font-style: italic;
+    }
+    
+    /* Interactive Elements */
+    .survival-zone:hover,
+    .season:hover,
+    .phrase-item:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 20px rgba(154, 230, 180, 0.1);
+    }
+  </style>
   <meta name="theme-color" content="#0a0e17">
   <meta name="description" content="A simple Egypt map page for planning enclave placement, supply lines, and critical zones within Egypt.">
   <meta name="author" content="Hazem ElBatawy">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S9H098RFW9');
+  </script>
 </head>
-<body>
+<body data-page="egypt">
+  <!-- Background Slideshow -->
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/survival/survival two.jpg" alt="Desert Survival Kit" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/map/survival map.jpg" alt="Survival Map Navigation" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/compass/compass survival navigation.jpg" alt="Compass Navigation" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/maps_compass.jpg" alt="Map and Compass Navigation" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/survival/survival one.jpg" alt="Survival Equipment" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/build-emergency-shelter-kit.jpg" alt="Emergency Shelter Kit" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/survival/survival three.jpg" alt="Wilderness Survival" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/weatherproofing-shelter-kit.jpg" alt="Weather Protection Kit" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/Go_bag.jpeg" alt="Emergency Go Bag" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/First_Aid_kit.jpg" alt="First Aid Medical Kit" loading="lazy" decoding="async">
+  </div>
+
   <header class="site-header">
     <div class="wrap">
-      <nav class="header-nav-links" style="display:block; text-align:center; margin-bottom:12px;">
-        <a href="index.html" data-i18n="nav.home">Home</a> |
-        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a> |
-        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a> |
-        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a> |
-        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+      <nav class="header-nav-links">
+        <a href="index.html" data-i18n="nav.home">🏠 Home</a>
+        <a href="survival-kit.html" data-i18n="nav.kit">🛡️ War Survival Kit</a>
+        <a href="navigation.html" data-i18n="nav.navigation">🧭 Navigation Tutorial</a>
+        <a href="egypt.html" data-i18n="nav.egypt">🗺️ Egypt Map</a>
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">📦 Download All PDFs</a>
+        <a href="discussion.html" data-i18n="nav.discussion">💬 Discussion</a>
       </nav>
       <h1 data-i18n="egypt.title">Egypt — Survival Map</h1>
       <p class="subtitle" data-i18n="egypt.subtitle">Schematic map for planning a human enclave in Egypt (illustrative)</p>
       <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
       <div class="sub-gallery" style="gap: 12px; margin-top: 8px;">
-        <a href="assets/Egypt_2022_EN.pdf" download class="button" data-i18n="egypt.download">Download Egypt Map (PDF)</a>
+        <a href="assets/Egypt_2022_EN.pdf" download class="button" data-i18n="egypt.download">📄 Download Egypt Map (PDF)</a>
       </div>
       <div id="lang-switcher"></div>
     </div>
   </header>
 
   <main class="wrap">
+    <div class="flex-box">
     <article>
-  <p class="lede" data-i18n="egypt.lede">This page contains a simplified schematic map of Egypt highlighting major features useful for planning: the Nile corridor, major cities, the Sinai region, and potential rural zones. It's illustrative — use local maps and terrain analysis for real planning.</p>
+      <p class="lede" data-i18n="egypt.lede">This comprehensive guide analyzes Egypt's survival zones, seasonal challenges, and local expertise for emergency preparedness. Based on authentic regional knowledge and practical survival considerations for different terrains and climates across Egypt.</p>
 
+      <!-- Regional Survival Zones Analysis -->
+      <section class="regional-analysis">
+        <h2>🗺️ Egypt Survival Zones Analysis</h2>
+        <p><em>Strategic assessment of Egypt's major regions for survival planning, based on local geographic and cultural knowledge.</em></p>
+        
+        <div class="zone-grid">
+          <div class="survival-zone nile-delta">
+            <h3>🌾 Nile Delta Region</h3>
+            <div class="zone-details">
+              <div class="advantages">
+                <h4>✅ Advantages:</h4>
+                <ul>
+                  <li><strong>Abundant water:</strong> Nile branches and irrigation canals</li>
+                  <li><strong>Fertile agricultural land:</strong> Rice, wheat, vegetables year-round</li>
+                  <li><strong>Dense vegetation:</strong> Natural camouflage and shelter materials</li>
+                  <li><strong>Local knowledge:</strong> Farmer communities with survival skills</li>
+                </ul>
+              </div>
+              <div class="challenges">
+                <h4>⚠️ Challenges:</h4>
+                <ul>
+                  <li><strong>High population density:</strong> Limited privacy and resources</li>
+                  <li><strong>Government presence:</strong> Frequent patrols and checkpoints</li>
+                  <li><strong>Seasonal flooding:</strong> October-November river rises</li>
+                  <li><strong>Mosquito-borne diseases:</strong> Malaria risk in wetlands</li>
+                </ul>
+              </div>
+              <div class="practical-info">
+                <h4>📍 Best Areas:</h4>
+                <ul>
+                  <li><strong>Rural Dakahlia:</strong> Small farming communities, less surveillance</li>
+                  <li><strong>Kafr El-Sheikh outskirts:</strong> Remote agricultural areas</li>
+                  <li><strong>Beheira countryside:</strong> Western delta edges</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="survival-zone western-desert">
+            <h3>🏜️ Western Desert</h3>
+            <div class="zone-details">
+              <div class="advantages">
+                <h4>✅ Advantages:</h4>
+                <ul>
+                  <li><strong>Complete isolation:</strong> Miles from civilization</li>
+                  <li><strong>No surveillance:</strong> Minimal government presence</li>
+                  <li><strong>Natural resources:</strong> Salt deposits, mineral springs</li>
+                  <li><strong>Clear navigation:</strong> Excellent visibility for celestial navigation</li>
+                </ul>
+              </div>
+              <div class="challenges">
+                <h4>⚠️ Challenges:</h4>
+                <ul>
+                  <li><strong>Extreme water scarcity:</strong> Must carry or find springs</li>
+                  <li><strong>Temperature extremes:</strong> 45°C+ days, near-freezing nights</li>
+                  <li><strong>Sandstorms:</strong> Visibility and breathing hazards</li>
+                  <li><strong>Navigation difficulty:</strong> Easy to get lost without landmarks</li>
+                </ul>
+              </div>
+              <div class="practical-info">
+                <h4>📍 Key Locations:</h4>
+                <ul>
+                  <li><strong>Siwa Oasis:</strong> Natural springs, date palms, local Berber culture</li>
+                  <li><strong>Bahariya Oasis:</strong> Iron ore deposits, hot springs</li>
+                  <li><strong>White Desert:</strong> Natural rock shelters, unique formations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="survival-zone red-sea">
+            <h3>🌊 Red Sea Coast</h3>
+            <div class="zone-details">
+              <div class="advantages">
+                <h4>✅ Advantages:</h4>
+                <ul>
+                  <li><strong>Marine resources:</strong> Fish, seaweed, salt water conversion</li>
+                  <li><strong>Coral reef shelter:</strong> Natural windbreaks and hiding spots</li>
+                  <li><strong>Year-round access:</strong> No seasonal closures</li>
+                  <li><strong>International waters:</strong> Potential rescue by boats</li>
+                </ul>
+              </div>
+              <div class="challenges">
+                <h4>⚠️ Challenges:</h4>
+                <ul>
+                  <li><strong>Tourist infrastructure:</strong> Heavy monitoring and security</li>
+                  <li><strong>Limited freshwater:</strong> Desalination knowledge required</li>
+                  <li><strong>Extreme heat:</strong> No natural shade or cooling</li>
+                  <li><strong>Shark/marine hazards:</strong> Dangerous wildlife in waters</li>
+                </ul>
+              </div>
+              <div class="practical-info">
+                <h4>📍 Best Areas:</h4>
+                <ul>
+                  <li><strong>South of Hurghada:</strong> Less developed coastal areas</li>
+                  <li><strong>Marsa Alam region:</strong> Remote fishing communities</li>
+                  <li><strong>Wadi Gimal:</strong> Protected area with freshwater springs</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seasonal Survival Calendar -->
+      <section class="seasonal-guide">
+        <h2>🗓️ Egypt Seasonal Survival Calendar</h2>
+        <p><em>Month-by-month survival strategies adapted to Egypt's climate patterns and regional variations.</em></p>
+        
+        <div class="season-grid">
+          <div class="season winter">
+            <h3>❄️ Winter (December - February)</h3>
+            <div class="season-status optimal">OPTIMAL SURVIVAL SEASON</div>
+            <div class="season-details">
+              <div class="temperature-info">
+                <h4>🌡️ Temperature Ranges:</h4>
+                <ul>
+                  <li><strong>North (Alexandria):</strong> 8-18°C</li>
+                  <li><strong>Cairo:</strong> 10-20°C</li>
+                  <li><strong>South (Aswan):</strong> 15-25°C</li>
+                  <li><strong>Desert nights:</strong> Can drop to 5°C</li>
+                </ul>
+              </div>
+              <div class="survival-strategy">
+                <h4>🎯 Survival Strategy:</h4>
+                <ul>
+                  <li><strong>Water needs:</strong> 2-3L/day (reduced requirements)</li>
+                  <li><strong>Activity timing:</strong> Full daylight hours available</li>
+                  <li><strong>Shelter priority:</strong> Warmth and wind protection</li>
+                  <li><strong>Food preservation:</strong> Natural refrigeration at night</li>
+                </ul>
+              </div>
+              <div class="special-considerations">
+                <h4>⚠️ Special Considerations:</h4>
+                <ul>
+                  <li><strong>Occasional rain:</strong> Flash floods in wadis and cities</li>
+                  <li><strong>Fog in delta:</strong> Limited visibility mornings</li>
+                  <li><strong>Tourist season:</strong> Increased security presence</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="season spring">
+            <h3>🌸 Spring (March - May)</h3>
+            <div class="season-status good">GOOD SURVIVAL CONDITIONS</div>
+            <div class="season-details">
+              <div class="temperature-info">
+                <h4>🌡️ Temperature Ranges:</h4>
+                <ul>
+                  <li><strong>Early spring:</strong> 15-25°C (comfortable)</li>
+                  <li><strong>Late spring:</strong> 20-35°C (getting warm)</li>
+                  <li><strong>Desert:</strong> 30°C+ during day</li>
+                </ul>
+              </div>
+              <div class="survival-strategy">
+                <h4>🎯 Survival Strategy:</h4>
+                <ul>
+                  <li><strong>Water needs:</strong> 3-4L/day (increasing)</li>
+                  <li><strong>Activity timing:</strong> Early morning and evening optimal</li>
+                  <li><strong>Plant resources:</strong> Spring vegetation growth</li>
+                  <li><strong>Weather advantage:</strong> Minimal rain, stable conditions</li>
+                </ul>
+              </div>
+              <div class="special-considerations">
+                <h4>⚠️ Special Considerations:</h4>
+                <ul>
+                  <li><strong>Khamaseen winds:</strong> Hot sandstorms March-May</li>
+                  <li><strong>Allergy season:</strong> Pollen and dust particles</li>
+                  <li><strong>Temperature transition:</strong> Rapid daily changes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="season summer">
+            <h3>☀️ Summer (June - August)</h3>
+            <div class="season-status extreme">EXTREME SURVIVAL CHALLENGE</div>
+            <div class="season-details">
+              <div class="temperature-info">
+                <h4>🌡️ Temperature Ranges:</h4>
+                <ul>
+                  <li><strong>Cairo/Delta:</strong> 25-38°C</li>
+                  <li><strong>Upper Egypt:</strong> 30-45°C+</li>
+                  <li><strong>Desert:</strong> 50°C+ (lethal)</li>
+                  <li><strong>Humidity:</strong> 60-80% in north (heat index danger)</li>
+                </ul>
+              </div>
+              <div class="survival-strategy">
+                <h4>🚨 Critical Survival Strategy:</h4>
+                <ul>
+                  <li><strong>Water needs:</strong> 4-6L/day minimum</li>
+                  <li><strong>Activity timing:</strong> 4AM-8AM and 6PM-10PM ONLY</li>
+                  <li><strong>Shelter requirement:</strong> Underground or deep shade mandatory</li>
+                  <li><strong>Movement:</strong> Night travel only in desert areas</li>
+                </ul>
+              </div>
+              <div class="special-considerations">
+                <h4>⚠️ Life-Threatening Considerations:</h4>
+                <ul>
+                  <li><strong>Heat stroke risk:</strong> 30+ minutes of direct sun exposure</li>
+                  <li><strong>Dehydration:</strong> Can occur within 2-3 hours</li>
+                  <li><strong>Surface temperatures:</strong> Metal/sand can cause burns</li>
+                  <li><strong>Power outages:</strong> Infrastructure stress, no AC</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="season autumn">
+            <h3>🍂 Autumn (September - November)</h3>
+            <div class="season-status good">GOOD SURVIVAL CONDITIONS</div>
+            <div class="season-details">
+              <div class="temperature-info">
+                <h4>🌡️ Temperature Ranges:</h4>
+                <ul>
+                  <li><strong>Early autumn:</strong> Still hot 25-35°C</li>
+                  <li><strong>Late autumn:</strong> Cooling to 15-25°C</li>
+                  <li><strong>Desert nights:</strong> Pleasant 20°C</li>
+                </ul>
+              </div>
+              <div class="survival-strategy">
+                <h4>🎯 Survival Strategy:</h4>
+                <ul>
+                  <li><strong>Water needs:</strong> 3-4L/day (decreasing)</li>
+                  <li><strong>Activity timing:</strong> Extended daylight hours usable</li>
+                  <li><strong>Harvest season:</strong> Agricultural areas have food surplus</li>
+                  <li><strong>Weather stability:</strong> Low precipitation, clear skies</li>
+                </ul>
+              </div>
+              <div class="special-considerations">
+                <h4>⚠️ Special Considerations:</h4>
+                <ul>
+                  <li><strong>Nile flooding:</strong> Traditional flood season (modern dams control this)</li>
+                  <li><strong>Agricultural activity:</strong> Increased rural population movement</li>
+                  <li><strong>Tourism return:</strong> Security activity increases</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cairo Urban Survival Guide -->
+      <section class="urban-survival">
+        <h2>🏙️ Cairo Urban Survival Guide</h2>
+        <p><em>Local expertise for navigating Cairo's unique urban challenges based on authentic city knowledge.</em></p>
+        
+        <div class="urban-sections">
+          <div class="navigation-section">
+            <h3>🧭 Navigation Without GPS</h3>
+            <div class="nav-techniques">
+              <h4>Primary Orientation Landmarks:</h4>
+              <ul>
+                <li><strong>The Nile River:</strong> Flows roughly north-south through the city center</li>
+                <li><strong>Citadel of Saladin:</strong> Eastern landmark visible from most areas</li>
+                <li><strong>Pyramids of Giza:</strong> Southwest reference point (clear days)</li>
+                <li><strong>Cairo International Airport:</strong> Northeast (aircraft noise indicator)</li>
+                <li><strong>Muqattam Hills:</strong> Eastern elevated area with distinct profile</li>
+              </ul>
+              
+              <h4>District Navigation System:</h4>
+              <ul>
+                <li><strong>Zamalek:</strong> Island in the Nile (central reference)</li>
+                <li><strong>Maadi:</strong> Southern suburbs (upscale, tree-lined)</li>
+                <li><strong>Heliopolis:</strong> Northeastern district (wide boulevards)</li>
+                <li><strong>Islamic Cairo:</strong> Eastern old city (narrow alleys, mosques)</li>
+                <li><strong>Downtown:</strong> Central business district (grid pattern)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resources-section">
+            <h3>💧 Local Resources & Survival Assets</h3>
+            <div class="resource-categories">
+              <h4>🚰 Water Sources:</h4>
+              <ul>
+                <li><strong>Mosque fountains:</strong> Ablution areas (wudu) - ask permission</li>
+                <li><strong>Nile Corniche:</strong> Direct access but requires purification</li>
+                <li><strong>Public buildings:</strong> Government offices, universities have fountains</li>
+                <li><strong>24-hour pharmacies:</strong> Can provide emergency water</li>
+                <li><strong>Construction sites:</strong> Often have water tanks</li>
+              </ul>
+              
+              <h4>🥖 Food Sources:</h4>
+              <ul>
+                <li><strong>24/7 markets:</strong> Downtown area, Zamalek, Maadi</li>
+                <li><strong>Ramadan iftar:</strong> Free meals during fasting month</li>
+                <li><strong>Street vendors:</strong> Cheap staples (ful, ta'meya, bread)</li>
+                <li><strong>Bakeries (forn):</strong> Subsidized bread available citywide</li>
+                <li><strong>Mosque charity:</strong> Community meal programs</li>
+              </ul>
+              
+              <h4>🏠 Shelter Options:</h4>
+              <ul>
+                <li><strong>Construction sites:</strong> Numerous ongoing projects</li>
+                <li><strong>Old Cairo buildings:</strong> Abandoned structures in Islamic quarter</li>
+                <li><strong>Bridges and overpasses:</strong> Weather protection</li>
+                <li><strong>24-hour establishments:</strong> Internet cafes, pharmacies</li>
+                <li><strong>Mosque courtyards:</strong> Traditional sanctuary (ask imam)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="risks-section">
+            <h3>⚠️ Areas to Avoid & Risk Assessment</h3>
+            <div class="risk-categories">
+              <h4>🚫 High-Risk Areas (Avoid):</h4>
+              <ul>
+                <li><strong>Tahrir Square:</strong> Heavy security, surveillance, protests</li>
+                <li><strong>Government buildings:</strong> Ministry areas, Parliament</li>
+                <li><strong>Tourist zones:</strong> Khan el-Khalili, Pyramid area (police presence)</li>
+                <li><strong>Embassy district:</strong> Garden City, Zamalek diplomatic areas</li>
+                <li><strong>Military installations:</strong> Marked zones, avoid completely</li>
+              </ul>
+              
+              <h4>⚡ Infrastructure Risks:</h4>
+              <ul>
+                <li><strong>Traffic:</strong> Extremely dangerous, no traffic rules followed</li>
+                <li><strong>Power outages:</strong> Common in summer, affects water pumps</li>
+                <li><strong>Flooding:</strong> Poor drainage, streets flood in rare rains</li>
+                <li><strong>Air pollution:</strong> Respiratory issues, limited visibility</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cultural Survival Context -->
+      <section class="cultural-survival">
+        <h2>🕌 Cultural Survival Considerations</h2>
+        <p><em>Essential cultural knowledge for survival situations in Egypt - language, customs, and social protocols that can save your life.</em></p>
+        
+        <div class="cultural-sections">
+          <div class="language-essentials">
+            <h3>🗣️ Survival Arabic Phrases</h3>
+            <div class="phrase-categories">
+              <h4>💧 Water & Basic Needs:</h4>
+              <div class="phrase-grid">
+                <div class="phrase-item">
+                  <span class="arabic">مياه</span>
+                  <span class="transliteration">Maya</span>
+                  <span class="english">Water</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">أكل</span>
+                  <span class="transliteration">Akl</span>
+                  <span class="english">Food</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">مساعدة</span>
+                  <span class="transliteration">Mosa'ada</span>
+                  <span class="english">Help</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">مأوى</span>
+                  <span class="transliteration">Ma'wa</span>
+                  <span class="english">Shelter</span>
+                </div>
+              </div>
+              
+              <h4>🚨 Emergency Communications:</h4>
+              <div class="phrase-grid">
+                <div class="phrase-item">
+                  <span class="arabic">مستشفى</span>
+                  <span class="transliteration">Mostashfa</span>
+                  <span class="english">Hospital</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">شرطة</span>
+                  <span class="transliteration">Shorta</span>
+                  <span class="english">Police</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">طوارئ</span>
+                  <span class="transliteration">Tawareʾ</span>
+                  <span class="english">Emergency</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">خطر</span>
+                  <span class="transliteration">Khatar</span>
+                  <span class="english">Danger</span>
+                </div>
+              </div>
+              
+              <h4>🤝 Social Interaction:</h4>
+              <div class="phrase-grid">
+                <div class="phrase-item">
+                  <span class="arabic">السلام عليكم</span>
+                  <span class="transliteration">As-salamu alaykum</span>
+                  <span class="english">Peace be upon you (greeting)</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">من فضلك</span>
+                  <span class="transliteration">Min fadlik</span>
+                  <span class="english">Please</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">شكراً</span>
+                  <span class="transliteration">Shukran</span>
+                  <span class="english">Thank you</span>
+                </div>
+                <div class="phrase-item">
+                  <span class="arabic">معذرة</span>
+                  <span class="transliteration">Ma'zera</span>
+                  <span class="english">Excuse me/Sorry</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cultural-protocols">
+            <h3>📿 Cultural Protocols for Survival</h3>
+            <div class="protocol-categories">
+              <h4>🕌 Religious Considerations:</h4>
+              <ul>
+                <li><strong>Ramadan (9th Islamic month):</strong> Respect fasting hours (dawn to sunset)</li>
+                <li><strong>Iftar opportunities:</strong> Community breaking of fast - free meals available</li>
+                <li><strong>Friday prayers:</strong> Mosques are community centers - respectful approach welcome</li>
+                <li><strong>Prayer times:</strong> 5 daily prayers - businesses may close briefly</li>
+                <li><strong>Mosque sanctuary:</strong> Traditional right of sanctuary - speak to imam</li>
+              </ul>
+              
+              <h4>👥 Social Customs:</h4>
+              <ul>
+                <li><strong>Hospitality tradition:</strong> Egyptians often help strangers in need</li>
+                <li><strong>Family networks:</strong> Extended family support systems strong</li>
+                <li><strong>Community gatherings:</strong> Coffee houses (ahwa) - information hubs</li>
+                <li><strong>Respect for elders:</strong> Older people have authority and knowledge</li>
+                <li><strong>Gender considerations:</strong> Mixed-gender interactions vary by area</li>
+              </ul>
+              
+              <h4>🏜️ Bedouin Culture (Desert Areas):</h4>
+              <ul>
+                <li><strong>Desert hospitality code:</strong> 3 days of protection for guests</li>
+                <li><strong>Water sharing:</strong> Sacred obligation in desert culture</li>
+                <li><strong>Tribal knowledge:</strong> Navigation, weather, survival skills</li>
+                <li><strong>Camel and goat herding:</strong> Follow herders to water sources</li>
+                <li><strong>Traditional medicines:</strong> Desert plant knowledge for survival</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="clothing-behavior">
+            <h3>👔 Clothing & Behavior Guidelines</h3>
+            <div class="guideline-categories">
+              <h4>👕 Appropriate Clothing:</h4>
+              <ul>
+                <li><strong>Conservative dress:</strong> Long sleeves, long pants for better acceptance</li>
+                <li><strong>Light colors:</strong> White/light colors reflect heat and appear clean</li>
+                <li><strong>Head covering:</strong> Hat or scarf for sun protection and cultural respect</li>
+                <li><strong>Modest appearance:</strong> Avoid flashy jewelry or expensive-looking items</li>
+                <li><strong>Practical footwear:</strong> Closed shoes for urban areas, protection</li>
+              </ul>
+              
+              <h4>🤝 Behavior Guidelines:</h4>
+              <ul>
+                <li><strong>Respectful approach:</strong> Greet with Islamic greeting if appropriate</li>
+                <li><strong>Patient demeanor:</strong> Egyptian pace is generally slower</li>
+                <li><strong>Show respect for religion:</strong> Don't interrupt prayers or religious activities</li>
+                <li><strong>Family respect:</strong> Ask about family well-being in conversations</li>
+                <li><strong>Avoid political topics:</strong> Focus on immediate needs, not politics</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="local-resources">
+            <h3>🏘️ Community Resource Systems</h3>
+            <div class="resource-systems">
+              <h4>🏪 Neighborhood Networks:</h4>
+              <ul>
+                <li><strong>Bawab (doorkeeper):</strong> Building guards know local information</li>
+                <li><strong>Corner shops (dukkan):</strong> Neighborhood information centers</li>
+                <li><strong>Tea sellers:</strong> Know local news and people movement</li>
+                <li><strong>Taxi/microbus drivers:</strong> Current situation awareness</li>
+                <li><strong>Pharmacy networks:</strong> Medical advice and basic supplies</li>
+              </ul>
+              
+              <h4>📱 Communication Systems:</h4>
+              <ul>
+                <li><strong>Internet cafes:</strong> Still common, useful for communication</li>
+                <li><strong>Mobile phone shops:</strong> SIM cards, phone credit, charging</li>
+                <li><strong>Mosque announcements:</strong> Community information system</li>
+                <li><strong>Local radio:</strong> Emergency broadcasts and news</li>
+                <li><strong>Word of mouth:</strong> Most reliable information source</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Original Map Section (Enhanced) -->
+
+      <!-- Original Map Section (Enhanced) -->
       <section>
-        <h2 data-i18n="egypt.mapTitle">Map</h2>
+        <h2 data-i18n="egypt.mapTitle">🗺️ Interactive Egypt Map</h2>
+        <p><em>Detailed topographic map showing key survival zones, water sources, and strategic locations across Egypt.</em></p>
         <div class="map-wrap">
           <object data="assets/Egypt_2022_EN.pdf" type="application/pdf" width="100%" height="600px">
             <p>Your browser doesn't support embedded PDFs. 
@@ -43,21 +1358,76 @@
             </p>
           </object>
         </div>
+        
+        <div class="map-legend">
+          <h3>🔍 Map Reading Guide</h3>
+          <div class="legend-grid">
+            <div class="legend-item">
+              <span class="legend-color" style="background: #4A90E2;"></span>
+              <span>Water Sources (Rivers, Lakes, Oases)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #F5A623;"></span>
+              <span>Desert Regions (Water scarce)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #7ED321;"></span>
+              <span>Agricultural Areas (Food resources)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #D0021B;"></span>
+              <span>Urban Centers (Avoid if possible)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #9013FE;"></span>
+              <span>Mountain/Hill Regions (Strategic high ground)</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section>
-        <h2 data-i18n="egypt.howToTitle">How to use this map</h2>
-        <ul>
-          <li>Focus on rural Nile banks and the Western Desert edges for water and crops.</li>
-          <li>Avoid dense urban centers like Cairo and Alexandria; they are sensor-dense and high-risk.</li>
-          <li>Sinai offers remote terrain but has strategic challenges — patrol routes and access control matter.</li>
-        </ul>
+        <h2 data-i18n="egypt.howToTitle">📋 Strategic Planning Guidelines</h2>
+        <div class="planning-guidelines">
+          <div class="guideline-category">
+            <h3>🎯 Location Selection Priorities</h3>
+            <ol>
+              <li><strong>Water access within 5km:</strong> Nile banks, oases, seasonal streams</li>
+              <li><strong>Agricultural potential:</strong> Fertile soil for food production</li>
+              <li><strong>Natural defensive positions:</strong> Hills, valleys, natural barriers</li>
+              <li><strong>Low population density:</strong> Rural areas with minimal traffic</li>
+              <li><strong>Multiple escape routes:</strong> Not trapped in dead-end locations</li>
+            </ol>
+          </div>
+          
+          <div class="guideline-category">
+            <h3>⚠️ Areas to Avoid</h3>
+            <ul>
+              <li><strong>Dense urban centers:</strong> Cairo, Alexandria, Giza (high surveillance)</li>
+              <li><strong>Border regions:</strong> Increased military and security presence</li>
+              <li><strong>Tourist areas:</strong> Luxor, Aswan, Red Sea resorts (monitored)</li>
+              <li><strong>Industrial zones:</strong> Pollution, chemical hazards</li>
+              <li><strong>Single access points:</strong> Locations with only one way in/out</li>
+            </ul>
+          </div>
+          
+          <div class="guideline-category">
+            <h3>🛡️ Strategic Recommendations</h3>
+            <ul>
+              <li><strong>Nile Valley rural areas:</strong> Balance of water, food, and concealment</li>
+              <li><strong>Western Desert oases:</strong> Isolation with water sources</li>
+              <li><strong>Seasonal positioning:</strong> Summer in north, winter in south</li>
+              <li><strong>Network approach:</strong> Multiple small locations vs single base</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <footer class="article-footer">
         <p><a href="index.html" data-i18n="egypt.back">← Back to the Human Continuity Blueprint</a></p>
       </footer>
     </article>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -87,6 +1457,7 @@
   </div>
   <script src="assets/js/lang-switcher.js" defer></script>
   <script src="assets/js/accessibility.js" defer></script>
+  <script src="slideshow.js" defer></script>
   <script>
     // Register service worker for offline caching (requires serving over http/https)
     if ('serviceWorker' in navigator) {
