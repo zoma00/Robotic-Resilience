@@ -6,6 +6,40 @@
   --text:#e6eef6;
   --wrap:1000px;
 }
+
+/* RTL Support for Arabic */
+[lang="ar"], .rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+[lang="ar"] .header-nav-links {
+  direction: ltr; /* Keep navigation LTR for better UX */
+}
+
+[lang="ar"] .region-dropdown {
+  right: auto;
+  left: 20px;
+}
+
+[lang="ar"] #region-selector-button {
+  right: auto;
+  left: 20px;
+}
+
+[lang="ar"] .progress-stats {
+  direction: ltr; /* Keep stats LTR for numbers */
+}
+
+[lang="ar"] .checklist-actions {
+  direction: ltr; /* Keep action buttons LTR */
+}
+
+[lang="en"], .ltr {
+  direction: ltr;
+  text-align: left;
+}
+
 *{box-sizing:border-box}
 body{
   font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;

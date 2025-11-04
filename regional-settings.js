@@ -185,10 +185,14 @@ class RegionalSettings {
     dropdown.id = 'region-dropdown';
     dropdown.className = 'region-dropdown hidden';
     
+    // Get current language for UI text
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    const uiText = this.getUIText(currentLang);
+    
     dropdown.innerHTML = `
       <div class="dropdown-header">
-        <h3>🌍 Select Your Region</h3>
-        <p>Get region-specific survival guidance</p>
+        <h3>${uiText.selectYourRegion}</h3>
+        <p>${uiText.getRegionSpecific}</p>
       </div>
       <div class="region-options">
         ${Object.entries(this.regions).map(([key, region]) => `
@@ -204,7 +208,7 @@ class RegionalSettings {
         `).join('')}
       </div>
       <div class="dropdown-footer">
-        <button class="close-dropdown">Close</button>
+        <button class="close-dropdown">${uiText.close}</button>
       </div>
     `;
 
@@ -217,6 +221,22 @@ class RegionalSettings {
 
     // Bind events
     this.bindRegionSelectorEvents();
+  }
+
+  getUIText(language) {
+    const texts = {
+      en: {
+        selectYourRegion: '🌍 Select Your Region',
+        getRegionSpecific: 'Get region-specific survival guidance',
+        close: 'Close'
+      },
+      ar: {
+        selectYourRegion: '🌍 اختر منطقتك',
+        getRegionSpecific: 'احصل على إرشادات البقاء الخاصة بالمنطقة',
+        close: 'إغلاق'
+      }
+    };
+    return texts[language] || texts.en;
   }
 
   addRegionSelectorStyles() {
@@ -511,22 +531,46 @@ class RegionalSettings {
   }
 
   updateRegionalContent(region) {
+    // Get current language for labels
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    const labels = this.getRegionalLabels(currentLang);
+    
     // Add region-specific tips to pages
     const regionalTips = document.querySelectorAll('.regional-tips');
     regionalTips.forEach(container => {
       container.innerHTML = `
-        <h3>🌍 ${region.name} Specific Tips</h3>
+        <h3>🌍 ${region.name} ${labels.specificTips}</h3>
         <ul>
           ${region.specificTips.map(tip => `<li>${tip}</li>`).join('')}
         </ul>
         <div class="region-details">
-          <p><strong>Emergency Number:</strong> ${region.emergencyNumber}</p>
-          <p><strong>Common Hazards:</strong> ${region.commonHazards.join(', ')}</p>
-          <p><strong>Water Safety:</strong> ${region.water}</p>
-          <p><strong>Shelter Notes:</strong> ${region.shelter}</p>
+          <p><strong>${labels.emergencyNumber}:</strong> ${region.emergencyNumber}</p>
+          <p><strong>${labels.commonHazards}:</strong> ${region.commonHazards.join(', ')}</p>
+          <p><strong>${labels.waterSafety}:</strong> ${region.water}</p>
+          <p><strong>${labels.shelterNotes}:</strong> ${region.shelter}</p>
         </div>
       `;
     });
+  }
+
+  getRegionalLabels(language) {
+    const labels = {
+      en: {
+        specificTips: 'Specific Tips',
+        emergencyNumber: 'Emergency Number',
+        commonHazards: 'Common Hazards',
+        waterSafety: 'Water Safety',
+        shelterNotes: 'Shelter Notes'
+      },
+      ar: {
+        specificTips: 'نصائح خاصة',
+        emergencyNumber: 'رقم الطوارئ',
+        commonHazards: 'المخاطر الشائعة',
+        waterSafety: 'سلامة المياه',
+        shelterNotes: 'ملاحظات المأوى'
+      }
+    };
+    return labels[language] || labels.en;
   }
 
   showRegionChangeNotification() {
