@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Summer Preparedness — Robotic Resilience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/mobile-backgrounds.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Enhanced Summer Preparedness Page Styling -->
+  <style>
+    /* Background Slideshow Integration */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      pointer-events: none;
+    }
+    
+    .bg-slideshow img.active {
+      opacity: 0.4;
+    }
+    
+    /* Content overlay styling */
+    .flex-box {
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .flex-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, 
+        rgba(8, 18, 33, 0.85) 0%, 
+        rgba(11, 23, 38, 0.9) 50%, 
+        rgba(15, 27, 42, 0.85) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 2px solid rgba(154, 230, 180, 0.4);
+      border-top: 1px solid rgba(154, 230, 180, 0.2);
+      position: relative;
+      z-index: 100;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(154, 230, 180, 0.3);
+    }
+  </style>
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Summer survival strategies for heat waves, water conservation, fire season readiness, and hurricane preparation.">
+  <meta name="author" content="Hazem ElBatawy">
+  
+  <!-- Social Sharing Optimization -->
+  <meta property="og:title" content="Summer Preparedness - Robotic Resilience">
+  <meta property="og:description" content="Summer survival strategies for heat waves, water conservation, fire season readiness, and hurricane preparation.">
+  <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/survival/survival%20three.jpg">
+  <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/summer-preparedness.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Summer Preparedness - Robotic Resilience">
+  <meta name="twitter:description" content="Summer survival strategies for heat waves, water conservation, fire season readiness, and hurricane preparation.">
+  <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/survival/survival%20three.jpg">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S9H098RFW9');
+  </script>
+</head>
+<body data-page="summer-preparedness">
+  <!-- Background Slideshow -->
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/survival/survival three.jpg" alt="Summer Survival" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/Life_straws.jpg" alt="Water Filtration" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/map/survival map.jpg" alt="Survival Planning" loading="lazy" decoding="async">
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a>
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
+        <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
+        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+        <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
+      </nav>
+      <h1 data-i18n="header.title">Summer Preparedness Guide</h1>
+      <p class="subtitle">Extreme heat and summer hazard survival strategies</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Summer Overview -->
+    <div class="flex-box">
+      <section id="summer-overview">
+        <h2>☀️ Summer Survival Overview</h2>
+        <p>
+          Summer presents intense challenges: extreme heat, water scarcity, wildfire risks, 
+          and severe storms. Success depends on heat management, water conservation, 
+          and preparation for seasonal disasters.
+        </p>
+        
+        <h3>Key Summer Threats:</h3>
+        <ul>
+          <li><strong>Heat waves</strong> — Life-threatening temperature extremes</li>
+          <li><strong>Water scarcity</strong> — Increased consumption and reduced sources</li>
+          <li><strong>Wildfire season</strong> — Rapid evacuation requirements</li>
+          <li><strong>Severe storms</strong> — Hurricanes, tornadoes, derechos</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Heat Wave Survival -->
+    <div class="flex-box">
+      <section id="heat-wave-survival">
+        <h2>🌡️ Heat Wave Survival Strategies</h2>
+        
+        <h3>Immediate Heat Emergency Response</h3>
+        <ul>
+          <li><strong>Cool water immersion</strong> — Feet, wrists, neck cooling</li>
+          <li><strong>Wet clothing technique</strong> — Evaporative cooling</li>
+          <li><strong>Underground shelter</strong> — Basement, root cellar, cave</li>
+          <li><strong>Heat exhaustion recognition</strong> — Heavy sweating, weakness, nausea</li>
+        </ul>
+
+        <h3>Daily Heat Management</h3>
+        <ul>
+          <li><strong>Activity timing</strong> — Work during dawn and dusk only</li>
+          <li><strong>Midday rest</strong> — Complete inactivity 11 AM - 4 PM</li>
+          <li><strong>Shade creation</strong> — Tarps, lean-tos, natural cover</li>
+          <li><strong>Air circulation</strong> — Battery fans, wind tunnels</li>
+        </ul>
+
+        <h3>Cooling Shelter Improvements</h3>
+        <ul>
+          <li>Double-wall construction with air gap</li>
+          <li>Reflective outer surfaces (emergency blankets)</li>
+          <li>Cross-ventilation design</li>
+          <li>Underground or earth-bermed construction</li>
+        </ul>
+
+        <h3>Clothing for Extreme Heat</h3>
+        <ul>
+          <li><strong>Light colors</strong> — Reflect heat and sunlight</li>
+          <li><strong>Loose fitting</strong> — Allow air circulation</li>
+          <li><strong>Lightweight materials</strong> — Cotton or linen</li>
+          <li><strong>Head protection</strong> — Wide brim hats, neck covers</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Water Conservation -->
+    <div class="flex-box">
+      <section id="water-conservation">
+        <h2>💧 Water Conservation & Management</h2>
+        
+        <h3>Water Needs Calculation</h3>
+        <ul>
+          <li><strong>Normal conditions</strong> — 2-3 liters per person per day</li>
+          <li><strong>Heat wave conditions</strong> — 4-6 liters per person per day</li>
+          <li><strong>Heavy work</strong> — Up to 8 liters per person per day</li>
+          <li><strong>Group planning</strong> — Add 20% buffer for emergencies</li>
+        </ul>
+
+        <h3>Water Collection Techniques</h3>
+        <ul>
+          <li><strong>Dew collection</strong> — Cloth wicks and collection tarps</li>
+          <li><strong>Solar stills</strong> — Evaporation and condensation systems</li>
+          <li><strong>Rainwater harvesting</strong> — Storm collection systems</li>
+          <li><strong>Tree tap methods</strong> — Birch, maple water collection</li>
+        </ul>
+
+        <h3>Water Storage and Preservation</h3>
+        <ul>
+          <li><strong>Underground storage</strong> — Cooler temperatures reduce evaporation</li>
+          <li><strong>Dark containers</strong> — Prevent algae growth</li>
+          <li><strong>Rotation system</strong> — Use oldest water first</li>
+          <li><strong>Purification maintenance</strong> — Heat increases contamination risk</li>
+        </ul>
+
+        <h3>Water Rationing Protocols</h3>
+        <ul>
+          <li>Priority system: drinking > cooling > food prep > cleaning</li>
+          <li>Individual daily allocations based on role and health</li>
+          <li>Emergency reserves (20% of total never touched)</li>
+          <li>Group monitoring and accountability systems</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Fire Season Preparedness -->
+    <div class="flex-box">
+      <section id="fire-season">
+        <h2>🔥 Wildfire Season Readiness</h2>
+        
+        <h3>Fire Risk Assessment</h3>
+        <ul>
+          <li><strong>Fuel load evaluation</strong> — Dry vegetation around shelter</li>
+          <li><strong>Wind pattern analysis</strong> — Dominant fire spread directions</li>
+          <li><strong>Escape route planning</strong> — Multiple evacuation paths</li>
+          <li><strong>Fire break creation</strong> — Cleared zones around shelter</li>
+        </ul>
+
+        <h3>Evacuation Go-Bag</h3>
+        <ul>
+          <li><strong>Essential documents</strong> — Maps, medical info, contacts</li>
+          <li><strong>Three days of water</strong> — Per person minimum</li>
+          <li><strong>High-energy food</strong> — Compact, non-perishable</li>
+          <li><strong>First aid supplies</strong> — Burns treatment priority</li>
+        </ul>
+
+        <h3>Fire Fighting Capabilities</h3>
+        <ul>
+          <li><strong>Water reserves</strong> — Dedicated firefighting supply</li>
+          <li><strong>Pump and hose system</strong> — Pressurized water delivery</li>
+          <li><strong>Fire suppressants</strong> — Dirt, sand, foam alternatives</li>
+          <li><strong>Team coordination</strong> — Assigned roles and communication</li>
+        </ul>
+
+        <h3>Post-Fire Recovery</h3>
+        <ul>
+          <li>Safe return protocols and assessment</li>
+          <li>Air quality monitoring (ash and smoke)</li>
+          <li>Water source contamination checks</li>
+          <li>Shelter damage evaluation and repair</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Storm Preparation -->
+    <div class="flex-box">
+      <section id="storm-preparation">
+        <h2>⛈️ Severe Summer Storm Preparation</h2>
+        
+        <h3>Hurricane/Typhoon Readiness</h3>
+        <ul>
+          <li><strong>Shelter reinforcement</strong> — Storm shutters, tie-downs</li>
+          <li><strong>Flooding preparation</strong> — Elevation and drainage</li>
+          <li><strong>Wind resistance</strong> — Aerodynamic modifications</li>
+          <li><strong>Evacuation timing</strong> — Before roads become impassable</li>
+        </ul>
+
+        <h3>Tornado Response</h3>
+        <ul>
+          <li><strong>Safe room identification</strong> — Lowest level, interior room</li>
+          <li><strong>Warning system</strong> — Weather radio, visual cues</li>
+          <li><strong>Protection gear</strong> — Helmets, padding, blankets</li>
+          <li><strong>Post-tornado safety</strong> — Gas leaks, structural damage</li>
+        </ul>
+
+        <h3>Flash Flood Response</h3>
+        <ul>
+          <li>High ground retreat routes</li>
+          <li>Vehicle abandonment protocols</li>
+          <li>Swift water rescue techniques</li>
+          <li>Post-flood water purification needs</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Summer Security -->
+    <div class="flex-box">
+      <section id="summer-security">
+        <h2>🛡️ Summer Security Considerations</h2>
+        
+        <h3>Increased Group Movement</h3>
+        <ul>
+          <li>Peak travel season for other survivor groups</li>
+          <li>Resource competition at water sources</li>
+          <li>Trade opportunities but higher contact risks</li>
+          <li>Enhanced perimeter monitoring needed</li>
+        </ul>
+
+        <h3>Heat-Related Security Issues</h3>
+        <ul>
+          <li><strong>Reduced alertness</strong> — Heat affects cognitive function</li>
+          <li><strong>Shorter watch shifts</strong> — Prevent heat exhaustion</li>
+          <li><strong>Night activity advantage</strong> — Cooler temperatures</li>
+          <li><strong>Hydration for guards</strong> — Maintain vigilance capability</li>
+        </ul>
+
+        <h3>Summer Camouflage</h3>
+        <ul>
+          <li>Brown and tan patterns for dry vegetation</li>
+          <li>Heat signature reduction techniques</li>
+          <li>Minimal daytime movement</li>
+          <li>Sound discipline in open summer air</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Action Checklist -->
+    <div class="flex-box">
+      <section id="summer-checklist">
+        <h2>✅ Summer Preparedness Checklist</h2>
+        
+        <h3>Before Summer Arrives:</h3>
+        <ul>
+          <li>□ Upgrade shelter ventilation and cooling</li>
+          <li>□ Increase water storage capacity</li>
+          <li>□ Create fire breaks around shelter</li>
+          <li>□ Prepare evacuation routes and go-bags</li>
+          <li>□ Stock heat-appropriate clothing</li>
+        </ul>
+
+        <h3>Early Summer (June-July):</h3>
+        <ul>
+          <li>□ Implement daily heat management routines</li>
+          <li>□ Begin water conservation protocols</li>
+          <li>□ Monitor fire danger levels daily</li>
+          <li>□ Test storm preparation systems</li>
+          <li>□ Adjust security shifts for heat</li>
+        </ul>
+
+        <h3>Peak Summer (July-August):</h3>
+        <ul>
+          <li>□ Maintain strict midday rest periods</li>
+          <li>□ Monitor group members for heat stress</li>
+          <li>□ Rotate high-stress duties frequently</li>
+          <li>□ Keep evacuation bags ready</li>
+          <li>□ Plan fall transition preparations</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  
+  <script src="assets/js/lang-switcher.js" defer></script>
+</body>
+</html>

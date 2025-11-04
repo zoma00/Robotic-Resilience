@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spring Preparedness — Robotic Resilience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/mobile-backgrounds.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Enhanced Spring Preparedness Page Styling -->
+  <style>
+    /* Background Slideshow Integration */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      pointer-events: none;
+    }
+    
+    .bg-slideshow img.active {
+      opacity: 0.4;
+    }
+    
+    /* Content overlay styling */
+    .flex-box {
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .flex-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, 
+        rgba(8, 18, 33, 0.85) 0%, 
+        rgba(11, 23, 38, 0.9) 50%, 
+        rgba(15, 27, 42, 0.85) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 2px solid rgba(154, 230, 180, 0.4);
+      border-top: 1px solid rgba(154, 230, 180, 0.2);
+      position: relative;
+      z-index: 100;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(154, 230, 180, 0.3);
+    }
+  </style>
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta name="author" content="Hazem ElBatawy">
+  
+  <!-- Social Sharing Optimization -->
+  <meta property="og:title" content="Spring Preparedness - Robotic Resilience">
+  <meta property="og:description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg">
+  <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/spring-preparedness.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spring Preparedness - Robotic Resilience">
+  <meta name="twitter:description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S9H098RFW9');
+  </script>
+</head>
+<body data-page="spring-preparedness">
+  <!-- Background Slideshow -->
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg" alt="Spring Growth" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/survival/survival three.jpg" alt="Spring Survival" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/map/survival map.jpg" alt="Survival Planning" loading="lazy" decoding="async">
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a>
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
+        <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
+        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+        <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
+      </nav>
+      <h1 data-i18n="header.title">Spring Preparedness Guide</h1>
+      <p class="subtitle">Seasonal survival strategies for spring challenges</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Spring Overview -->
+    <div class="flex-box">
+      <section id="spring-overview">
+        <h2>🌱 Spring Survival Overview</h2>
+        <p>
+          Spring brings renewal but also unique challenges: flooding, severe weather transitions, 
+          allergy season, and the critical window for food security planning. This guide covers 
+          essential spring preparedness strategies.
+        </p>
+        
+        <h3>Key Spring Challenges:</h3>
+        <ul>
+          <li><strong>Flood season</strong> — Snow melt and spring rains create flooding risks</li>
+          <li><strong>Weather instability</strong> — Rapid temperature changes and severe storms</li>
+          <li><strong>Allergy management</strong> — Pollen season without medical support</li>
+          <li><strong>Food security window</strong> — Critical planting and foraging season</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Flood Preparation -->
+    <div class="flex-box">
+      <section id="flood-prep">
+        <h2>🌊 Flood Season Preparation</h2>
+        
+        <h3>Early Warning Signs</h3>
+        <ul>
+          <li>Rapid snow melt in surrounding areas</li>
+          <li>Prolonged heavy rainfall</li>
+          <li>Ice jams in rivers and streams</li>
+          <li>Ground saturation indicators</li>
+        </ul>
+
+        <h3>Flood Response Kit</h3>
+        <ul>
+          <li><strong>Waterproof containers</strong> for essential supplies</li>
+          <li><strong>Inflatable boat or raft</strong> for evacuation</li>
+          <li><strong>Rope and pulleys</strong> for rescue operations</li>
+          <li><strong>Water purification tablets</strong> — flood water is contaminated</li>
+        </ul>
+
+        <h3>Evacuation Planning</h3>
+        <ul>
+          <li>Identify higher ground routes</li>
+          <li>Pre-position emergency supplies at elevation</li>
+          <li>Practice water crossing techniques</li>
+          <li>Establish flood-level communication plans</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Allergy Management -->
+    <div class="flex-box">
+      <section id="allergy-management">
+        <h2>🌸 Allergy Management in Crisis</h2>
+        
+        <h3>Natural Allergy Remedies</h3>
+        <ul>
+          <li><strong>Local honey</strong> — Small daily doses can build tolerance</li>
+          <li><strong>Nettle tea</strong> — Natural antihistamine properties</li>
+          <li><strong>Quercetin foods</strong> — Onions, apples, berries</li>
+          <li><strong>Butterbur extract</strong> — If available, effective for seasonal allergies</li>
+        </ul>
+
+        <h3>Environmental Controls</h3>
+        <ul>
+          <li>Create clean air spaces with makeshift filters</li>
+          <li>Time outdoor activities for low pollen periods</li>
+          <li>Wash clothes and hair frequently</li>
+          <li>Use bandanas or cloth masks when foraging</li>
+        </ul>
+
+        <h3>Emergency Allergy Response</h3>
+        <ul>
+          <li>Recognize severe allergic reactions</li>
+          <li>Epinephrine alternatives (caffeine, emergency breathing)</li>
+          <li>Group member training for allergy emergencies</li>
+          <li>Stock antihistamines if available</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Spring Planting -->
+    <div class="flex-box">
+      <section id="spring-planting">
+        <h2>🌾 Spring Food Security Planning</h2>
+        
+        <h3>Quick-Growing Emergency Crops</h3>
+        <ul>
+          <li><strong>Radishes</strong> — Ready in 30 days</li>
+          <li><strong>Lettuce and greens</strong> — 45-60 days</li>
+          <li><strong>Bush beans</strong> — 50-60 days</li>
+          <li><strong>Summer squash</strong> — 50-70 days</li>
+        </ul>
+
+        <h3>Wild Spring Foraging</h3>
+        <ul>
+          <li><strong>Dandelions</strong> — Entire plant edible, high nutrition</li>
+          <li><strong>Wild garlic</strong> — Flavor and antimicrobial properties</li>
+          <li><strong>Clover flowers</strong> — Protein-rich, tea ingredient</li>
+          <li><strong>Plantain</strong> — "Nature's bandaid" and edible</li>
+        </ul>
+
+        <h3>Seed Saving and Storage</h3>
+        <ul>
+          <li>Collect seeds from last year's wild plants</li>
+          <li>Trade seeds with other survivor groups</li>
+          <li>Proper drying and storage techniques</li>
+          <li>Prioritize heirloom varieties for reproduction</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Weather Transition -->
+    <div class="flex-box">
+      <section id="weather-transition">
+        <h2>🌤️ Weather Transition Challenges</h2>
+        
+        <h3>Layered Clothing Strategy</h3>
+        <ul>
+          <li><strong>Base layer</strong> — Moisture-wicking materials</li>
+          <li><strong>Insulation layer</strong> — Fleece or wool for warmth</li>
+          <li><strong>Shell layer</strong> — Waterproof protection</li>
+          <li><strong>Adaptability</strong> — Easy to add/remove layers</li>
+        </ul>
+
+        <h3>Shelter Adaptations</h3>
+        <ul>
+          <li>Improve ventilation for warming weather</li>
+          <li>Maintain heating capability for cold snaps</li>
+          <li>Waterproof roof and walls for spring rains</li>
+          <li>Prepare for severe spring storms</li>
+        </ul>
+
+        <h3>Health Considerations</h3>
+        <ul>
+          <li>Monitor for seasonal depression improvement</li>
+          <li>Increase activity as weather improves</li>
+          <li>Watch for vitamin D deficiency recovery</li>
+          <li>Prepare for increased group dynamics activity</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Spring Security -->
+    <div class="flex-box">
+      <section id="spring-security">
+        <h2>🛡️ Spring Security Considerations</h2>
+        
+        <h3>Increased Movement Season</h3>
+        <ul>
+          <li>Other groups begin traveling as weather improves</li>
+          <li>Enhanced perimeter security needed</li>
+          <li>Trade opportunities but also risks</li>
+          <li>Scouting and intelligence gathering</li>
+        </ul>
+
+        <h3>Resource Competition</h3>
+        <ul>
+          <li>Prime foraging areas may be contested</li>
+          <li>Water sources under higher demand</li>
+          <li>Establish territorial boundaries</li>
+          <li>Develop resource-sharing agreements</li>
+        </ul>
+
+        <h3>Spring Camouflage</h3>
+        <ul>
+          <li>Adapt shelter camouflage to spring growth</li>
+          <li>Use green and brown patterns</li>
+          <li>Minimize smoke and light signatures</li>
+          <li>Establish observation posts in tree cover</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Action Checklist -->
+    <div class="flex-box">
+      <section id="spring-checklist">
+        <h2>✅ Spring Preparedness Checklist</h2>
+        
+        <h3>Before Spring Arrives:</h3>
+        <ul>
+          <li>□ Survey flood risk areas and escape routes</li>
+          <li>□ Stock natural allergy remedies</li>
+          <li>□ Prepare seeds and planting areas</li>
+          <li>□ Check and repair winter damage to shelter</li>
+          <li>□ Update clothing systems for variable weather</li>
+        </ul>
+
+        <h3>Early Spring (March-April):</h3>
+        <ul>
+          <li>□ Begin planting quick-growing crops</li>
+          <li>□ Start foraging for early spring plants</li>
+          <li>□ Increase physical conditioning activities</li>
+          <li>□ Enhance security measures</li>
+          <li>□ Plan group projects for improved weather</li>
+        </ul>
+
+        <h3>Late Spring (May-June):</h3>
+        <ul>
+          <li>□ Harvest early crops and wild foods</li>
+          <li>□ Prepare for summer heat challenges</li>
+          <li>□ Conduct group morale and team building</li>
+          <li>□ Scout for summer shelter improvements</li>
+          <li>□ Establish summer water conservation plans</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  
+  <script src="assets/js/lang-switcher.js" defer></script>
+</body>
+</html>

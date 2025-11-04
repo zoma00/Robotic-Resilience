@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medical Emergencies — Robotic Resilience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/mobile-backgrounds.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Enhanced Medical Emergencies Page Styling -->
+  <style>
+    /* Background Slideshow Integration */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      pointer-events: none;
+    }
+    
+    .bg-slideshow img.active {
+      opacity: 0.4;
+    }
+    
+    /* Content overlay styling */
+    .flex-box {
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .flex-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, 
+        rgba(8, 18, 33, 0.85) 0%, 
+        rgba(11, 23, 38, 0.9) 50%, 
+        rgba(15, 27, 42, 0.85) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 2px solid rgba(154, 230, 180, 0.4);
+      border-top: 1px solid rgba(154, 230, 180, 0.2);
+      position: relative;
+      z-index: 100;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(154, 230, 180, 0.3);
+    }
+
+    .warning-box {
+      background: rgba(220, 38, 38, 0.2);
+      border: 2px solid rgba(220, 38, 38, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .warning-box h4 {
+      color: #FCA5A5;
+      margin: 0 0 8px 0;
+    }
+  </style>
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Medical emergency response without hospitals: first aid, medication rationing, childbirth, and mental health crisis management.">
+  <meta name="author" content="Hazem ElBatawy">
+  
+  <!-- Social Sharing Optimization -->
+  <meta property="og:title" content="Medical Emergencies - Robotic Resilience">
+  <meta property="og:description" content="Medical emergency response without hospitals: first aid, medication rationing, childbirth, and mental health crisis management.">
+  <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Life_straws.jpg">
+  <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/medical-emergencies.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Medical Emergencies - Robotic Resilience">
+  <meta name="twitter:description" content="Medical emergency response without hospitals: first aid, medication rationing, childbirth, and mental health crisis management.">
+  <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Life_straws.jpg">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S9H098RFW9');
+  </script>
+</head>
+<body data-page="medical-emergencies">
+  <!-- Background Slideshow -->
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/Life_straws.jpg" alt="Emergency Medical Supplies" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/survival/survival three.jpg" alt="Survival Medicine" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg" alt="Natural Medicine" loading="lazy" decoding="async">
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a>
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
+        <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
+        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+        <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
+      </nav>
+      <h1 data-i18n="header.title">Medical Emergency Response</h1>
+      <p class="subtitle">Healthcare without hospitals: crisis medical management</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Medical Overview -->
+    <div class="flex-box">
+      <section id="medical-overview">
+        <h2>🏥 Medical Emergency Overview</h2>
+        
+        <div class="warning-box">
+          <h4>⚠️ Important Disclaimer</h4>
+          <p>This guide is for emergency situations when professional medical care is unavailable. Always seek professional medical help when possible. These techniques are for life-threatening situations only.</p>
+        </div>
+        
+        <p>
+          Medical emergencies in survival situations require immediate response without 
+          modern medical facilities. Success depends on preparation, basic medical knowledge, 
+          improvised techniques, and difficult triage decisions.
+        </p>
+        
+        <h3>Priority Medical Concerns:</h3>
+        <ul>
+          <li><strong>Trauma and injuries</strong> — Bleeding, fractures, burns</li>
+          <li><strong>Medication management</strong> — Rationing and alternatives</li>
+          <li><strong>Infectious diseases</strong> — Prevention and treatment</li>
+          <li><strong>Psychological emergencies</strong> — Mental health crises</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- First Aid Without Hospitals -->
+    <div class="flex-box">
+      <section id="first-aid">
+        <h2>🩹 First Aid Without Hospitals</h2>
+        
+        <h3>Severe Bleeding Control</h3>
+        <ul>
+          <li><strong>Direct pressure</strong> — Primary bleeding control method</li>
+          <li><strong>Pressure points</strong> — Arterial pressure locations</li>
+          <li><strong>Tourniquet application</strong> — Life-threatening hemorrhage only</li>
+          <li><strong>Improvised dressings</strong> — Clean cloth, moss, tampons</li>
+        </ul>
+
+        <h3>Fracture Management</h3>
+        <ul>
+          <li><strong>Stabilization principles</strong> — Immobilize above and below</li>
+          <li><strong>Improvised splints</strong> — Sticks, magazines, cardboard</li>
+          <li><strong>Open fracture care</strong> — Clean, cover, stabilize</li>
+          <li><strong>Pain management</strong> — Natural and available options</li>
+        </ul>
+
+        <h3>Burn Treatment</h3>
+        <ul>
+          <li><strong>Cool water immersion</strong> — First 20 minutes critical</li>
+          <li><strong>Burn classification</strong> — 1st, 2nd, 3rd degree assessment</li>
+          <li><strong>Natural treatments</strong> — Aloe vera, honey, cool compresses</li>
+          <li><strong>Infection prevention</strong> — Clean dressings, monitoring</li>
+        </ul>
+
+        <h3>Airway Emergencies</h3>
+        <ul>
+          <li><strong>Choking response</strong> — Heimlich maneuver techniques</li>
+          <li><strong>Artificial respiration</strong> — Mouth-to-mouth, bag mask</li>
+          <li><strong>Recovery position</strong> — Unconscious breathing patients</li>
+          <li><strong>Improvised airways</strong> — Emergency breathing assistance</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Medication Rationing -->
+    <div class="flex-box">
+      <section id="medication-rationing">
+        <h2>💊 Medication Rationing & Alternatives</h2>
+        
+        <h3>Prescription Medication Management</h3>
+        <ul>
+          <li><strong>Critical vs. non-critical</strong> — Triage medication importance</li>
+          <li><strong>Dose reduction strategies</strong> — Extend supplies safely</li>
+          <li><strong>Withdrawal management</strong> — Gradual reduction protocols</li>
+          <li><strong>Group sharing protocols</strong> — Ethical distribution systems</li>
+        </ul>
+
+        <h3>Natural Medicine Alternatives</h3>
+        <ul>
+          <li><strong>Pain relief</strong> — Willow bark (aspirin), capsaicin</li>
+          <li><strong>Antibiotics alternatives</strong> — Honey, garlic, echinacea</li>
+          <li><strong>Anti-inflammatory</strong> — Turmeric, ginger, fish oil</li>
+          <li><strong>Sedatives</strong> — Valerian root, chamomile, passionflower</li>
+        </ul>
+
+        <h3>Essential Medicine Priorities</h3>
+        <ul>
+          <li><strong>Life-sustaining medications</strong> — Insulin, heart medications</li>
+          <li><strong>Pain management supplies</strong> — For injuries and procedures</li>
+          <li><strong>Antibiotics</strong> — Infection control and prevention</li>
+          <li><strong>Anti-diarrheal</strong> — Prevent dangerous dehydration</li>
+        </ul>
+
+        <h3>Medicine Storage and Preservation</h3>
+        <ul>
+          <li><strong>Temperature control</strong> — Cool, dry storage areas</li>
+          <li><strong>Expiration management</strong> — Rotation and monitoring</li>
+          <li><strong>Packaging protection</strong> — Moisture and light protection</li>
+          <li><strong>Inventory tracking</strong> — Usage monitoring and rationing</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Childbirth in Crisis -->
+    <div class="flex-box">
+      <section id="childbirth-crisis">
+        <h2>👶 Childbirth in Crisis Situations</h2>
+        
+        <h3>Pregnancy Monitoring</h3>
+        <ul>
+          <li><strong>Prenatal care basics</strong> — Health monitoring without doctors</li>
+          <li><strong>Nutrition needs</strong> — Increased caloric and vitamin requirements</li>
+          <li><strong>Complication recognition</strong> — Warning signs and red flags</li>
+          <li><strong>Birth preparation</strong> — Supplies and space preparation</li>
+        </ul>
+
+        <h3>Emergency Delivery</h3>
+        <ul>
+          <li><strong>Clean delivery environment</strong> — Sanitation and preparation</li>
+          <li><strong>Labor stages</strong> — Recognition and management</li>
+          <li><strong>Delivery assistance</strong> — When and how to help</li>
+          <li><strong>Umbilical cord care</strong> — Cutting and cleaning procedures</li>
+        </ul>
+
+        <h3>Newborn Care</h3>
+        <ul>
+          <li><strong>Immediate care</strong> — Breathing, warmth, cleaning</li>
+          <li><strong>Feeding support</strong> — Breastfeeding assistance</li>
+          <li><strong>Temperature regulation</strong> — Preventing hypothermia</li>
+          <li><strong>Health monitoring</strong> — Warning signs in newborns</li>
+        </ul>
+
+        <h3>Complications Management</h3>
+        <ul>
+          <li><strong>Bleeding control</strong> — Post-partum hemorrhage</li>
+          <li><strong>Breech presentation</strong> — Emergency positioning</li>
+          <li><strong>Cord complications</strong> — Prolapse and entanglement</li>
+          <li><strong>Infection prevention</strong> — Sanitation and monitoring</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Mental Health Crisis -->
+    <div class="flex-box">
+      <section id="mental-health-crisis">
+        <h2>🧠 Mental Health Crisis Management</h2>
+        
+        <h3>Crisis Recognition</h3>
+        <ul>
+          <li><strong>Suicide risk assessment</strong> — Warning signs and intervention</li>
+          <li><strong>Psychotic episodes</strong> — Reality loss and management</li>
+          <li><strong>Severe depression</strong> — Functional impairment recognition</li>
+          <li><strong>Anxiety disorders</strong> — Panic attacks and phobias</li>
+        </ul>
+
+        <h3>De-escalation Techniques</h3>
+        <ul>
+          <li><strong>Active listening</strong> — Validation and understanding</li>
+          <li><strong>Calm environment</strong> — Reducing stimulation and triggers</li>
+          <li><strong>Safety assessment</strong> — Risk to self and others</li>
+          <li><strong>Support networks</strong> — Engaging trusted group members</li>
+        </ul>
+
+        <h3>PTSD and Trauma Response</h3>
+        <ul>
+          <li><strong>Trauma-informed care</strong> — Understanding triggers</li>
+          <li><strong>Grounding techniques</strong> — Present moment awareness</li>
+          <li><strong>Safety establishment</strong> — Physical and emotional security</li>
+          <li><strong>Gradual exposure</strong> — Controlled re-engagement</li>
+        </ul>
+
+        <h3>Group Mental Health</h3>
+        <ul>
+          <li><strong>Collective trauma</strong> — Shared experience processing</li>
+          <li><strong>Leadership during crisis</strong> — Maintaining group function</li>
+          <li><strong>Conflict resolution</strong> — Preventing escalation</li>
+          <li><strong>Resilience building</strong> — Coping skill development</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Infectious Disease Management -->
+    <div class="flex-box">
+      <section id="infectious-disease">
+        <h2>🦠 Infectious Disease Management</h2>
+        
+        <h3>Disease Prevention</h3>
+        <ul>
+          <li><strong>Sanitation protocols</strong> — Hand washing and hygiene</li>
+          <li><strong>Water purification</strong> — Preventing waterborne illness</li>
+          <li><strong>Food safety</strong> — Proper storage and preparation</li>
+          <li><strong>Quarantine procedures</strong> — Isolation and containment</li>
+        </ul>
+
+        <h3>Common Illness Treatment</h3>
+        <ul>
+          <li><strong>Respiratory infections</strong> — Bronchitis, pneumonia symptoms</li>
+          <li><strong>Gastrointestinal illness</strong> — Diarrhea and dehydration</li>
+          <li><strong>Skin infections</strong> — Wound care and hygiene</li>
+          <li><strong>Urinary tract infections</strong> — Recognition and treatment</li>
+        </ul>
+
+        <h3>Epidemic Response</h3>
+        <ul>
+          <li><strong>Isolation protocols</strong> — Containing disease spread</li>
+          <li><strong>Contact tracing</strong> — Tracking exposure patterns</li>
+          <li><strong>Resource allocation</strong> — Medical supply distribution</li>
+          <li><strong>Group decision making</strong> — Balancing individual vs. group needs</li>
+        </ul>
+
+        <h3>Traditional Remedies</h3>
+        <ul>
+          <li><strong>Herbal treatments</strong> — Proven natural medicines</li>
+          <li><strong>Immune system support</strong> — Nutrition and rest</li>
+          <li><strong>Symptom management</strong> — Comfort care without pharmaceuticals</li>
+          <li><strong>Recovery protocols</strong> — Gradual return to activity</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Medical Triage -->
+    <div class="flex-box">
+      <section id="medical-triage">
+        <h2>⚖️ Medical Triage & Difficult Decisions</h2>
+        
+        <h3>Triage Principles</h3>
+        <ul>
+          <li><strong>Greatest good</strong> — Save the most lives possible</li>
+          <li><strong>Resource limitations</strong> — Allocating limited supplies</li>
+          <li><strong>Survival likelihood</strong> — Realistic outcome assessment</li>
+          <li><strong>Group sustainability</strong> — Maintaining medical capability</li>
+        </ul>
+
+        <h3>Ethical Decision Making</h3>
+        <ul>
+          <li><strong>Group consensus</strong> — Shared responsibility for decisions</li>
+          <li><strong>Fair distribution</strong> — Equitable resource allocation</li>
+          <li><strong>Quality of life</strong> — Considering long-term outcomes</li>
+          <li><strong>Cultural sensitivity</strong> — Respecting beliefs and values</li>
+        </ul>
+
+        <h3>End-of-Life Care</h3>
+        <ul>
+          <li><strong>Comfort measures</strong> — Pain relief and dignity</li>
+          <li><strong>Emotional support</strong> — For patient and family</li>
+          <li><strong>Resource conservation</strong> — Realistic care limits</li>
+          <li><strong>Grief support</strong> — Group mourning and processing</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Medical Supplies -->
+    <div class="flex-box">
+      <section id="medical-supplies">
+        <h2>🎒 Essential Medical Supply Management</h2>
+        
+        <h3>Critical Supplies Priority List</h3>
+        <ul>
+          <li><strong>Trauma supplies</strong> — Bandages, tape, antiseptics</li>
+          <li><strong>Medications</strong> — Pain relief, antibiotics, chronic disease</li>
+          <li><strong>Surgical basics</strong> — Sutures, scalpels, scissors</li>
+          <li><strong>Diagnostic tools</strong> — Thermometer, blood pressure cuff</li>
+        </ul>
+
+        <h3>Improvised Medical Equipment</h3>
+        <ul>
+          <li><strong>Bandages</strong> — Clean cloth, moss, tampons</li>
+          <li><strong>Splints</strong> — Sticks, magazines, cardboard</li>
+          <li><strong>IV alternatives</strong> — Oral rehydration solutions</li>
+          <li><strong>Surgical tools</strong> — Sterilized household items</li>
+        </ul>
+
+        <h3>Medical Kit Organization</h3>
+        <ul>
+          <li><strong>Trauma kit</strong> — Immediate emergency response</li>
+          <li><strong>Medications</strong> — Organized by type and expiration</li>
+          <li><strong>Chronic care</strong> — Long-term health management</li>
+          <li><strong>Preventive care</strong> — Hygiene and wellness supplies</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Action Checklist -->
+    <div class="flex-box">
+      <section id="medical-checklist">
+        <h2>✅ Medical Emergency Preparedness Checklist</h2>
+        
+        <h3>Before Crisis:</h3>
+        <ul>
+          <li>□ Train multiple group members in first aid</li>
+          <li>□ Stockpile essential medications and supplies</li>
+          <li>□ Identify group members with medical knowledge</li>
+          <li>□ Create medical supply inventory system</li>
+          <li>□ Establish triage and care protocols</li>
+        </ul>
+
+        <h3>During Medical Emergency:</h3>
+        <ul>
+          <li>□ Assess scene safety before approaching</li>
+          <li>□ Perform primary assessment (ABCs)</li>
+          <li>□ Control bleeding and stabilize injuries</li>
+          <li>□ Monitor vital signs continuously</li>
+          <li>□ Document treatment and patient response</li>
+        </ul>
+
+        <h3>Long-term Medical Management:</h3>
+        <ul>
+          <li>□ Monitor medication supplies and rationing</li>
+          <li>□ Maintain sanitation and hygiene protocols</li>
+          <li>□ Address mental health needs regularly</li>
+          <li>□ Train additional medical personnel</li>
+          <li>□ Plan for complex medical situations</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  
+  <script src="assets/js/lang-switcher.js" defer></script>
+</body>
+</html>

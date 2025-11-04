@@ -160,17 +160,15 @@
     main {
       max-width: 800px;
       margin: 40px auto;
-      background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(248, 250, 252, 0.95) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      color: #1a202c;
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      color: #E2E8F0;
       border-radius: 20px;
+      border: 1px solid rgba(154, 230, 180, 0.3);
       box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        0 0 0 1px rgba(154, 230, 180, 0.2);
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
       padding: 40px;
       position: relative;
       z-index: 10;
@@ -184,23 +182,22 @@
       right: 0;
       bottom: 0;
       background: linear-gradient(135deg, 
-        rgba(154, 230, 180, 0.05) 0%, 
-        transparent 50%, 
-        rgba(154, 230, 180, 0.02) 100%);
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
       border-radius: 20px;
       pointer-events: none;
       z-index: -1;
     }
     
     h1, h2 {
-      color: #1a202c;
+      color: #E2E8F0;
       margin-bottom: 20px;
     }
     
     h1 {
       font-size: 2.2rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #065f46 0%, #1a202c 100%);
+      background: linear-gradient(135deg, #9AE6B4 0%, #E2E8F0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -210,7 +207,7 @@
     h2 {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #065f46;
+      color: #9AE6B4;
       margin-top: 30px;
       margin-bottom: 15px;
     }
@@ -218,12 +215,12 @@
     p {
       line-height: 1.6;
       margin-bottom: 18px;
-      color: #2d3748;
+      color: #CBD5E0;
     }
     
     code, pre {
-      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-      color: #2d3748;
+      background: rgba(10, 14, 23, 0.6);
+      color: #E2E8F0;
       border-radius: 8px;
       padding: 4px 8px;
       font-family: 'Courier New', monospace;
@@ -234,7 +231,7 @@
       padding: 16px;
       margin: 15px 0;
       overflow-x: auto;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     pre code {
@@ -244,19 +241,20 @@
     }
     
     .tip {
-      background: linear-gradient(135deg, 
-        rgba(219, 234, 254, 0.8) 0%, 
-        rgba(239, 246, 255, 0.8) 100%);
+      background: rgba(10, 14, 23, 0.6);
       border-left: 4px solid #9ae6b4;
       padding: 20px;
       margin: 25px 0;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(154, 230, 180, 0.2);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      color: #E2E8F0;
     }
     
     .tip strong {
-      color: #065f46;
+      color: #9AE6B4;
     }
     
     ol, ul {
@@ -267,11 +265,12 @@
     li {
       margin: 10px 0;
       line-height: 1.6;
+      color: #CBD5E0;
     }
     
     .footer-text {
       margin-top: 40px;
-      color: #718096;
+      color: #9AE6B4;
       font-size: 0.95em;
       text-align: center;
       padding-top: 20px;
@@ -326,6 +325,17 @@
   <meta name="description" content="Instructions for downloading all survival guide PDFs as a ZIP file using a local web server.">
   <meta name="author" content="Hazem ElBatawy">
   
+  <!-- Social Sharing Optimization -->
+  <meta property="og:title" content="Download All PDFs Guide - Robotic Resilience">
+  <meta property="og:description" content="Instructions for downloading all survival guide PDFs as a ZIP file using a local web server. Complete offline access setup guide.">
+  <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
+  <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/how-to-download-zip.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Download All PDFs Guide - Robotic Resilience">
+  <meta name="twitter:description" content="Instructions for downloading all survival guide PDFs as a ZIP file using a local web server.">
+  <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
   <script>
@@ -337,7 +347,7 @@
 </head>
 <body data-page="download-help">
   <div class="bg-slideshow">
-    <img src="assets/kit-photos/survival/survival one.jpg" alt="Survival Guide" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg" alt="Survival Guide" class="active" loading="eager" decoding="sync">
     <img src="assets/kit-photos/compass/compass survival navigation.jpg" alt="Navigation Tools" loading="lazy" decoding="async">
     <img src="assets/kit-photos/map/world-map-dotted.jpg" alt="World Map" loading="lazy" decoding="async">
     <img src="assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg" alt="Greenery" loading="lazy" decoding="async">
@@ -351,45 +361,47 @@
         <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
         <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
         <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
+        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
         <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
         <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
       </nav>
-      <h1 data-i18n="zipHelp.title">Download All PDFs (ZIP)</h1>
-      <p class="subtitle" data-i18n="zipHelp.subtitle">Complete setup guide for downloading survival guides</p>
+      <h1>Download All PDFs (ZIP)</h1>
+      <p class="subtitle">Complete setup guide for downloading survival guides</p>
       <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
       <div id="lang-switcher"></div>
     </div>
   </header>
 
   <main>
-    <p data-i18n="zipHelp.intro">
+    <p>
       To use the <strong>"Download All PDFs (ZIP)"</strong> button and get all guides at once, you must run a local web server. This is required because browsers block JavaScript from accessing local files directly for security reasons.
     </p>
     
-    <h2 data-i18n="zipHelp.stepsTitle">Step-by-Step Instructions</h2>
+    <h2>Step-by-Step Instructions</h2>
     <ol>
-      <li data-i18n="zipHelp.step1">Open a terminal in your project directory.</li>
-      <li data-i18n="zipHelp.step2">Run this command:
+      <li>Open a terminal in your project directory.</li>
+      <li>Run this command:
         <pre><code>python3 -m http.server 8080</code></pre>
       </li>
-      <li data-i18n="zipHelp.step3">Open your browser and go to:
+      <li>Open your browser and go to:
         <pre><code>http://localhost:8080/index.html</code></pre>
       </li>
-      <li data-i18n="zipHelp.step4">Click the <strong>"Download All PDFs (ZIP)"</strong> button. All PDFs will be downloaded as a single ZIP file.</li>
+      <li>Click the <strong>"Download All PDFs (ZIP)"</strong> button. All PDFs will be downloaded as a single ZIP file.</li>
     </ol>
     
     <div class="tip">
-      <strong data-i18n="zipHelp.tipTitle">Tip:</strong> <span data-i18n="zipHelp.tip">You can still download individual PDFs using the other buttons, even without a server. The ZIP download only requires a server because of browser security rules.</span>
+      <strong>Tip:</strong> <span>You can still download individual PDFs using the other buttons, even without a server. The ZIP download only requires a server because of browser security rules.</span>
     </div>
     
-    <h2 data-i18n="zipHelp.troubleshootingTitle">Troubleshooting</h2>
+    <h2>Troubleshooting</h2>
     <ul>
-      <li data-i18n="zipHelp.trouble1">If you see errors about CORS or files not found, make sure you are using <code>http://localhost:8080</code> and not opening the file directly from your computer.</li>
-      <li data-i18n="zipHelp.trouble2">Make sure all PDF files are present in the project folder.</li>
-      <li data-i18n="zipHelp.trouble3">If you use a different port, update the URL accordingly (e.g., <code>http://localhost:8000</code>).</li>
+      <li>If you see errors about CORS or files not found, make sure you are using <code>http://localhost:8080</code> and not opening the file directly from your computer.</li>
+      <li>Make sure all PDF files are present in the project folder.</li>
+      <li>If you use a different port, update the URL accordingly (e.g., <code>http://localhost:8000</code>).</li>
     </ul>
     
-    <div class="footer-text" data-i18n="zipHelp.footer">This guide is for offline use of the Human Continuity Blueprint. For questions, see the README or contact the project maintainer.</div>
+    <div class="footer-text">This guide is for offline use of the Human Continuity Blueprint. For questions, see the README or contact the project maintainer.</div>
   </main>
   
   <script src="assets/js/lang-switcher.js" defer></script>
