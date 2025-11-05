@@ -17,16 +17,6 @@
   direction: ltr; /* Keep navigation LTR for better UX */
 }
 
-[lang="ar"] .region-dropdown {
-  right: auto;
-  left: 20px;
-}
-
-[lang="ar"] #region-selector-button {
-  right: auto;
-  left: 20px;
-}
-
 [lang="ar"] .progress-stats {
   direction: ltr; /* Keep stats LTR for numbers */
 }
