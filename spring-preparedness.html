@@ -85,20 +85,153 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 1px 0 rgba(154, 230, 180, 0.3);
     }
+    
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        transparent 50%, 
+        rgba(154, 230, 180, 0.04) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Enhanced Navigation Links */
+    .header-nav-links {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      background: rgba(10, 14, 23, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 50px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      max-width: 1000px;
+      margin: 0 auto 20px auto;
+      flex-wrap: wrap;
+    }
+    
+    .header-nav-links a {
+      color: #E2E8F0 !important;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.9em;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+    
+    .header-nav-links a:hover {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.15);
+      border-color: rgba(154, 230, 180, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 25px rgba(154, 230, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .header-nav-links a:active,
+    .header-nav-links a[href*="spring-preparedness.html"] {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.2);
+      border-color: rgba(154, 230, 180, 0.4);
+      box-shadow: 
+        0 4px 15px rgba(154, 230, 180, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Enhanced Header Typography */
+    .site-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #9AE6B4 0%, #E2E8F0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      margin: 20px 0 10px 0;
+      letter-spacing: -0.5px;
+    }
+    
+    .site-header .subtitle {
+      color: #CBD5E0;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 8px 0 15px 0;
+      opacity: 0.9;
+    }
+    
+    .site-header .byline {
+      color: #9AE6B4;
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 10px 0 15px 0;
+      opacity: 0.8;
+    }
+    
+    /* Mobile Responsive Navigation */
+    @media (max-width: 768px) {
+      .header-nav-links {
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      
+      .header-nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+      
+      .site-header h1 {
+        font-size: 2rem;
+      }
+      
+      .site-header .subtitle {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-nav-links {
+        margin: 0 -10px 20px -10px;
+      }
+      
+      .site-header h1 {
+        font-size: 1.75rem;
+      }
+    }
   </style>
   <meta name="theme-color" content="#0a0e17">
-  <meta name="description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta name="description" content="Professional spring preparedness guide: flood management protocols, allergy prevention strategies, seasonal health planning, and weather transition management. Comprehensive emergency preparedness resource.">
   <meta name="author" content="Hazem ElBatawy">
   
   <!-- Social Sharing Optimization -->
-  <meta property="og:title" content="Spring Preparedness - Robotic Resilience">
-  <meta property="og:description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta property="og:title" content="Spring Risk Management — Flood Control & Seasonal Operations Planning">
+  <meta property="og:description" content="Advanced spring operational planning: flood risk assessment, seasonal health protocols, weather transition management, and environmental adaptation strategies. Demonstrates expertise in risk mitigation, operational planning, environmental management, and crisis prevention for emergency management and business continuity professionals.">
   <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg">
   <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/spring-preparedness.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Spring Preparedness - Robotic Resilience">
-  <meta name="twitter:description" content="Spring preparedness strategies for flood season, allergy management, food security planning, and weather transition challenges.">
+  <meta name="twitter:title" content="Spring Risk Management — Flood Control & Seasonal Operations Planning">
+  <meta name="twitter:description" content="Advanced spring operational planning: flood risk assessment, seasonal health protocols, weather transition management, and environmental adaptation strategies. Demonstrates expertise in risk mitigation, operational planning, environmental management, and crisis prevention for emergency management and business continuity professionals.">
   <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Green/larch-conifer-cone-branch-tree-40896.jpg">
   
   <!-- Google tag (gtag.js) -->
@@ -109,6 +242,8 @@
     gtag('js', new Date());
     gtag('config', 'G-S9H098RFW9');
   </script>
+  <!-- Hamburger Menu Script -->
+  <script src="assets/js/hamburger-menu.js"></script>
 </head>
 <body data-page="spring-preparedness">
   <!-- Background Slideshow -->
@@ -126,8 +261,9 @@
         <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
         <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
         <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
-        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="seasonal.html" data-i18n="nav.seasonal">Seasonal Guides</a>
         <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="infrastructure-failure.html" data-i18n="nav.infrastructure">Infrastructure Failure</a>
         <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
         <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
       </nav>

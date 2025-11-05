@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Infrastructure Failure Response — Robotic Resilience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/mobile-backgrounds.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Enhanced Infrastructure Failure Page Styling -->
+  <style>
+    /* Background Slideshow Integration */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      pointer-events: none;
+    }
+    
+    .bg-slideshow img.active {
+      opacity: 0.4;
+    }
+    
+    /* Content overlay styling */
+    .flex-box {
+      background: rgba(10, 14, 23, 0.4);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(154, 230, 180, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .flex-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        rgba(10, 14, 23, 0.02) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, 
+        rgba(8, 18, 33, 0.85) 0%, 
+        rgba(11, 23, 38, 0.9) 50%, 
+        rgba(15, 27, 42, 0.85) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 2px solid rgba(154, 230, 180, 0.4);
+      border-top: 1px solid rgba(154, 230, 180, 0.2);
+      position: relative;
+      z-index: 100;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(154, 230, 180, 0.3);
+    }
+    
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(154, 230, 180, 0.08) 0%, 
+        transparent 50%, 
+        rgba(154, 230, 180, 0.04) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Enhanced Navigation Links */
+    .header-nav-links {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      background: rgba(10, 14, 23, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 50px;
+      border: 1px solid rgba(154, 230, 180, 0.25);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      max-width: 1000px;
+      margin: 0 auto 20px auto;
+      flex-wrap: wrap;
+    }
+    
+    .header-nav-links a {
+      color: #E2E8F0 !important;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.9em;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+    
+    .header-nav-links a:hover {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.15);
+      border-color: rgba(154, 230, 180, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 25px rgba(154, 230, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .header-nav-links a:active,
+    .header-nav-links a[href*="infrastructure-failure.html"] {
+      color: #9AE6B4 !important;
+      background: rgba(154, 230, 180, 0.2);
+      border-color: rgba(154, 230, 180, 0.4);
+      box-shadow: 
+        0 4px 15px rgba(154, 230, 180, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Enhanced Header Typography */
+    .site-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #9AE6B4 0%, #E2E8F0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      margin: 20px 0 10px 0;
+      letter-spacing: -0.5px;
+    }
+    
+    .site-header .subtitle {
+      color: #CBD5E0;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 8px 0 15px 0;
+      opacity: 0.9;
+    }
+    
+    .site-header .byline {
+      color: #9AE6B4;
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 10px 0 15px 0;
+      opacity: 0.8;
+    }
+    
+    /* Mobile Responsive Navigation */
+    @media (max-width: 768px) {
+      .header-nav-links {
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      
+      .header-nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+      
+      .site-header h1 {
+        font-size: 2rem;
+      }
+      
+      .site-header .subtitle {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-nav-links {
+        margin: 0 -10px 20px -10px;
+      }
+      
+      .site-header h1 {
+        font-size: 1.75rem;
+      }
+    }
+
+    .critical-box {
+      background: rgba(220, 38, 38, 0.2);
+      border: 2px solid rgba(220, 38, 38, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .critical-box h4 {
+      color: #FCA5A5;
+      margin: 0 0 8px 0;
+    }
+
+    .system-box {
+      background: rgba(59, 130, 246, 0.2);
+      border: 2px solid rgba(59, 130, 246, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .system-box h4 {
+      color: #93C5FD;
+      margin: 0 0 8px 0;
+    }
+  </style>
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="Professional infrastructure failure response framework: power grid analysis, communication systems management, transportation logistics, and supply chain risk mitigation. Advanced crisis management expertise for business continuity and emergency management professionals.">
+  <meta name="author" content="Hazem ElBatawy">
+  
+  <!-- Social Sharing Optimization -->
+  <meta property="og:title" content="Infrastructure Failure Response — Expert Crisis Management & Business Continuity">
+  <meta property="og:description" content="Professional infrastructure failure response protocols: power grid analysis, communication systems management, transportation logistics, and supply chain risk mitigation. Demonstrates advanced crisis management expertise, strategic planning capabilities, and critical infrastructure knowledge for business continuity and emergency management professionals.">
+  <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
+  <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/infrastructure-failure.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infrastructure Failure Response — Expert Crisis Management & Business Continuity">
+  <meta name="twitter:description" content="Professional infrastructure failure response protocols: power grid analysis, communication systems management, transportation logistics, and supply chain risk mitigation. Demonstrates advanced crisis management expertise, strategic planning capabilities, and critical infrastructure knowledge for business continuity and emergency management professionals.">
+  <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H098RFW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S9H098RFW9');
+  </script>
+  <!-- Hamburger Menu Script -->
+  <script src="assets/js/hamburger-menu.js"></script>
+</head>
+<body data-page="infrastructure-failure">
+  <!-- Background Slideshow -->
+  <div class="bg-slideshow">
+    <img src="assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg" alt="Infrastructure Collapse" class="active" loading="eager" decoding="sync">
+    <img src="assets/kit-photos/map/world-map-dotted.jpg" alt="Critical Infrastructure" loading="lazy" decoding="async">
+    <img src="assets/kit-photos/survival/survival one.jpg" alt="Emergency Systems" loading="lazy" decoding="async">
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="header-nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="survival-kit.html" data-i18n="nav.kit">War Survival Kit</a>
+        <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
+        <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
+        <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
+        <a href="seasonal.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="infrastructure-failure.html" data-i18n="nav.infrastructure">Infrastructure Failure</a>
+        <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
+        <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
+      </nav>
+      <h1 data-i18n="header.title">Infrastructure Failure Response</h1>
+      <p class="subtitle">Critical systems collapse and infrastructure breakdown management</p>
+      <p class="byline" data-i18n="header.byline">By Hazem ElBatawy</p>
+      <div id="lang-switcher"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Infrastructure Overview -->
+    <div class="flex-box">
+      <section id="infrastructure-overview">
+        <h2>⚡ Infrastructure Failure Overview</h2>
+        <p>
+          Infrastructure collapse represents one of the most complex survival scenarios, 
+          as modern society depends entirely on interconnected systems. When these fail 
+          simultaneously, survival requires immediate adaptation and long-term strategic planning.
+        </p>
+        
+        <div class="critical-box">
+          <h4>🚨 Critical Infrastructure Systems:</h4>
+          <ul>
+            <li><strong>Power Grid</strong> — Electrical generation and distribution</li>
+            <li><strong>Water Systems</strong> — Treatment, pumping, and distribution</li>
+            <li><strong>Communication Networks</strong> — Internet, cellular, emergency services</li>
+            <li><strong>Transportation</strong> — Roads, fuel supply, public transit</li>
+            <li><strong>Supply Chains</strong> — Food, medical, manufacturing</li>
+            <li><strong>Financial Systems</strong> — Banking, payments, commerce</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Power Grid Collapse -->
+    <div class="flex-box">
+      <section id="power-grid-failure">
+        <h2>🔌 Power Grid Collapse Response</h2>
+        
+        <h3>Immediate Actions (First 24 Hours)</h3>
+        <ul>
+          <li><strong>Preserve battery power</strong> — Turn off non-essential devices immediately</li>
+          <li><strong>Secure refrigerated items</strong> — Consume perishables first, pack freezer items</li>
+          <li><strong>Fill water containers</strong> — Before pumping systems fail completely</li>
+          <li><strong>Activate backup lighting</strong> — Flashlights, candles, oil lamps</li>
+        </ul>
+
+        <h3>Alternative Power Solutions</h3>
+        <ul>
+          <li><strong>Solar charging systems</strong> — Portable panels for small devices</li>
+          <li><strong>Hand-crank generators</strong> — Manual power for essential equipment</li>
+          <li><strong>Bicycle generators</strong> — Pedal-powered electricity generation</li>
+          <li><strong>Car batteries</strong> — 12V power with inverters for AC devices</li>
+        </ul>
+
+        <h3>Heating and Cooling Alternatives</h3>
+        <ul>
+          <li><strong>Wood burning stoves</strong> — Primary heating without electricity</li>
+          <li><strong>Propane heaters</strong> — Portable, efficient heating solution</li>
+          <li><strong>Thermal mass cooling</strong> — Underground areas, stone structures</li>
+          <li><strong>Passive ventilation</strong> — Strategic airflow without fans</li>
+        </ul>
+
+        <div class="system-box">
+          <h4>💡 Essential Power Priorities:</h4>
+          <ol>
+            <li>Communication devices (radio, phones)</li>
+            <li>Medical equipment (CPAP, oxygen concentrators)</li>
+            <li>Food preservation (minimal refrigeration)</li>
+            <li>Security systems (motion sensors, alarms)</li>
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <!-- Water System Failure -->
+    <div class="flex-box">
+      <section id="water-system-failure">
+        <h2>💧 Water System Breakdown</h2>
+        
+        <h3>Water Storage and Conservation</h3>
+        <ul>
+          <li><strong>Emergency water supplies</strong> — Minimum 1 gallon per person per day</li>
+          <li><strong>Rainwater collection</strong> — Tarps, gutters, collection containers</li>
+          <li><strong>Greywater recycling</strong> — Reuse washing and cooking water</li>
+          <li><strong>Water rationing protocols</strong> — Strict consumption management</li>
+        </ul>
+
+        <h3>Water Purification Methods</h3>
+        <ul>
+          <li><strong>Boiling</strong> — Most reliable purification method</li>
+          <li><strong>Water filters</strong> — Mechanical filtration systems</li>
+          <li><strong>Chemical purification</strong> — Iodine, chlorine, purification tablets</li>
+          <li><strong>UV sterilization</strong> — Solar water disinfection (SODIS)</li>
+        </ul>
+
+        <h3>Alternative Water Sources</h3>
+        <ul>
+          <li><strong>Natural springs</strong> — Locate and test local sources</li>
+          <li><strong>Wells and boreholes</strong> — Manual pumping systems</li>
+          <li><strong>Surface water</strong> — Rivers, lakes (requires heavy filtration)</li>
+          <li><strong>Atmospheric water</strong> — Dew collection, condensation traps</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Communication Breakdown -->
+    <div class="flex-box">
+      <section id="communication-failure">
+        <h2>📡 Communication System Collapse</h2>
+        
+        <h3>Alternative Communication Methods</h3>
+        <ul>
+          <li><strong>HAM radio networks</strong> — Long-distance emergency communication</li>
+          <li><strong>Two-way radios</strong> — Short-range team coordination</li>
+          <li><strong>Signal mirrors</strong> — Visual communication over distances</li>
+          <li><strong>Written messages</strong> — Physical bulletin boards, notes</li>
+        </ul>
+
+        <h3>Information Networks</h3>
+        <ul>
+          <li><strong>Local radio stations</strong> — Battery-powered emergency broadcasts</li>
+          <li><strong>Community networks</strong> — Neighborhood communication systems</li>
+          <li><strong>Message runners</strong> — Physical information delivery</li>
+          <li><strong>Signal systems</strong> — Flags, smoke signals, sound codes</li>
+        </ul>
+
+        <h3>Navigation Without GPS</h3>
+        <ul>
+          <li><strong>Paper maps</strong> — Physical backup navigation</li>
+          <li><strong>Compass navigation</strong> — Magnetic compass skills</li>
+          <li><strong>Celestial navigation</strong> — Sun and star positioning</li>
+          <li><strong>Landmark navigation</strong> — Visual reference points</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Transportation Collapse -->
+    <div class="flex-box">
+      <section id="transportation-failure">
+        <h2>🚗 Transportation System Breakdown</h2>
+        
+        <h3>Fuel Management and Alternatives</h3>
+        <ul>
+          <li><strong>Fuel conservation</strong> — Essential trips only, carpooling</li>
+          <li><strong>Alternative vehicles</strong> — Bicycles, motorcycles, horses</li>
+          <li><strong>Manual transportation</strong> — Walking, handcarts, wheelbarrows</li>
+          <li><strong>Fuel production</strong> — Biodiesel, alcohol fuels, wood gas</li>
+        </ul>
+
+        <h3>Vehicle Maintenance</h3>
+        <ul>
+          <li><strong>Mechanical knowledge</strong> — Basic repair skills</li>
+          <li><strong>Spare parts inventory</strong> — Critical components stockpile</li>
+          <li><strong>Tool preparation</strong> — Complete mechanical toolkit</li>
+          <li><strong>Alternative parts</strong> — Improvised replacement solutions</li>
+        </ul>
+
+        <h3>Regional Mobility Strategy</h3>
+        <ul>
+          <li><strong>Local resource mapping</strong> — Identify nearby supplies</li>
+          <li><strong>Walking routes</strong> — Safe pedestrian pathways</li>
+          <li><strong>Bicycle networks</strong> — Establish cycling infrastructure</li>
+          <li><strong>Community transportation</strong> — Shared vehicle programs</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Supply Chain Disruption -->
+    <div class="flex-box">
+      <section id="supply-chain-failure">
+        <h2>📦 Supply Chain Disruption Management</h2>
+        
+        <h3>Food Security Planning</h3>
+        <ul>
+          <li><strong>Food stockpiling</strong> — Long-term storage systems</li>
+          <li><strong>Local food production</strong> — Gardens, greenhouses, livestock</li>
+          <li><strong>Food preservation</strong> — Canning, drying, fermentation</li>
+          <li><strong>Foraging skills</strong> — Wild food identification and harvesting</li>
+        </ul>
+
+        <h3>Medical Supply Management</h3>
+        <ul>
+          <li><strong>Medication stockpiles</strong> — Essential prescriptions and OTC drugs</li>
+          <li><strong>Medical equipment</strong> — Basic diagnostic and treatment tools</li>
+          <li><strong>Alternative medicine</strong> — Herbal remedies, traditional treatments</li>
+          <li><strong>First aid supplies</strong> — Comprehensive emergency medical kits</li>
+        </ul>
+
+        <h3>Essential Goods Strategy</h3>
+        <ul>
+          <li><strong>Tool inventory</strong> — Hand tools, repair equipment</li>
+          <li><strong>Material stockpiles</strong> — Building supplies, fuel, chemicals</li>
+          <li><strong>Barter systems</strong> — Local exchange networks</li>
+          <li><strong>Manufacturing alternatives</strong> — Local production capabilities</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Financial System Collapse -->
+    <div class="flex-box">
+      <section id="financial-system-failure">
+        <h2>💰 Financial System Breakdown</h2>
+        
+        <h3>Alternative Economic Systems</h3>
+        <ul>
+          <li><strong>Barter networks</strong> — Direct goods and services exchange</li>
+          <li><strong>Local currencies</strong> — Community-based exchange systems</li>
+          <li><strong>Skill sharing</strong> — Labor exchange programs</li>
+          <li><strong>Resource pooling</strong> — Community ownership models</li>
+        </ul>
+
+        <h3>Value Storage and Protection</h3>
+        <ul>
+          <li><strong>Physical assets</strong> — Tools, equipment, land, buildings</li>
+          <li><strong>Precious metals</strong> — Gold, silver for long-term value storage</li>
+          <li><strong>Cryptocurrency</strong> — Decentralized digital assets (if power available)</li>
+          <li><strong>Knowledge and skills</strong> — Irreplaceable personal assets</li>
+        </ul>
+
+        <h3>Community Economic Planning</h3>
+        <ul>
+          <li><strong>Local production</strong> — Self-sufficient manufacturing</li>
+          <li><strong>Service networks</strong> — Professional skill sharing</li>
+          <li><strong>Resource allocation</strong> — Fair distribution systems</li>
+          <li><strong>Economic governance</strong> — Community decision-making processes</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Recovery and Rebuilding -->
+    <div class="flex-box">
+      <section id="recovery-rebuilding">
+        <h2>🔧 Recovery and Rebuilding Strategy</h2>
+        
+        <h3>Infrastructure Priority Assessment</h3>
+        <ul>
+          <li><strong>Critical system triage</strong> — Identify repair priorities</li>
+          <li><strong>Resource allocation</strong> — Focus limited resources effectively</li>
+          <li><strong>Skill mobilization</strong> — Organize technical expertise</li>
+          <li><strong>Material sourcing</strong> — Locate and secure repair materials</li>
+        </ul>
+
+        <h3>Community Organization</h3>
+        <ul>
+          <li><strong>Leadership structure</strong> — Establish decision-making authority</li>
+          <li><strong>Work groups</strong> — Organize specialized teams</li>
+          <li><strong>Resource management</strong> — Fair distribution and allocation</li>
+          <li><strong>Security protocols</strong> — Protect rebuilding efforts</li>
+        </ul>
+
+        <h3>Long-term Resilience Planning</h3>
+        <ul>
+          <li><strong>Redundant systems</strong> — Multiple backup solutions</li>
+          <li><strong>Local manufacturing</strong> — Reduce external dependencies</li>
+          <li><strong>Education programs</strong> — Skill development and knowledge transfer</li>
+          <li><strong>Regional cooperation</strong> — Inter-community support networks</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Action Checklist -->
+    <div class="flex-box">
+      <section id="infrastructure-checklist">
+        <h2>✅ Infrastructure Failure Checklist</h2>
+        
+        <h3>Immediate Response (0-24 Hours):</h3>
+        <ul>
+          <li>□ Assess which systems are down vs. operational</li>
+          <li>□ Activate emergency power and lighting</li>
+          <li>□ Secure water supplies and start conservation</li>
+          <li>□ Establish communication with family/community</li>
+          <li>□ Implement security measures</li>
+        </ul>
+
+        <h3>Short-term Adaptation (1-7 Days):</h3>
+        <ul>
+          <li>□ Set up alternative power systems</li>
+          <li>□ Establish water purification procedures</li>
+          <li>□ Create communication networks</li>
+          <li>□ Organize food distribution and preservation</li>
+          <li>□ Plan transportation alternatives</li>
+        </ul>
+
+        <h3>Long-term Rebuilding (1+ Weeks):</h3>
+        <ul>
+          <li>□ Assess infrastructure damage and repair needs</li>
+          <li>□ Organize community recovery efforts</li>
+          <li>□ Establish local production capabilities</li>
+          <li>□ Create resilient backup systems</li>
+          <li>□ Plan for future infrastructure independence</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  
+  <script src="assets/js/lang-switcher.js" defer></script>
+</body>
+</html>

@@ -45,7 +45,7 @@
     
     /* Enhanced Navigation Links */
     .header-nav-links {
-      display: flex !important;
+      display: flex;
       justify-content: center;
       align-items: center;
       gap: 0;
@@ -69,7 +69,7 @@
       padding: 8px 14px;
       border-radius: 25px;
       font-weight: 500;
-      font-size: 0.85em;
+      font-size: 0.95em;
       position: relative;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       white-space: nowrap;
@@ -110,6 +110,15 @@
       letter-spacing: -0.5px;
     }
     
+    /* Desktop Navigation Enhancement */
+    @media (min-width: 1201px) {
+      .header-nav-links a {
+        font-size: 1.05em;
+        padding: 10px 18px;
+        font-weight: 600;
+      }
+    }
+    
     .site-header .subtitle {
       color: #CBD5E0;
       font-size: 1.1rem;
@@ -128,20 +137,13 @@
     }
     
     /* Mobile Responsive Navigation */
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       .header-nav-links {
-        flex-direction: column;
-        gap: 8px;
-        padding: 20px;
-        border-radius: 20px;
+        display: none;
       }
-      
-      .header-nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 15px;
-      }
-      
+    }
+    
+    @media (max-width: 768px) {
       .site-header h1 {
         font-size: 2rem;
       }
@@ -152,28 +154,90 @@
     }
     
     @media (max-width: 480px) {
-      .header-nav-links {
-        margin: 0 -10px 20px -10px;
-      }
-      
       .site-header h1 {
         font-size: 1.75rem;
       }
     }
+    
+    /* Animated Text Effects */
+    .animated-text {
+      animation: fadeInSlideUp 2s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    @keyframes fadeInSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Text Highlighting Animation */
+    .animated-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(154, 230, 180, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    .animated-text {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    
+    /* Enhanced lede styling with motion */
+    .lede.animated-text {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #E2E8F0;
+      background: linear-gradient(135deg, #E2E8F0 0%, #9AE6B4 50%, #E2E8F0 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInSlideUp 2s ease-out forwards, gradientShift 4s ease-in-out infinite 2s;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
   </style>
   <meta name="theme-color" content="#0a0e17">
-  <meta name="description" content="A practical, psychological, and strategic survival plan for small human groups (10–20 people) in a robotic/AI apocalypse.">
+  <meta name="description" content="Comprehensive survival strategy framework featuring 13+ guides: seasonal preparedness, medical emergencies, navigation, and tactical planning. Professional survival resource for emergency preparedness and resilience planning.">
   <meta name="author" content="Hazem ElBatawy">
   
   <!-- Social Sharing Optimization -->
-  <meta property="og:title" content="Robotic Resilience - Survival Guide">
-  <meta property="og:description" content="Essential survival strategies for uncertain times. A practical, psychological, and strategic survival plan for small human groups in a robotic/AI apocalypse.">
+  <meta property="og:title" content="Robotic Resilience - Complete Survival Strategy Framework">
+  <meta property="og:description" content="Professional survival resource featuring 13+ comprehensive guides: seasonal preparedness, medical emergencies, tactical navigation, and strategic planning. Demonstrates expertise in emergency preparedness, content strategy, and technical implementation.">
   <meta property="og:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
   <meta property="og:url" content="https://zoma00.github.io/Robotic-Resilience/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Robotic Resilience - Survival Guide">
-  <meta name="twitter:description" content="Essential survival strategies for uncertain times. A practical, psychological, and strategic survival plan for small human groups in a robotic/AI apocalypse.">
+  <meta name="twitter:title" content="Robotic Resilience - Complete Survival Strategy Framework">
+  <meta name="twitter:description" content="Professional survival resource featuring 13+ comprehensive guides: seasonal preparedness, medical emergencies, tactical navigation, and strategic planning. Demonstrates expertise in emergency preparedness, content strategy, and technical implementation.">
   <meta name="twitter:image" content="https://zoma00.github.io/Robotic-Resilience/assets/kit-photos/Robo/post-apocalyptic-scene-with-two-robot_917213-239945.jpg">
   
   <!-- Google tag (gtag.js) -->
@@ -184,6 +248,9 @@
     gtag('js', new Date());
     gtag('config', 'G-S9H098RFW9');
   </script>
+  
+  <!-- Hamburger Menu Script -->
+  <script src="assets/js/hamburger-menu.js"></script>
 </head>
 <body data-page="index">
   <div class="bg-slideshow">
@@ -209,8 +276,9 @@
         <a href="navigation.html" data-i18n="nav.navigation">Navigation Tutorial</a>
         <a href="egypt.html" data-i18n="nav.egypt">Egypt Map</a>
         <a href="checklist.html" data-i18n="nav.checklist">Survival Checklist</a>
-        <a href="spring-preparedness.html" data-i18n="nav.seasonal">Seasonal Guides</a>
+        <a href="seasonal.html" data-i18n="nav.seasonal">Seasonal Guides</a>
         <a href="medical-emergencies.html" data-i18n="nav.medical">Medical Emergencies</a>
+        <a href="infrastructure-failure.html" data-i18n="nav.infrastructure">Infrastructure Failure</a>
         <a href="how-to-download-zip.html" data-i18n="nav.downloadHelp">How to Download All PDFs (ZIP)</a>
         <a href="discussion.html" data-i18n="nav.discussion">Discussion</a>
       </nav>
@@ -225,7 +293,7 @@
     <article id="home-article">
 
       <div class="flex-box">
-        <p class="lede" data-i18n="lede">That's a deep and fascinating Scenario. We live in a world — especially as AI and robotics become more advanced. Below is a compact, realistic survival & rebuild plan for a small group (~10–20 people). Think of it as a practical Human Continuity Blueprint.</p>
+        <p class="lede animated-text" data-i18n="lede">When civilization faces its greatest test, preparation becomes survival. This comprehensive blueprint transforms uncertainty into actionable strategy — a complete survival framework for small communities navigating an automated world. From immediate crisis response to long-term resilience building, discover the essential knowledge that could mean the difference between chaos and continuity.</p>
 
         <nav class="toc">
           <strong data-i18n="toc.title">Contents</strong>
@@ -235,9 +303,16 @@
             <li><a href="#phase2" data-i18n="toc.phase2">Phase Two — Short-Term (Weeks 1–4)</a></li>
             <li><a href="#phase3" data-i18n="toc.phase3">Phase Three — Long-Term (Months 2–6)</a></li>
             <li><a href="#phase4" data-i18n="toc.phase4">Phase Four — Rebuilding (6+ months)</a></li>
-            <li><a href="navigation.html" data-i18n="toc.navigation">Navigation Tutorial (No GPS)</a></li>
-            <li><a href="egypt.html" data-i18n="toc.egypt">Egypt Map Page</a></li>
-            <li><a href="survival-kit.html" data-i18n="toc.kit">War Survival Kit</a></li>
+            <li><span data-i18n="toc.navigation">Navigation Tutorial (No GPS)</span></li>
+            <li><span data-i18n="toc.egypt">Egypt Map Page</span></li>
+            <li><span data-i18n="toc.kit">War Survival Kit</span></li>
+            <li><span data-i18n="toc.spring">Spring Preparedness Guide</span></li>
+            <li><span data-i18n="toc.summer">Summer Preparedness Guide</span></li>
+            <li><span data-i18n="toc.fall">Fall Preparedness Guide</span></li>
+            <li><span data-i18n="toc.winter">Winter Preparedness Guide</span></li>
+            <li><span data-i18n="toc.medical">Medical Emergency Response</span></li>
+            <li><span data-i18n="toc.infrastructure">Infrastructure Failure Response</span></li>
+            <li><span data-i18n="toc.checklist">Interactive Survival Checklist</span></li>
             <li><a href="assets/Human Enclave Survival Blueprint.svg" target="_blank" data-i18n="toc.blueprint">Open Survival Blueprint (SVG)</a></li>
             <li><a href="#golden" data-i18n="toc.golden">Golden Rules</a></li>
           </ol>
