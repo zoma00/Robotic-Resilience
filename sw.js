@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rob-resilience-v28';
+const CACHE_NAME = 'rob-resilience-v29-' + Date.now();
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -7,11 +7,21 @@ const CORE_ASSETS = [
   './egypt.html',
   './pdf-viewer.html',
   './how-to-download-zip.html',
+  './discussion.html',
+  './checklist.html',
+  './seasonal.html',
+  './medical-emergencies.html',
+  './infrastructure-failure.html',
+  './spring-preparedness.html',
+  './summer-preparedness.html',
+  './fall-preparedness.html',
+  './winter-preparedness.html',
   './styles.css',
   './assets/css/mobile-backgrounds.css',
   './assets/js/accessibility.js',
   './assets/js/lang-switcher.js',
   './assets/js/download-all-pdfs.js',
+  './assets/js/hamburger-menu.js',
   './assets/js/slideshow.js',
   './assets/js/vendor/html2pdf.bundle.min.js',
   './assets/favicon.svg',
@@ -44,6 +54,29 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
+  
+  // Force fresh CSS and JS files
+  const url = new URL(request.url);
+  const isCSSOrJS = url.pathname.endsWith('.css') || url.pathname.endsWith('.js');
+  
+  if (isCSSOrJS) {
+    // Always fetch fresh CSS/JS files
+    event.respondWith(
+      fetch(request).then((resp) => {
+        const respClone = resp.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(request, respClone);
+        });
+        return resp;
+      }).catch(() => {
+        // Fallback to cache if offline
+        return caches.match(request);
+      })
+    );
+    return;
+  }
+  
+  // Regular caching strategy for other assets
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
@@ -52,7 +85,6 @@ self.addEventListener('fetch', (event) => {
         caches.open(CACHE_NAME).then((cache) => {
           // Cache same-origin only
           try {
-            const url = new URL(request.url);
             if (url.origin === location.origin) {
               cache.put(request, respClone);
             }
