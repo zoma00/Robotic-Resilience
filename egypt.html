@@ -800,6 +800,48 @@
       transition: transform 0.2s ease;
       box-shadow: 0 4px 20px rgba(154, 230, 180, 0.1);
     }
+    
+    /* Animated Text Effects */
+    .animated-text {
+      animation: fadeInSlideUp 2s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @keyframes fadeInSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Enhanced lede styling with motion */
+    .lede.animated-text {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #E2E8F0;
+      background: linear-gradient(135deg, #E2E8F0 0%, #9AE6B4 50%, #E2E8F0 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInSlideUp 2s ease-out forwards, gradientShift 4s ease-in-out infinite 2s;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
   </style>
   <meta name="theme-color" content="#0a0e17">
   <meta name="description" content="A simple Egypt map page for planning enclave placement, supply lines, and critical zones within Egypt.">
@@ -869,7 +911,7 @@
   <main class="wrap">
     <div class="flex-box">
     <article>
-      <p class="lede">This comprehensive guide analyzes Egypt's survival zones, seasonal challenges, and local expertise for emergency preparedness. Based on authentic regional knowledge and practical survival considerations for different terrains and climates across Egypt.</p>
+      <p class="lede animated-text">This comprehensive guide analyzes Egypt's survival zones, seasonal challenges, and local expertise for emergency preparedness. Based on authentic regional knowledge and practical survival considerations for different terrains and climates across Egypt.</p>
 
       <!-- Regional Survival Zones Analysis -->
       <section class="regional-analysis">
